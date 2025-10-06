@@ -195,10 +195,9 @@ public class Utilizer {
         String newSp_id;
         switch(temp.length()){ 
           // case 1: newSp_id="00000"+temp; break; // case 2: newSp_id="0000"+temp; break; //case 1: newSp_id="000"+temp; break;
-           case 1: newSp_id="0000"+temp; break;
-           case 2: newSp_id="000"+temp; break;
-           case 3: newSp_id="00"+temp; break;
-           case 4: newSp_id="0"+temp; break;
+           case 1: newSp_id="000"+temp; break;
+           case 2: newSp_id="00"+temp; break;
+           case 3: newSp_id="0"+temp; break;
            default:newSp_id=temp;
         }
         return newSp_id;

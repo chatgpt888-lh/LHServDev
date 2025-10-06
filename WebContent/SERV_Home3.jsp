@@ -1,0 +1,1403 @@
+<%@page language="java" contentType="text/html; charset=TIS-620" pageEncoding="TIS-620"%>
+<%@page import="com.lh.util.*" %>
+<%@page import="serv.common.*" %>
+<%@ page import="serv.util.ServLog" %>
+<%@ include file="confirmLogin.jsp" %>
+<%@ include file="function.jsp" %>
+
+<%!
+  
+  public int getCountValue(Statement stmt,String sql,ServLog servlog) throws Exception {
+       int result = 0;
+	   servlog.startLog(sql.toString());
+       ResultSet rs = stmt.executeQuery(sql);
+	   servlog.endLog();
+       if (rs.next()) {
+          result = rs.getInt(1);
+       }
+       rs.close();
+       
+       return result;
+  }
+  
+  public int countResultRow(Statement stmt,String sql,ServLog servlog) throws Exception {
+       int result = 0;
+	   servlog.startLog(sql.toString());
+       ResultSet rs = stmt.executeQuery(sql);
+	   servlog.endLog();
+       while (rs.next()) {
+          result++;
+       }
+       rs.close();
+       
+       return result;
+  }  
+  
+  public String getDateFromResultSet(ResultSet rs,String fieldName) throws Exception {
+      String result = "";      
+	  Calendar cal = Calendar.getInstance();
+	  Timestamp tmp = rs.getTimestamp(fieldName);
+	
+	  if (tmp!=null)  {
+	      cal.setTime(tmp);
+	      result = getDateFromCalendar(cal);
+	  }      
+      
+      return result;
+  }
+
+
+	public String genProjectListboxByUserId(Connection conn,String userId,String name,String value,String params,boolean getAllProj) {
+		 StringBuffer html = new StringBuffer();
+		 StringBuffer sql = new StringBuffer();
+		Statement stmt = null;
+		 ResultSet rs = null;
+		 boolean allProject = false;
+		 SERV_CommonData common = new SERV_CommonData(conn);
+
+		 try {
+			stmt = conn.createStatement();
+		 	
+		 	
+			//---============= Check user is vendor or employee ===============----//
+			String userWho = "";
+			String iPerson = "";	
+			
+			sql.delete(0,sql.length());
+			sql.append(" select * from lan:useracl where user_id='").append(userId).append("' and user_acl='S' ");
+			rs = stmt.executeQuery(sql.toString());
+			if (rs.next()) {
+				userWho = doString.checkString(rs.getString("user_who"),""); 
+				iPerson = doString.checkString(rs.getString("i_person"),""); 		
+			}
+			rs.close();			
+		 	
+			///----=============== Generate Query for Vendor and Employee ==================---//
+			if (userWho.equalsIgnoreCase(Constants.PERMISSION_VENDOR)) {
+				sql.delete(0,sql.length());
+				sql.append(" select a.i_company com_id,a.i_project proj_id,b.n_project from lan:serv_venprj a ")
+					  .append(" left join lan:acxprojt b on b.i_company=a.i_company and b.i_project=a.i_project ")
+					  .append(" where a.i_vendor='").append(iPerson).append("' ")
+					  .append(" and a.i_type='01' order by a.com_id,a.proj_id ");
+			} else {
+				 sql.delete(0,sql.length());
+				 sql.append(" select a.com_id, a.proj_id, b.n_project  from lan:serv_pstaff a ")
+					   .append(" left join lan:acxprojt b on b.i_company=a.com_id  and  b.i_project=a.proj_id ")
+					   .append(" where a.user_id = '").append(userId).append("' ")
+					   .append(" order by a.com_id,a.proj_id ");
+			}
+		 			 	
+			 rs = stmt.executeQuery(sql.toString());
+		     
+			 //-------============== Generate List box ===================------//
+			 html.append("<select name='").append(name).append("' ").append(params).append(" >");
+			 html.append("<option value=''>"+Constants.LISTBOX_SELECT_LABEL+"</option>");
+		     
+			 while (rs.next()) {
+				String comId = doString.checkString(rs.getString("com_id"),"");
+				String projId = doString.checkString(rs.getString("proj_id"),"");
+				String projName = doString.checkString(doString.DisplayThai(rs.getString("n_project")),"");
+				String val = comId+":"+projId;
+				String selected = "";
+				if (value!=null && val.equalsIgnoreCase(value)) {
+				   selected = " selected "; 
+				}
+		        
+				if (projId.equalsIgnoreCase("ALL")) {
+				   //---====== If ALL Permission , set flag and exit loop =======----//
+				   allProject = true;
+				   break;
+				 } else {
+				   //---====== Normal Case , generate project by permission =======---//
+				   html.append("<option value='").append(val).append("' ").append(selected).append(">")
+						   .append(comId).append("-").append(projId).append(" - ").append(projName)
+						   .append("</option>");				                   
+				 }		        
+			 } // end while		 
+			 
+			 html.append("<option value='ALL_PROJ' "+(value.equalsIgnoreCase("ALL") ? "selected" : "")+">"+Constants.LISTBOX_ALLPROJECT_LABEL+"</option>");
+			 html.append("</select>");
+			 //----=====================================================----//
+		           		     
+			 rs.close();
+			 stmt.close();
+
+		     
+			 if (allProject) {
+				 //----====== AllProject is true , gen All Project Listbox ========----//
+				 html.delete(0,html.length());
+				 html.append(common.genAllProjectListbox(name,value,params,getAllProj));
+			 }		     
+		     
+		 } catch (Exception e) {
+			 System.out.println(" genProjectListboxByUserId Error : "+e.getMessage());
+		 } finally {
+			 try {
+				if (rs!=null) rs.close();
+				if (stmt!=null) stmt.close();
+			 } catch (Exception ex) {}
+		 }
+	     
+		 return html.toString();
+	}	
+  
+
+%>
+
+<%
+String sessionId = user.getsessionId();
+String userId = user.getUserID();
+String empId = user.getEmpId();
+String jName = "SERV_Home.jsp";
+ServLog servlog = new ServLog(sessionId, userId, jName);
+
+   String search = doString.checkString(request.getParameter("search"),"");
+   String selProj = doString.checkString(request.getParameter("sel_project"),"");
+
+/*
+   if  (selProj.length()==0) {
+       if (!search.equalsIgnoreCase("Y")) selProj = doString.checkString((String) session.getAttribute("sess_sel_proj"),"");
+   } else {
+       session.setAttribute("sess_sel_proj",selProj);
+   }
+ */
+ 
+   //-----====================== Search BOQ Data ================================------//
+	StringBuffer sql = new StringBuffer();
+	Connection conn = null;
+	Statement stmt = null;
+	Statement stmt1 = null;
+	ResultSet rs = null;
+	ResultSet rs1 = null;
+	SERV_CommonData common = null;
+	boolean BOQApprove = false;
+	   
+	try {
+	    doString str = new doString();
+	
+        //----============ Initialize Variable ============----//
+		if (ds == null) getDS();
+		conn = ds.getConnection();
+		conn.setTransactionIsolation(Connection.TRANSACTION_READ_UNCOMMITTED);
+		conn.setAutoCommit(true);
+		stmt = conn.createStatement();       
+		stmt1 = conn.createStatement();       
+		common = new SERV_CommonData(conn); 
+        //----=======================================----//    
+
+			//------------------ Check Service Center -----------------
+			String serv_center = "N";
+			sql.delete(0,sql.length());
+			sql.append("select i_employ from lan:serv_center ")
+			     .append("where i_employ = '"+empId+"' ");
+			rs = stmt.executeQuery(sql.toString());
+			if (rs.next() == true) {
+				serv_center = "Y";			
+			}		 	
+			rs.close();
+			//out.println("serv_center="+serv_center);	       
+        
+
+        if (user.getUserWho().equalsIgnoreCase("J")) {
+			String url = "/LHServ/SERV_InfJobCondo.jsp";
+			%>
+			<html>
+			<head>
+			<meta http-equiv="Content-Type" content="text/html; charset=TIS-620">
+			<META HTTP-EQUIV="Refresh" CONTENT="0;URL=<%=url%>">
+			</head>
+			</html>
+			<%
+
+
+		} else 
+			
+		
+		
+		{ //--------------=================== for other user ==========================------//
+
+        //---============== Check BOQ Approve Permission =================----//
+        if (user.getUserWho().equalsIgnoreCase("C") && user.getUserACL().equalsIgnoreCase("S")) {
+           BOQApprove = true;
+        }
+
+
+		//----============== Generate Condition ================-----//
+       String condition = "";	
+	   boolean viewAllStaffProj = false;
+
+		   if (selProj.trim().length()<=0) {
+			   condition += " and a.i_docno='NOPROEJCT' ";
+		   } else if (selProj.equalsIgnoreCase("ALL_PROJ"))  {
+			   if (user.getUserWho().equalsIgnoreCase(Constants.PERMISSION_VENDOR)) { 
+				   //---- user is vendor , add condition -----//
+				   //condition = "  and  exists (select x.i_company from lan:serv_venprj x where x.i_vendor= '"+user.getEmpId()+"' ";
+				   //condition += "  and x.i_company = a.i_company and x.i_project = a.i_project and x.i_vendor=b.i_vendor) ";
+				   condition += " and a.i_docno='NOPROEJCT' ";
+			   } else {
+				    //---- user is employee -----//
+
+					 //----- check user have all project -----//
+					sql.delete(0,sql.length());
+					sql.append("SELECT COUNT(*) FROM lan:serv_pstaff WHERE user_id = '").append(userId).append("' AND proj_id = 'ALL'");
+					int checkAllPermission = getCountValue(stmt,sql.toString(),servlog); 
+					if (checkAllPermission<=0) {
+						//---- user view some project , add condition -----//
+					   /*condition = " and  exists (select x.com_id from serv_pstaff x where x.user_id= '"+user.getUserID()+"' ";
+					   condition += " and x.com_id = a.i_company and x.proj_id = a.i_project) ";*/
+					   viewAllStaffProj = true;
+				    } else {
+						//------ other case , can't view data -----//
+						condition += " and a.i_docno='NOPROEJCT' ";
+					}
+			   }
+
+			   selProj = "ALL";
+		   } else if (selProj.length()>=6 && !selProj.equalsIgnoreCase("ALL"))  {
+			   //------ select project and not select all project -----//
+			   condition = " and a.i_company='"+selProj.substring(0,2)+"' and a.i_project='"+selProj.substring(3,6)+"' ";
+			   if (user.getUserWho().equalsIgnoreCase(Constants.PERMISSION_VENDOR)) {
+				   condition += " and b.i_vendor='"+user.getEmpId()+"' ";
+			   }
+		   } else if (selProj.equalsIgnoreCase("ALL"))  {
+			   //------ select all project , no condition --------//
+		   } else {
+			   //------ other case , can't view data -----//
+			   condition += " and a.i_docno='NOPROEJCT' ";
+		   }
+
+        
+        //----=========== Get Payment Date =============----//        
+        String showCurrentPaymentDate = "";
+        String showCurrentConstructorDate = "";
+        String showCurrentServiceStaffDate = "";
+        String showCurrentServiceManagerDate = "";
+        String showCurrentManagerDate = "";
+        String showCurrentVPDate = "";
+
+        String showNextPaymentDate = "";
+        String showNextConstructorDate = "";
+        String showNextServiceStaffDate = "";
+        String showNextServiceManagerDate = "";
+        String showNextManagerDate = "";
+        String showNextVPDate = "";
+                
+        String currentPaymentDate = "";
+        String nextPaymentDate = "";
+		String dChangeDate = "";
+                
+        sql.delete(0,sql.length());
+        sql.append(" select * from lan:serv_payschd where d_change>=today order by d_payment ");
+		servlog.startLog(sql.toString());
+        rs = stmt.executeQuery(sql.toString());
+		servlog.endLog();
+        int cnt = 1;
+		String tmpDate = "";
+		 Calendar pay =null;
+		 Timestamp tmp = null;
+		 int year = 0;
+
+        while (rs.next()) {
+            //---- Payment Date ----// 
+		    pay = Calendar.getInstance();
+		    tmp = rs.getTimestamp("d_payment");
+
+		    if (tmp!=null)  {
+		        pay.setTime(tmp);    
+		        
+		        tmpDate = "";
+		        year = pay.get(Calendar.YEAR);
+		        if (year>2400) year -= 543;
+		        tmpDate = year+"-"+str.createID((pay.get(Calendar.MONTH)+1),2)+"-"+str.createID(pay.get(Calendar.DATE),2);
+		          
+	            if (cnt==1) { 
+	               currentPaymentDate = tmpDate;
+	               showCurrentPaymentDate = getDateFromResultSet(rs,"d_payment");
+                   showCurrentConstructorDate = getDateFromResultSet(rs,"d_contructor");
+                   showCurrentServiceStaffDate = getDateFromResultSet(rs,"d_service_staff");
+                   showCurrentServiceManagerDate = getDateFromResultSet(rs,"d_service_man");
+                   showCurrentManagerDate = getDateFromResultSet(rs,"d_service_zone");
+                   showCurrentVPDate = getDateFromResultSet(rs,"d_vp");
+	            } else if (cnt==2) {
+	               nextPaymentDate = tmpDate;
+	               showNextPaymentDate = getDateFromResultSet(rs,"d_payment");
+                   showNextConstructorDate = getDateFromResultSet(rs,"d_contructor");
+                   showNextServiceStaffDate = getDateFromResultSet(rs,"d_service_staff");
+                   showNextServiceManagerDate = getDateFromResultSet(rs,"d_service_man");
+                   showNextManagerDate = getDateFromResultSet(rs,"d_service_zone");
+                   showNextVPDate = getDateFromResultSet(rs,"d_vp");
+	            } else { break; }
+		    }         
+            cnt++;
+        }
+                        
+        
+        //----=========== Count for OpenJob Table =============----//        
+        int jobWait = 0;
+        int jobPass = 0;
+        int jobReject = 0;
+        int taskWait = 0;
+        int taskPass = 0;
+        int completeWait = 0;
+        int completePass = 0;
+		String docNo = "";
+		String itemStatus = "";
+
+
+
+		if (!user.getUserWho().equalsIgnoreCase(Constants.PERMISSION_VENDOR)) {
+			//------ if employee not vendor , check job ---------//
+			sql.delete(0,sql.length());
+			if (viewAllStaffProj) {
+				//---- query for staff view all project ----//
+				sql.append(" select count(*) from lan:serv_pstaff a,lan:serv_dochd b ")
+					  .append(" where b.f_status='OPN' and b.i_doc_type='I' and b.c_desc != 'Checkup Program' ")
+					  .append(" and a.user_id = '"+userId+"' and a.com_id = b.i_company ")
+					  .append(" and a.proj_id = b.i_project ");
+			} else {
+				sql.append(" select count(*) from lan:serv_dochd a where a.f_status='OPN' and a.i_doc_type='I' and a.c_desc != 'Checkup Program' ")
+					  .append(condition);
+			}  
+			jobWait = getCountValue(stmt,sql.toString(),servlog); 
+
+
+			sql.delete(0,sql.length());
+			if (viewAllStaffProj) {
+				//---- query for staff view all project ----//
+				sql.append(" select distinct b.i_docno, c.f_itmstatus ")
+					  .append(" from lan:serv_pstaff a,lan:serv_dochd b,lan:serv_docdt c ")
+					  .append(" where b.f_status='OPN' and b.i_doc_type='J' and c.f_itmstatus!='CAN' ")
+					  .append(" and c.f_itmstatus!='400' and c.i_docno=b.i_docno ")
+					  .append(" and a.user_id = '"+userId+"' and a.com_id = b.i_company ")
+					  .append(" and a.proj_id = b.i_project ");
+			} else {
+				sql.append(" select distinct a.i_docno, b.f_itmstatus from lan:serv_dochd a,lan:serv_docdt b ")
+					  .append(" where a.f_status='OPN' and a.i_doc_type='J' and ")
+					  .append(" b.f_itmstatus!='CAN' and f_itmstatus!='400' "+condition+" ")
+					  .append(" and b.i_docno=a.i_docno");
+			}
+			rs = stmt.executeQuery(sql.toString());
+			while (rs.next()) {
+				docNo = doString.checkString(rs.getString("i_docno"),"");
+				itemStatus = doString.checkString(rs.getString("f_itmstatus"),"");
+				rs1 = stmt1.executeQuery("SELECT i_docno FROM lan:serv_chkuplck WHERE i_docno = '"+docNo+"'");
+				if (rs1.next() == false) {
+					if (itemStatus.equalsIgnoreCase("200")) {
+						jobPass++;
+						taskWait++;
+					}
+	
+					else if (itemStatus.equalsIgnoreCase("300")) {
+						taskPass++;
+						completeWait++;
+					} 
+				}
+				rs1.close();
+				rs1=null;
+			} // end while
+			rs.close();
+																					
+			sql.delete(0,sql.length());
+			if (viewAllStaffProj) {
+				//---- query for staff view all project ----//
+				sql.append(" select count(*) from lan:serv_pstaff a,lan:serv_dochd b,lan:serv_payment c ")
+					  .append(" where  b.f_status='OPN' and b.i_doc_type='J' and c.f_itmstatus='400' ")
+					  .append(" and c.f_itmstatus!='CAN' and c.i_docno=b.i_docno ")
+					  .append(" and a.user_id = '"+userId+"' and a.com_id = b.i_company ")
+					  .append(" and a.proj_id = b.i_project ")
+					  .append(" group by b.i_docno ");
+			} else {
+				sql.append(" select count(*) from lan:serv_dochd a,lan:serv_payment b ")
+					  .append(" where  a.f_status='OPN' and a.i_doc_type='J' and b.f_itmstatus='400' and b.f_itmstatus!='CAN' ")
+					  .append(" and b.i_docno=a.i_docno ").append(condition)
+					  .append(" group by a.i_docno ");
+			}
+			completePass = countResultRow(stmt,sql.toString(),servlog);
+		} // end if check vendor
+
+
+
+		
+		//----============== Count For Payment job =============-----//
+        int cConstructorWait = 0;
+        int cConstructorPass = 0;
+        int cConstructorReject = 0;
+        int cServiceStaffWait = 0;
+        int cServiceStaffPass = 0;
+        int cServiceManagerWait = 0;
+        int cServiceManagerPass = 0;        
+        int cManagerWait = 0;
+        int cManagerPass = 0;              
+        int cVPWait = 0;
+        int cVPPass = 0;      
+
+        int nConstructorWait = 0;
+        int nConstructorPass = 0;
+        int nConstructorReject = 0;
+        int nServiceStaffWait = 0;
+        int nServiceStaffPass = 0;
+        int nServiceManagerWait = 0;
+        int nServiceManagerPass = 0;        
+        int nManagerWait = 0;
+        int nManagerPass = 0;              
+        int nVPWait = 0;
+        int nVPPass = 0;       
+
+		itemStatus = "";
+		String fReject = "";
+		String dReject = "";
+		String dPayment = "";
+		int count = 0;
+
+
+		sql.delete(0,sql.length());
+		if (viewAllStaffProj) {
+			//---- query for staff view all project ----//
+			sql.append(" select count(distinct c.i_docno) as cnt, c.f_itmstatus, b.f_reject, b.d_reject, c.d_payment ")
+				  .append("  from lan:serv_payment c, lan:serv_dochd b,lan:serv_pstaff a ")
+				  .append(" where b.f_status != 'CAN' and a.user_id = '").append(userId).append("' ")
+				  .append(" and a.com_id = b.i_company and a.proj_id = b.i_project ")
+				  .append(" and b.i_doc_type = 'J' and b.i_docno = c.i_docno ")
+				  .append(" and (c.d_payment = '"+currentPaymentDate+"' or c.d_payment = '"+nextPaymentDate+"') ")
+				  .append(" and c.f_itmstatus != 'CAN' ")
+				  .append("  group by c.f_itmstatus, b.f_reject, b.d_reject, c.d_payment  ");
+		} else {
+			sql.append(" select {+index(b serv_payment_idx4 )} count(distinct b.i_docno) as cnt ,b.f_itmstatus,a.f_reject,a.d_reject,b.d_payment ")
+				  .append(" from lan:serv_dochd a,lan:serv_payment b where a.f_status in ('OPN','CLS') and a.i_doc_type='J' ")
+				  .append(" and b.f_itmstatus!='CAN' and b.i_docno=a.i_docno "+condition+" ")
+				  .append(" and (b.d_payment='"+currentPaymentDate+"' or b.d_payment='"+nextPaymentDate+"') ")
+				  .append(" group by b.f_itmstatus,a.f_reject,a.d_reject,b.d_payment ");
+		}
+		servlog.startLog(sql.toString());
+		rs = stmt.executeQuery(sql.toString());
+		servlog.endLog();
+		while (rs.next()) {
+			itemStatus = doString.checkString(rs.getString("f_itmstatus"),"");
+			fReject = doString.checkString(rs.getString("f_reject"),"");
+			dReject = doString.checkString(doString.DisplayThai(rs.getString("d_reject")),"");
+			dPayment = doString.checkString(doString.DisplayThai(rs.getString("d_payment")),"");
+			count = rs.getInt("cnt");
+
+			if (itemStatus.equalsIgnoreCase("400")) {
+				if (fReject.equalsIgnoreCase("N") && dReject.trim().length()>0) {
+					if (currentPaymentDate.equals(dPayment)) {
+						cConstructorReject += count; // Constructor Reject , current payment
+					} else if (nextPaymentDate.equals(dPayment)) {
+						nConstructorReject += count; // Constructor Reject , next payment
+					}
+				} else {
+					if (currentPaymentDate.equals(dPayment)) {
+						cConstructorWait += count; // Constructor Wait , current payment
+					} else if (nextPaymentDate.equals(dPayment)) {
+						nConstructorWait += count; // Constructor Wait , next payment
+					}
+				}
+			} 
+			
+			else if (itemStatus.equalsIgnoreCase("500")) {
+					if (currentPaymentDate.equals(dPayment)) {
+						cConstructorPass += count; // Constructor Pass , current payment
+						cServiceStaffWait += count; // Service Staff Wait , current payment
+					} else if (nextPaymentDate.equals(dPayment)) {
+						nConstructorPass += count; // Constructor Pass , next payment
+						nServiceStaffWait += count; // Service Staff Wait , next payment
+					}
+			}
+
+			else if (itemStatus.equalsIgnoreCase("600")) {
+					if (currentPaymentDate.equals(dPayment)) {
+						cServiceStaffPass += count; // Service Staff Pass , current payment
+						cServiceManagerWait += count; // Service Managet Wait , current payment
+					} else if (nextPaymentDate.equals(dPayment)) {
+						nServiceStaffPass += count; // Service Staff Pass , next payment
+						nServiceManagerWait += count; // Service Managet Wait , next payment
+					}
+			}
+
+			else if (itemStatus.equalsIgnoreCase("700")) {
+					if (currentPaymentDate.equals(dPayment)) {
+						cServiceManagerPass += count; // Service Manager Pass , current payment
+						cManagerWait += count; // Manager Wait , current payment
+					} else if (nextPaymentDate.equals(dPayment)) {
+						nServiceManagerPass += count; // Service Manager Pass , next payment
+						nManagerWait += count; // Manager Wait , next payment
+					}
+			}
+
+			else if (itemStatus.equalsIgnoreCase("800")) {
+					if (currentPaymentDate.equals(dPayment)) {
+						cManagerPass += count; // Managet Pass , current payment
+						cVPWait += count;  // VP Wait , current payment 
+					} else if (nextPaymentDate.equals(dPayment)) {
+						nManagerPass += count; // Managet Pass , next payment
+						nVPWait += count;  // VP Wait , next payment 
+					}
+			}
+
+			else if (itemStatus.equalsIgnoreCase("CLS")) {
+					if (currentPaymentDate.equals(dPayment)) {
+						cVPPass += count;  // VP Pass , current payment 
+					} else if (nextPaymentDate.equals(dPayment)) {
+						nVPPass += count;  // VP Pass , next payment 
+					}
+			}
+		}
+		rs.close();
+                                               
+
+  
+          int cINFConstructorWait = 0;
+        int cINFConstructorPass = 0;
+        int cINFConstructorReject = 0;
+        int cINFServiceStaffWait = 0;
+        int cINFServiceStaffPass = 0;
+        int cINFServiceManagerWait = 0;
+        int cINFServiceManagerPass = 0;        
+        int cINFManagerWait = 0;
+        int cINFManagerPass = 0;              
+        int cINFVPWait = 0;
+        int cINFVPPass = 0;      
+
+        int nINFConstructorWait = 0;
+        int nINFConstructorPass = 0;
+        int nINFConstructorReject = 0;
+        int nINFServiceStaffWait = 0;
+        int nINFServiceStaffPass = 0;
+        int nINFServiceManagerWait = 0;
+        int nINFServiceManagerPass = 0;        
+        int nINFManagerWait = 0;
+        int nINFManagerPass = 0;              
+        int nINFVPWait = 0;
+        int nINFVPPass = 0;    
+
+		itemStatus = "";
+		fReject = "";
+		dReject = "";
+		dPayment = "";
+		count = 0;
+
+        sql.delete(0,sql.length());
+		if (viewAllStaffProj) {
+			//---- query for staff view all project ----//
+			sql.append(" select count(distinct c.i_docno) as cnt, c.f_itmstatus, b.f_reject, b.d_reject, c.d_payment ")
+				  .append("  from lan:serv_infpayment c, lan:serv_infdochd b,lan:serv_pstaff a ")
+				  .append(" where b.f_status != 'CAN' and a.user_id = '").append(userId).append("' ")
+				  .append(" and a.com_id = b.i_company and a.proj_id = b.i_project ")
+				  .append(" and b.i_doc_type = 'J' and b.i_docno = c.i_docno ")
+				  .append(" and (c.d_payment = '"+currentPaymentDate+"' or c.d_payment = '"+nextPaymentDate+"') ")
+				  .append(" and c.f_itmstatus != 'CAN' ")
+				  .append("  group by c.f_itmstatus, b.f_reject, b.d_reject, c.d_payment  ");
+		} else {
+			sql.append(" select count(distinct b.i_docno) as cnt ,b.f_itmstatus,a.f_reject,a.d_reject,b.d_payment ")
+				  .append(" from lan:serv_infdochd a,lan:serv_infpayment b where a.f_status!='CAN' and a.i_doc_type='J' ")
+				  .append(" and b.f_itmstatus!='CAN' and b.i_docno=a.i_docno "+condition+" ")
+				  .append(" and (b.d_payment='"+currentPaymentDate+"' or b.d_payment='"+nextPaymentDate+"') ")
+				  .append(" group by b.f_itmstatus,a.f_reject,a.d_reject,b.d_payment ");
+		}
+		rs = stmt.executeQuery(sql.toString());
+		while (rs.next()) {
+			itemStatus = doString.checkString(rs.getString("f_itmstatus"),"");
+			fReject = doString.checkString(rs.getString("f_reject"),"");
+			dReject = doString.checkString(doString.DisplayThai(rs.getString("d_reject")),"");
+			dPayment = doString.checkString(doString.DisplayThai(rs.getString("d_payment")),"");
+			count = rs.getInt("cnt");
+
+			if (itemStatus.equalsIgnoreCase("400")) {
+				if (fReject.equalsIgnoreCase("N") && dReject.trim().length()>0) {
+					if (currentPaymentDate.equals(dPayment)) {
+						cINFConstructorReject += count; // Constructor Reject , current payment
+					} else if (nextPaymentDate.equals(dPayment)) {
+						nINFConstructorReject += count; // Constructor Reject , next payment
+					}
+				} else {
+					if (currentPaymentDate.equals(dPayment)) {
+						cINFConstructorWait += count; // Constructor Wait , current payment
+					} else if (nextPaymentDate.equals(dPayment)) {
+						nINFConstructorWait += count; // Constructor Wait , next payment
+					}
+				}
+			} 
+			
+			else if (itemStatus.equalsIgnoreCase("500")) {
+					if (currentPaymentDate.equals(dPayment)) {
+						cINFConstructorPass += count; // Constructor Pass , current payment
+						cINFServiceStaffWait += count; // Service Staff Wait , current payment
+					} else if (nextPaymentDate.equals(dPayment)) {
+						nINFConstructorPass += count; // Constructor Pass , next payment
+						nINFServiceStaffWait += count; // Service Staff Wait , next payment
+					}
+			}
+
+			else if (itemStatus.equalsIgnoreCase("600")) {
+					if (currentPaymentDate.equals(dPayment)) {
+						cINFServiceStaffPass += count; // Service Staff Pass , current payment
+						cINFServiceManagerWait += count; // Service Managet Wait , current payment
+					} else if (nextPaymentDate.equals(dPayment)) {
+						nINFServiceStaffPass += count; // Service Staff Pass , next payment
+						nINFServiceManagerWait += count; // Service Managet Wait , next payment
+					}
+			}
+
+			else if (itemStatus.equalsIgnoreCase("700")) {
+					if (currentPaymentDate.equals(dPayment)) {
+						cINFServiceManagerPass += count; // Service Manager Pass , current payment
+						cINFManagerWait += count; // Manager Wait , current payment
+					} else if (nextPaymentDate.equals(dPayment)) {
+						nINFServiceManagerPass += count; // Service Manager Pass , next payment
+						nINFManagerWait += count; // Manager Wait , next payment
+					}
+			}
+
+			else if (itemStatus.equalsIgnoreCase("800")) {
+					if (currentPaymentDate.equals(dPayment)) {
+						cINFManagerPass += count; // Managet Pass , current payment
+						cINFVPWait += count;  // VP Wait , current payment 
+					} else if (nextPaymentDate.equals(dPayment)) {
+						nINFManagerPass += count; // Managet Pass , next payment
+						nINFVPWait += count;  // VP Wait , next payment 
+					}
+			}
+
+			else if (itemStatus.equalsIgnoreCase("CLS")) {
+					if (currentPaymentDate.equals(dPayment)) {
+						cINFVPPass += count;  // VP Pass , current payment 
+					} else if (nextPaymentDate.equals(dPayment)) {
+						nINFVPPass += count;  // VP Pass , next payment 
+					}
+			}
+		}
+		rs.close();
+
+     
+        //----=========== Count for BOQ Request =============----//        
+        int boqWait = 0;
+        int boqPass = 0;
+		int boqReject = 0;
+     
+		sql.delete(0,sql.length());
+		sql.append(" select count(*) cnt from lan:serv_noboq ")
+		   .append(" where d_keyin between (today-30) and today ")
+		   .append(" and d_approve is null and d_reject is null ")
+                   .append(" and i_employ_approve='").append(user.getEmpId()).append("' ");
+		servlog.startLog(sql.toString());
+		rs = stmt.executeQuery(sql.toString());
+		servlog.endLog();
+		if (rs.next()) {
+		    boqWait = rs.getInt("cnt");
+		}
+		rs.close();
+
+		sql.delete(0,sql.length());
+		sql.append(" select count(*) cnt from lan:serv_noboq ")
+		   .append(" where d_keyin between (today-30) and today and d_approve is not null ")
+                   .append(" and i_employ_approve='").append(user.getEmpId()).append("' ");
+		servlog.startLog(sql.toString());
+		rs = stmt.executeQuery(sql.toString());
+		servlog.endLog();
+		if (rs.next()) {
+		    boqPass = rs.getInt("cnt");
+		}
+		rs.close();
+
+		sql.delete(0,sql.length());
+		sql.append(" select count(*) cnt from lan:serv_noboq ")
+		   .append(" where d_keyin between (today-30) and today and d_reject is not null ")
+                   .append(" and i_employ_approve='").append(user.getEmpId()).append("' ");
+		servlog.startLog(sql.toString());
+		rs = stmt.executeQuery(sql.toString());
+		servlog.endLog();
+		if (rs.next()) {
+		    boqReject = rs.getInt("cnt");
+		}
+		rs.close();
+   
+%>
+
+<HTML>
+<HEAD>
+<TITLE>Home</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=TIS-620">
+<LINK rel="StyleSheet" href="SERV_Style.css" type="text/css">
+<script language="javascript" src="script_fx.js"></script>
+
+
+<script language="javascript">
+<!--
+
+   function queryProject() {
+       document.forms[0].action = "SERV_Home.jsp?search=y";
+       document.forms[0].submit();
+   }
+   
+//-->
+</script>
+
+
+<base target="_self">
+
+
+</HEAD>
+
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0">
+
+<FORM method="POST" action="">
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="100%" align="center" class="BD">
+    
+
+      <table border="0" width="100%" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="70%" class="bigh"><img border="0" src="images/i_home.gif" align="absmiddle" width="20" height="20">&nbsp;
+            ยินดีต้อนรับสู่ระบบบริการหลังการขาย</td>
+          <td width="30%" align="right">
+	  <%
+	   if (!user.getUserWho().equals("V") && !user.getUserWho().equals("G") && serv_center.equals("Y")) {
+		%><a href="SERV_InfJob.jsp"><img border="0" src="images/icon_add_IFJ.gif" width="120" height="34"></a><%
+	   } else {
+	        %>&nbsp;<%
+	   }
+	   %>
+          </td>
+        </tr>
+      </table>
+
+
+<br style="font-size:10pt">
+                
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="5" valign="top"><img border="0" src="images/Corn01.gif" width="5" height="5"></td>
+    <td class="frmTop">&nbsp;</td>
+    <td width="5" valign="top" align="right"><img border="0" src="images/Corn02.gif" width="5" height="5"></td>
+  </tr>
+</table>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="100%" class="frmLR" align="center">
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="22" class="item ; dotline01" width="8%">ชื่อ :</td>
+    <td height="22" width="37%" class="dotline01"><%=doString.DisplayThai(user.getEmpName())%></td>
+    <td height="22" width="15%" class="item ; dotline01">เลือกโครงการ : </td>
+    <td height="22" width="40%" class="dotline01">
+    <%=genProjectListboxByUserId(conn,user.getUserID(),"sel_project",selProj," class='box' style='width:250px' ",true)%>    
+     &nbsp;&nbsp; <a href="#" onclick="queryProject();"><img border="0" src="images/bu_go.gif" align="absmiddle" width="40" height="22"></a> </td>
+  </tr>
+</table>
+
+</td>
+  </tr>
+</table>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="5" valign="bottom"><img border="0" src="images/Corn03.gif" width="5" height="5"></td>
+    <td class="frmBottom">&nbsp;</td>
+    <td width="5" valign="bottom" align="right"><img border="0" src="images/Corn04.gif" width="5" height="5"></td>
+  </tr>
+</table>
+
+
+<br style="font-size:10pt">
+
+
+<%
+   if (!user.getUserWho().equalsIgnoreCase(Constants.PERMISSION_VENDOR)) {
+%>
+            <table border="0" width="100%" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="item_tab1"><img border="0" src="images/i_i.gif" align="absmiddle" width="20" height="20"></td>
+                <td class="item_tab2" width="200">รายละเอียดงานแจ้งซ่อม</td>
+                <td class="item_tab3"></td>
+                <td >&nbsp;</td>
+              </tr>
+            </table>
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="5" valign="top" bgcolor="#D7E6FF"><img border="0" src="images/Corn01.gif" width="5" height="5"></td>
+    <td valign="bottom" class="frmTop" bgcolor="#D7E6FF">&nbsp;</td>
+    <td width="5" valign="top" align="right" bgcolor="#D7E6FF"><img border="0" src="images/Corn02.gif" width="5" height="5"></td>
+  </tr>
+</table>
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="100%" class="frmL" align="center">
+    
+    
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+    <td width="55%" class="col_name">Description</td>
+    <td width="15%" class="col_name">Wait</td>
+    <td width="15%" class="col_name">Pass</td>
+    <td width="15%" class="col_name">Reject</td>
+  <tr>
+    <td width="55%" class="item ; dotline" align="left"><img border="0" src="images/i_arrow1.gif" align="absmiddle" width="13" height="13">
+      Job - ใบแจ้งซ่อม</td>
+    <td width="15%" class="dotline" align="center"><a href="SERV_OpenJob_List.jsp?sel_project=<%=selProj%>"><%=jobWait%></a></td>
+    <td width="15%" class="dotline" align="center"><%=jobPass%></td>
+    <td width="15%" class="dotline" align="center">&nbsp;</td>
+  </tr>
+    <td width="55%" class="item ; dotline" align="left"><img border="0" src="images/i_arrow1.gif" align="absmiddle" width="13" height="13">
+      Task -
+      ผู้รับเหมาเริ่มดำเนินงาน</td>
+    <td width="15%" class="dotline" align="center"><a href="SERV_StartTask_List.jsp?sel_project=<%=selProj%>"><%=taskWait%></a></td>
+    <td width="15%" class="dotline" align="center"><%=taskPass%></td>
+    <td width="15%" class="dotline" align="center">&nbsp;</td>
+  <tr>
+    <td width="55%" class="item ; dotline" align="left"><img border="0" src="images/i_arrow1.gif" align="absmiddle" width="13" height="13">
+      Complete - ผู้รับเหมาปิดงาน</td>
+    <td width="15%" class="dotline" align="center"><a href="SERV_CompTask_List.jsp?sel_project=<%=selProj%>"><%=completeWait%></a></td>
+    <td width="15%" class="dotline" align="center"><%=completePass%></td>
+    <td width="15%" class="dotline" align="center">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="55%" class="item ; solidline" align="left">&nbsp;</td>
+    <td width="15%" class="solidline" align="center">&nbsp;</td>
+    <td width="15%" class="solidline" align="center">&nbsp;</td>
+    <td width="15%" class="solidline" align="center">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="55%" class="solidline" align="left"><a href="SERV_BOQCode03.jsp"><img border="0" src="images/i_arrow2.gif" align="absmiddle" width="13" height="13">
+      <font color="#000080">ขออนุมัติรหัส BOQ</font></a></td>
+    <td width="15%" class="solidline" align="center"><font color="#000080"><%=(BOQApprove ? "<a href='SERV_BOQCode.jsp'>"+boqWait+"</a>" : "&nbsp;")%></font></td>
+    <td width="15%" class="solidline" align="center"><font color="#000080"><%=(BOQApprove ? boqPass+"" : "&nbsp;")%></font></td>
+    <td width="15%" class="solidline" align="center"><font color="#000080"><%=(BOQApprove ? boqReject+"" : "&nbsp;")%></font></td>
+  </tr>
+</table>    
+    
+    
+    </td>
+  </tr>
+</table>
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="5" valign="bottom"><img border="0" src="images/Corn03.gif" width="5" height="5"></td>
+    <td class="frmBottom">&nbsp;</td>
+    <td width="5" valign="bottom" align="right"><img border="0" src="images/Corn04.gif" width="5" height="5"></td>
+  </tr>
+</table>
+
+
+<br style="font-size:10pt">
+      <table border="0" width="100%" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="40%" class="bigh">&nbsp;</td>
+            <td width="60%" align="right">
+			<a href="SERV_InfOpenJob.jsp"><img border="0" src="images/icon_open_JopINF.gif" width="120" height="34"></a> 
+            </td>
+        </tr>
+<br style="font-size:10pt">
+      </table>
+            <table border="0" width="100%" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="item_tab1"><img border="0" src="images/i_i.gif" align="absmiddle" width="20" height="20"></td>
+                
+            <td class="item_tab2" width="200">รายละเอียดงานสั่งซ่อมสาธารณูฯ</td>
+                <td class="item_tab3"></td>
+                <td >&nbsp;</td>
+              </tr>
+            </table>
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="5" valign="top" bgcolor="#D7E6FF"><img border="0" src="images/Corn01.gif" width="5" height="5"></td>
+    <td valign="bottom" class="frmTop" bgcolor="#D7E6FF">&nbsp;</td>
+    <td width="5" valign="top" align="right" bgcolor="#D7E6FF"><img border="0" src="images/Corn02.gif" width="5" height="5"></td>
+  </tr>
+</table>
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="100%" class="frmL" align="center">
+    
+    
+              <table border="0" width="100%" cellspacing="0" cellpadding="0">
+                <tr>               
+                <td width="55%" class="col_name">Description</td>
+                <td width="15%" class="col_name">Wait</td>
+                <td width="15%" class="col_name">Pass</td>
+                <td width="15%" class="col_name">Route Back</td>
+                </tr>                 
+<%
+	completeWait=0;
+	sql.delete(0,sql.length());
+	if (viewAllStaffProj) {
+		//---- query for staff view all project ----//
+		sql.append(" SELECT DISTINCT b.i_docno FROM lan:serv_pstaff a,lan:serv_infdochd b, lan:serv_infdocdt c ")
+			  .append(" WHERE b.f_status = 'OPN' AND b.i_doc_type = 'J'  ")
+			  .append(" AND c.f_itmstatus = '300' AND c.i_docno = b.i_docno ")
+			  .append(" AND a.user_id = '"+userId+"' AND a.com_id = b.i_company ")
+			  .append(" AND a.proj_id = b.i_project ");
+	} else {
+		sql.append("SELECT DISTINCT a.i_docno FROM lan:serv_infdochd a, lan:serv_infdocdt b ")
+		  .append("WHERE a.f_status = 'OPN' AND a.i_doc_type = 'J' ")
+		  .append("AND b.f_itmstatus = '300' "+condition+" ")
+		  .append(" AND b.i_docno = a.i_docno");
+	}
+	rs = stmt.executeQuery(sql.toString());
+	while (rs.next() == true) {
+		completeWait++;
+	} // end while
+	rs.close();
+	rs=null;
+	
+	sql.delete(0,sql.length());
+	if (viewAllStaffProj) {
+		//---- query for staff view all project ----//
+		sql.append(" SELECT COUNT(*) FROM lan:serv_pstaff a,lan:serv_infdochd b,lan:serv_infpayment c ")
+			  .append(" WHERE b.f_status = 'OPN' AND b.i_doc_type = 'J' ")
+			  .append(" AND c.f_itmstatus = '400' AND c.i_docno = b.i_docno ")
+			  .append(" AND a.user_id = '"+userId+"' AND a.com_id = b.i_company ")
+			  .append(" AND a.proj_id = b.i_project ")
+			  .append(" GROUP BY b.i_docno ");
+	} else {
+		sql.append("SELECT COUNT(*) FROM lan:serv_infdochd a, lan:serv_infpayment b ")
+			.append("WHERE a.f_status = 'OPN' AND a.i_doc_type = 'J' AND b.f_itmstatus = '400' ")
+			.append("AND b.i_docno = a.i_docno ").append(condition)
+			.append(" GROUP BY a.i_docno");
+	}
+	completePass = countResultRow(stmt,sql.toString(),servlog);
+	condition = "";
+	if (selProj.equals("")) {
+		//condition = " AND h.i_project = 'NOPROJECT'";
+	} else {
+	   if (selProj.equals("ALL")) {
+	   } else {
+	   		condition = " AND h.i_company = '"+selProj.substring(0,2)+"' AND h.i_project='"+selProj.substring(3,6)+"'";
+	   }
+	}
+	sql.delete(0,sql.length());
+	rs = stmt.executeQuery("SELECT proj_id FROM lan:serv_pstaff WHERE user_id = '"+userId+"' AND proj_id = 'ALL'");
+	if (rs != null) {
+		if (rs.next() == true) { //ALL Project
+			sql.append("SELECT a.i_seq, a.i_chart_grp, a.f_approve, COUNT(*) AS NUM_DOC FROM lan:serv_infdochd h, lan:serv_infdocap a")
+				.append(" WHERE h.i_docno = a.i_docno AND h.f_status != 'CAN'")
+				.append(condition)
+				.append(" GROUP BY a.i_seq, a.i_chart_grp, a.f_approve ORDER BY a.i_seq, a.i_chart_grp, a.f_approve");
+		} else {
+			sql.append("SELECT a.i_seq, a.i_chart_grp, a.f_approve, COUNT(*) AS NUM_DOC")
+				.append(" FROM lan:serv_infdochd h, lan:serv_infdocap a, lan:serv_pstaff s")
+				.append(" WHERE s.user_id = '")
+				.append(userId)
+				.append("' AND s.com_id = h.i_company AND s.proj_id = h.i_project")
+				.append(" AND h.i_docno = a.i_docno AND h.f_status != 'CAN'")
+				.append(condition)
+				.append(" GROUP BY a.i_seq, a.i_chart_grp, a.f_approve ORDER BY a.i_seq, a.i_chart_grp, a.f_approve");
+		}
+		rs.close();
+		rs=null;
+	}
+	String desc = "";
+	String curGroup = "";
+	String lastGroup = "";
+	String status = "";
+	String targetPage = "";	
+	jobWait = 0;
+	jobPass = 0;
+	jobReject = 0;
+
+	rs = stmt.executeQuery(sql.toString());
+	if (rs != null) {
+		while (rs.next() == true) {
+			curGroup = doString.checkString(rs.getString("I_CHART_GRP"));
+			if (!curGroup.equals(lastGroup)) { //Change Chart Group
+				if (!lastGroup.equals("")) {
+					desc = "";
+					targetPage = "SERV_INF_Wait_OpenJob_List.jsp";
+					if (lastGroup.equals("S")) {
+						desc = "Service Staff- เจ้าหน้าที่บริการ";
+						//targetPage = "SERV_INF_New_OpenJob_List.jsp";
+					} else if (lastGroup.equals("M")) {
+						desc = "Service Manager - ผู้จัดการโครงการ";
+					} else if (lastGroup.equals("Z")) {
+						desc = "Manager - ผู้จัดการกลุ่ม";
+					}
+%>
+                <tr> 
+                  <td width="55%" class="item ; dotline" align="left"><img border="0" src="images/i_arrow1.gif" align="absmiddle" width="13" height="13"><%=desc%></td>
+                  <td width="15%" class="dotline" align="center"><a href="<%=targetPage%>?selProj=<%=selProj%>&chartGrp=<%=lastGroup%>&status=W"><%=jobWait%></a></td>
+                  <td width="15%" class="dotline" align="center"><%=jobPass%></td>
+                  <td width="15%" class="dotline" align="center">
+                  <%if (lastGroup.equals("S")) {%><a href="<%=targetPage%>?selProj=<%=selProj%>&chartGrp=<%=lastGroup%>&status=R"><%}%>
+                  <%=jobReject%>
+                  </td>
+                </tr>
+<%				
+				}
+				lastGroup = curGroup;
+				jobWait = 0;
+				jobPass = 0;
+				jobReject = 0;				
+			}
+			cnt = rs.getInt("NUM_DOC");
+			status = doString.checkString(rs.getString("F_APPROVE"));
+			if (status.equals("W")) {
+				jobWait = cnt;
+			} else if (status.equals("A")) {
+				jobPass = cnt;
+			} else if (status.equals("R")) {
+				jobReject = cnt;			
+			}
+		}// end while
+		rs.close();
+		rs=null;
+	}
+	if (!lastGroup.equals("")) {
+		targetPage = "SERV_INF_Wait_OpenJob_List.jsp";
+		desc = "";
+		if (lastGroup.equals("S")) {
+			desc = "Service Staff- เจ้าหน้าที่บริการ เปิดงานสั่งซ่อม";
+			//targetPage = "SERV_INF_New_OpenJob_List.jsp";
+		} else if (lastGroup.equals("M")) {
+			desc = "Service Manager - ผู้จัดการโครงการ อนุมัติงานสั่งซ่อม";
+		} else if (lastGroup.equals("Z")) {
+			desc = "Manager - ผู้จัดการกลุ่ม อนุมัติงานสั่งซ่อม";
+		}
+%>
+                <tr> 
+                  <td width="55%" class="item ; dotline" align="left"><img border="0" src="images/i_arrow1.gif" align="absmiddle" width="13" height="13"><%=desc%></td>
+                  <td width="15%" class="dotline" align="center"><a href="<%=targetPage%>?selProj=<%=selProj%>&chartGrp=<%=lastGroup%>&status=W"><%=jobWait%></a></td>
+                  <td width="15%" class="dotline" align="center"><%=jobPass%></td>
+                  <td width="15%" class="dotline" align="center"><%=jobReject%></td>
+                </tr>
+<%				
+	}
+%>                
+                <tr> 
+                  <td width="55%" class="item ; dotline" align="left"><img border="0" src="images/i_arrow1.gif" align="absmiddle" width="13" height="13"> 
+                    Complete - ผู้รับเหมาปิดงาน</td>
+                  <td width="15%" class="dotline" align="center"><a href="SERV_INFCompTask_List.jsp?sel_project=<%=selProj%>"><%=completeWait%></a></td>
+                  <td width="15%" class="dotline" align="center"><%=completePass%></td>
+                  <td width="15%" class="dotline" align="center">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="55%" class="item ; solidline" align="left">&nbsp;</td>
+                  <td width="15%" class="solidline" align="center">&nbsp;</td>
+                  <td width="15%" class="solidline" align="center">&nbsp;</td>
+                  <td width="15%" class="solidline" align="center">&nbsp;</td>
+                </tr>
+              </table>    
+    </td>
+  </tr>
+</table>
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="5" valign="bottom"><img border="0" src="images/Corn03.gif" width="5" height="5"></td>
+    <td class="frmBottom">&nbsp;</td>
+    <td width="5" valign="bottom" align="right"><img border="0" src="images/Corn04.gif" width="5" height="5"></td>
+  </tr>
+</table>
+
+<br style="font-size:10pt">
+
+<%
+  } // end if check permission
+%>
+
+
+
+
+
+            <table border="0" width="100%" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="item_tab1"><img border="0" src="images/i_i.gif" align="absmiddle" width="20" height="20"></td>
+                <td class="item_tab2" width="200">รายละเอียดการขอเบิก
+                  Payment งวดนี้</td>
+                <td class="item_tab3"></td>
+                <td>&nbsp;วันที่จ่าย&nbsp; <%=showCurrentPaymentDate%></td>
+              </tr>
+            </table>
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="5" valign="top" bgcolor="#D7E6FF"><img border="0" src="images/Corn01.gif" width="5" height="5"></td>
+    <td class="frmTop" bgcolor="#D7E6FF">&nbsp;</td>
+    <td width="5" valign="top" align="right" bgcolor="#D7E6FF"><img border="0" src="images/Corn02.gif" width="5" height="5"></td>
+  </tr>
+</table>
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="100%" class="frmL" align="center">
+    
+
+
+
+
+    
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+
+                <tr> 
+                  <td rowspan="2" class="col_name">Description</td>
+                  <td colspan="3" class="col_name">บ้าน</td>
+                  <td colspan="3" class="col_name">สาธารณูฯ</td>
+                
+                <tr> 
+                  <td width="11%" class="col_name">Wait</td>
+                  <td width="11%" class="col_name">Pass</td>
+                  <td width="11%" class="col_name">Reject</td>
+                  <td width="11%" class="col_name">Wait</td>
+                  <td width="11%" class="col_name">Pass</td>
+                  <td width="11%" class="col_name">Reject</td>
+                <tr> 
+  <tr>
+    <td width="34%" class="item ; dotline" align="left"><img border="0" src="images/i_arrow1.gif" align="absmiddle" width="13" height="13">
+      Contractor - ผู้รับเหมาส่งงาน&nbsp; <font color="#993300">ภายในวันที่ <%=showCurrentConstructorDate%></font></td>
+    <td width="11%" class="dotline" align="center"><a href="SERV_Contractor_List.jsp?sel_project=<%=selProj%>&d_payment=<%=showCurrentPaymentDate%>"><%=cConstructorWait%></a></td>
+    <td width="11%" class="dotline" align="center"><%=cConstructorPass%></td>
+    <td width="11%" class="dotline" align="center">&nbsp;</td>
+    <td width="11%" class="dotline" align="center"><a href="SERV_INFContractor_List.jsp?sel_project=<%=selProj%>&d_payment=<%=showCurrentPaymentDate%>"><%=cINFConstructorWait%></a></td>
+    <td width="11%" class="dotline" align="center"><%=cINFConstructorPass%></td>
+    <td width="11%" class="dotline" align="center">&nbsp;</td>
+  </tr>
+    <td width="34%" class="item ; dotline" align="left"><img border="0" src="images/i_arrow1.gif" align="absmiddle" width="13" height="13">
+      Service Staff - เจ้าหน้าที่บริการ&nbsp; <font color="#993300">อนุมัติภายในวันที่ <%=showCurrentServiceStaffDate%></font></td>
+    <td width="11%" class="dotline" align="center"><a href="SERV_Staff_List.jsp?sel_project=<%=selProj%>&d_payment=<%=showCurrentPaymentDate%>"><%=cServiceStaffWait%></a></td>
+    <td width="11%" class="dotline" align="center"><%=cServiceStaffPass%></td>
+    <td width="11%" class="dotline" align="center">&nbsp;</td>
+    <td width="11%" class="dotline" align="center"><a href="SERV_INFStaff_List.jsp?sel_project=<%=selProj%>&d_payment=<%=showCurrentPaymentDate%>"><%=cINFServiceStaffWait%></a></td>
+    <td width="11%" class="dotline" align="center"><%=cINFServiceStaffPass%></td>
+    <td width="11%" class="dotline" align="center">&nbsp;</td>
+  <tr>
+    <td width="34%" class="item ; dotline" align="left"><img border="0" src="images/i_arrow1.gif" align="absmiddle" width="13" height="13">
+      Service Manager - ผู้จัดการโครงการ&nbsp; <font color="#993300">อนุมัติภายในวันที่ <%=showCurrentServiceManagerDate%></font></td>
+    <td width="11%" class="dotline" align="center"><a href="SERV_Manager_List.jsp?sel_project=<%=selProj%>&d_payment=<%=showCurrentPaymentDate%>"><%=cServiceManagerWait%></a></td>
+    <td width="11%" class="dotline" align="center"><%=cServiceManagerPass%></td>
+    <td width="11%" class="dotline" align="center">&nbsp;</td>
+    <td width="11%" class="dotline" align="center"><a href="SERV_INFManager_List.jsp?sel_project=<%=selProj%>&d_payment=<%=showCurrentPaymentDate%>"><%=cINFServiceManagerWait%></a></td>
+    <td width="11%" class="dotline" align="center"><%=cINFServiceManagerPass%></td>
+    <td width="11%" class="dotline" align="center">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="34%" class="item ; dotline" align="left"><img border="0" src="images/i_arrow1.gif" align="absmiddle" width="13" height="13">
+      Manager - ผู้จัดการกลุ่ม&nbsp; <font color="#993300">อนุมัติภายในวันที่ <%=showCurrentManagerDate%></font></td>
+    <td width="11%" class="dotline" align="center"><a href="SERV_Zone_List.jsp?sel_project=<%=selProj%>&d_payment=<%=showCurrentPaymentDate%>"><%=cManagerWait%></a></td>
+    <td width="11%" class="dotline" align="center"><%=cManagerPass%></td>
+    <td width="11%" class="dotline" align="center">&nbsp;</td>
+    <td width="11%" class="dotline" align="center"><a href="SERV_INFZone_List.jsp?sel_project=<%=selProj%>&d_payment=<%=showCurrentPaymentDate%>"><%=cINFManagerWait%></a></td>
+    <td width="11%" class="dotline" align="center"><%=cINFManagerPass%></td>
+    <td width="11%" class="dotline" align="center">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="34%" class="item ; dotline" align="left"><img border="0" src="images/i_arrow1.gif" align="absmiddle" width="13" height="13">
+      VP - ผู้จัดการฝ่าย&nbsp; <font color="#993300">อนุมัติภายในวันที่ <%=showCurrentVPDate%></font></td>
+    <td width="11%" class="dotline" align="center"><a href="SERV_VP_List.jsp?sel_project=<%=selProj%>&d_payment=<%=showCurrentPaymentDate%>"><%=cVPWait%></a></td>
+    <td width="11%" class="dotline" align="center"><a href="SERV_Pass_List.jsp?sel_project=<%=selProj%>&d_payment=<%=showCurrentPaymentDate%>"><%=cVPPass%></a></td>
+    <td width="11%" class="dotline" align="center">&nbsp;</td>
+    <td width="11%" class="dotline" align="center"><a href="SERV_INFVP_List.jsp?sel_project=<%=selProj%>&d_payment=<%=showCurrentPaymentDate%>"><%=cINFVPWait%></a></td>
+    <td width="11%" class="dotline" align="center"><a href="SERV_INFPass_List.jsp?sel_project=<%=selProj%>&d_payment=<%=showCurrentPaymentDate%>"><%=cINFVPPass%></a></td>
+    <td width="11%" class="dotline" align="center">&nbsp;</td>
+  </tr>
+</table>    
+    
+    
+    </td>
+  </tr>
+</table>
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="5" valign="bottom"><img border="0" src="images/Corn03.gif" width="5" height="5"></td>
+    <td class="frmBottom">&nbsp;</td>
+    <td width="5" valign="bottom" align="right"><img border="0" src="images/Corn04.gif" width="5" height="5"></td>
+  </tr>
+</table>
+
+
+
+
+
+<br style="font-size:10pt">
+
+
+            <table border="0" width="100%" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="item_tab1"><img border="0" src="images/i_i.gif" align="absmiddle" width="20" height="20"></td>
+                <td class="item_tab2" width="200">รายละเอียดการขอเบิก
+                  Payment งวดหน้า</td>
+                <td class="item_tab3"></td>
+                <td>&nbsp;วันที่จ่าย&nbsp; <%=showNextPaymentDate%></td>
+              </tr>
+            </table>
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="5" valign="top" bgcolor="#D7E6FF"><img border="0" src="images/Corn01.gif" width="5" height="5"></td>
+    <td class="frmTop" bgcolor="#D7E6FF">&nbsp;</td>
+    <td width="5" valign="top" align="right" bgcolor="#D7E6FF"><img border="0" src="images/Corn02.gif" width="5" height="5"></td>
+  </tr>
+</table>
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="100%" class="frmL" align="center">
+    
+    
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+                <tr> 
+                  <td rowspan="2" class="col_name">Description</td>
+                  <td colspan="3" class="col_name">บ้าน</td>
+                  <td colspan="3" class="col_name">สาธารณูฯ</td>
+                
+                <tr> 
+                  <td width="11%" class="col_name">Wait</td>
+                  <td width="11%" class="col_name">Pass</td>
+                  <td width="11%" class="col_name">Reject</td>
+                  <td width="11%" class="col_name">Wait</td>
+                  <td width="11%" class="col_name">Pass</td>
+                  <td width="11%" class="col_name">Reject</td>
+                <tr> 
+  <tr>
+    <td width="34%" class="item ; dotline" align="left"><img border="0" src="images/i_arrow1.gif" align="absmiddle" width="13" height="13">
+      Contractor - ผู้รับเหมาส่งงาน&nbsp; <font color="#993300">ภายในวันที่ <%=showNextConstructorDate%></font></td>
+    <td width="11%" class="dotline" align="center"><a href="SERV_Contractor_List.jsp?sel_project=<%=selProj%>&d_payment=<%=showNextPaymentDate%>"><%=nConstructorWait%></a></td>
+    <td width="11%" class="dotline" align="center"><%=nConstructorPass%></td>
+    <td width="11%" class="dotline" align="center">&nbsp;</td>
+    <td width="11%" class="dotline" align="center"><a href="SERV_INFContractor_List.jsp?sel_project=<%=selProj%>&d_payment=<%=showNextPaymentDate%>"><%=nINFConstructorWait%></a></td>
+    <td width="11%" class="dotline" align="center"><%=nINFConstructorPass%></td>
+    <td width="11%" class="dotline" align="center">&nbsp;</td>
+  </tr>
+    <td width="34%" class="item ; dotline" align="left"><img border="0" src="images/i_arrow1.gif" align="absmiddle" width="13" height="13">
+      Service Staff - เจ้าหน้าที่บริการ&nbsp; <font color="#993300">อนุมัติภายในวันที่ <%=showNextServiceStaffDate%></font></td>
+    <td width="11%" class="dotline" align="center"><a href="SERV_Staff_List.jsp?sel_project=<%=selProj%>&d_payment=<%=showNextPaymentDate%>"><%=nServiceStaffWait%></a></td>
+    <td width="11%" class="dotline" align="center"><%=nServiceStaffPass%></td>
+    <td width="11%" class="dotline" align="center">&nbsp;</td>
+    <td width="11%" class="dotline" align="center"><a href="SERV_INFStaff_List.jsp?sel_project=<%=selProj%>&d_payment=<%=showNextPaymentDate%>"><%=nINFServiceStaffWait%></a></td>
+    <td width="11%" class="dotline" align="center"><%=nINFServiceStaffPass%></td>
+    <td width="11%" class="dotline" align="center">&nbsp;</td>
+  <tr>
+    <td width="34%" class="item ; dotline" align="left"><img border="0" src="images/i_arrow1.gif" align="absmiddle" width="13" height="13">
+      Service Manager - ผู้จัดการโครงการ&nbsp; <font color="#993300">อนุมัติภายในวันที่ <%=showNextServiceManagerDate%></font></td>
+    <td width="11%" class="dotline" align="center"><a href="SERV_Manager_List.jsp?sel_project=<%=selProj%>&d_payment=<%=showNextPaymentDate%>"><%=nServiceManagerWait%></a></td>
+    <td width="11%" class="dotline" align="center"><%=nServiceManagerPass%></td>
+    <td width="11%" class="dotline" align="center">&nbsp;</td>
+    <td width="11%" class="dotline" align="center"><a href="SERV_INFManager_List.jsp?sel_project=<%=selProj%>&d_payment=<%=showNextPaymentDate%>"><%=nINFServiceManagerWait%></a></td>
+    <td width="11%" class="dotline" align="center"><%=nINFServiceManagerPass%></td>
+    <td width="11%" class="dotline" align="center">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="34%" class="item ; dotline" align="left"><img border="0" src="images/i_arrow1.gif" align="absmiddle" width="13" height="13">
+      Manager - ผู้จัดการกลุ่ม&nbsp; <font color="#993300">อนุมัติภายในวันที่ <%=showNextManagerDate%></font></td>
+    <td width="11%" class="dotline" align="center"><a href="SERV_Zone_List.jsp?sel_project=<%=selProj%>&d_payment=<%=showNextPaymentDate%>"><%=nManagerWait%></a></td>
+    <td width="11%" class="dotline" align="center"><%=nManagerPass%></td>
+    <td width="11%" class="dotline" align="center">&nbsp;</td>
+    <td width="11%" class="dotline" align="center"><a href="SERV_INFZone_List.jsp?sel_project=<%=selProj%>&d_payment=<%=showNextPaymentDate%>"><%=nINFManagerWait%></a></td>
+    <td width="11%" class="dotline" align="center"><%=nINFManagerPass%></td>
+    <td width="11%" class="dotline" align="center">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="34%" class="item ; dotline" align="left"><img border="0" src="images/i_arrow1.gif" align="absmiddle" width="13" height="13">
+      VP - ผู้จัดการฝ่าย&nbsp; <font color="#993300">อนุมัติภายในวันที่ <%=showNextVPDate%></font></td>
+    <td width="11%" class="dotline" align="center"><a href="SERV_VP_List.jsp?sel_project=<%=selProj%>&d_payment=<%=showNextPaymentDate%>"><%=nVPWait%></a></td>
+    <td width="11%" class="dotline" align="center"><a href="SERV_Pass_List.jsp?sel_project=<%=selProj%>&d_payment=<%=showNextPaymentDate%>"><%=nVPPass%></a></td>
+    <td width="11%" class="dotline" align="center">&nbsp;</td>
+    <td width="11%" class="dotline" align="center"><a href="SERV_INFVP_List.jsp?sel_project=<%=selProj%>&d_payment=<%=showNextPaymentDate%>"><%=nINFVPWait%></a></td>
+    <td width="11%" class="dotline" align="center"><a href="SERV_INFPass_List.jsp?sel_project=<%=selProj%>&d_payment=<%=showNextPaymentDate%>"><%=nINFVPPass%></a></td>
+    <td width="11%" class="dotline" align="center">&nbsp;</td>
+  </tr>
+</table>            
+    </td>
+  </tr>
+</table>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="5" valign="bottom"><img border="0" src="images/Corn03.gif" width="5" height="5"></td>
+    <td class="frmBottom">&nbsp;</td>
+    <td width="5" valign="bottom" align="right"><img border="0" src="images/Corn04.gif" width="5" height="5"></td>
+  </tr>
+</table>
+
+<% 
+//}  
+
+%>
+
+
+
+
+
+
+<br style="font-size:10pt">
+
+
+
+
+
+        <table border="0" width="100%" cellspacing="0" cellpadding="0" height="30">
+          <tr>
+            <td class="act_tab1"></td>
+            <td width="75" class="act_tab2">
+
+            </td>   
+                  	
+                  	
+            <td class="act_tab3"></td>   
+            <td class="act_tab4"><a href="<%=Constants.APP_HOME%>" target="_top"><img border="0" src="images/bu_back.gif" align="absmiddle" width="50" height="15"></a>&nbsp;
+              <a href="<%=Constants.APP_HOME%>" target="_top"><img border="0" src="images/bu_home.gif" align="absmiddle" width="50" height="15"></a></td>  
+          </tr>  
+        </table>  
+
+
+
+
+          </td>
+        </tr>
+      </table>
+
+			
+			
+
+<br style="font-size:30pt">
+
+<TABLE border=0 cellspacing=0 cellpadding=0 width="100%">
+  <tr><td width="100%" class="copyright" align="center">
+  Best viewed with 800x600 screen resolution on&nbsp;an Internet Explorer version 5 และ 5.5  
+  <br>ติดต่อสอบถามได้ที่ : <a href="mailto:Administrator@lh.co.th">Administrator@lh.co.th</a>&nbsp;
+  หรือ โทร. 0-2230-8279 (คุณประพัฒน์
+  ฝ่ายบริการ)&nbsp; 0-2230-8491-5 (ฝ่าย IT)  
+  <br><img src="images/copyright.gif" width="475" height="26"></td></tr>
+</TABLE> 
+	
+</FORM>
+
+</BODY>
+
+</HTML>
+<%
+
+		} //--------------=================== for other user ==========================------//
+
+
+	} catch (Exception e) {
+		System.out.println("ERROR SERV_Home.jsp : " + e.getMessage());
+		throw new ServletException(e.getMessage());
+	} finally {
+		// Clean up.
+		try {
+			if (rs != null) rs.close();
+			if (stmt != null) stmt.close();
+			if (stmt1 != null) stmt1.close();
+			if (conn != null) conn.close();
+		}
+		catch( SQLException ignore ){}
+	}
+%>

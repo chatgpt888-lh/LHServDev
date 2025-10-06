@@ -1,0 +1,3128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+	<display-name>
+
+	LHServ</display-name>
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_XStdServlet</display-name>
+
+       <servlet-name>SERV_XStdServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_XStdServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>LoginServlet</display-name>
+
+       <servlet-name>LoginServlet</servlet-name>
+
+       <servlet-class>serv.servlets.LoginServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>LogoutServlet</display-name>
+
+       <servlet-name>LogoutServlet</servlet-name>
+
+       <servlet-class>serv.servlets.LogoutServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_InfJobServlet</display-name>
+
+       <servlet-name>SERV_InfJobServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_InfJobServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_OpenJobServlet</display-name>
+
+       <servlet-name>SERV_OpenJobServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_OpenJobServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_StartTaskServlet</display-name>
+
+       <servlet-name>SERV_StartTaskServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_StartTaskServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_CompTaskServlet</display-name>
+
+       <servlet-name>SERV_CompTaskServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_CompTaskServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_PrintInfJobServlet</display-name>
+
+       <servlet-name>SERV_PrintInfJobServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_PrintInfJobServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_PrintOpenJobServlet</display-name>
+
+       <servlet-name>SERV_PrintOpenJobServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_PrintOpenJobServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_BOQCodeServlet</display-name>
+
+       <servlet-name>SERV_BOQCodeServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_BOQCodeServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_BOQCodeApproveServlet</display-name>
+
+       <servlet-name>SERV_BOQCodeApproveServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_BOQCodeApproveServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_CutLockServlet</display-name>
+
+       <servlet-name>SERV_CutLockServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_CutLockServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_PaySchdServlet</display-name>
+
+       <servlet-name>SERV_PaySchdServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_PaySchdServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_PStaffServlet</display-name>
+
+       <servlet-name>SERV_PStaffServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_PStaffServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_ContractorConfServlet</display-name>
+
+       <servlet-name>SERV_ContractorConfServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_ContractorConfServlet</servlet-class>
+
+</servlet>
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_StaffConfServlet</display-name>
+
+       <servlet-name>SERV_StaffConfServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_StaffConfServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_ManagerConfServlet</display-name>
+
+       <servlet-name>SERV_ManagerConfServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_ManagerConfServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_ZoneConfServlet</display-name>
+
+       <servlet-name>SERV_ZoneConfServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_ZoneConfServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_BOQServlet</display-name>
+
+       <servlet-name>SERV_BOQServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_BOQServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_VenPrjServlet</display-name>
+
+       <servlet-name>SERV_VenPrjServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_VenPrjServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_VPConfServlet</display-name>
+
+       <servlet-name>SERV_VPConfServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_VPConfServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>AddVendorServlet</display-name>
+
+       <servlet-name>AddVendorServlet</servlet-name>
+
+       <servlet-class>serv.servlets.AddVendorServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>LayRetentServlet</display-name>
+
+       <servlet-name>LayRetentServlet</servlet-name>
+
+       <servlet-class>serv.servlets.LayRetentServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>PrintPayInServlet</display-name>
+
+       <servlet-name>PrintPayInServlet</servlet-name>
+
+       <servlet-class>serv.servlets.PrintPayInServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>ConfRetentServlet</display-name>
+
+       <servlet-name>ConfRetentServlet</servlet-name>
+
+       <servlet-class>serv.servlets.ConfRetentServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>PrintRetRetenServlet</display-name>
+
+       <servlet-name>PrintRetRetenServlet</servlet-name>
+
+       <servlet-class>serv.servlets.PrintRetRetenServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>InitAddRetenServlet</display-name>
+
+       <servlet-name>InitAddRetenServlet</servlet-name>
+
+       <servlet-class>serv.servlets.InitAddRetenServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>CancelRetentServlet</display-name>
+
+       <servlet-name>CancelRetentServlet</servlet-name>
+
+       <servlet-class>serv.servlets.CancelRetentServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>InitConfRetentServlet</display-name>
+
+       <servlet-name>InitConfRetentServlet</servlet-name>
+
+       <servlet-class>serv.servlets.InitConfRetentServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_Add_ReqRetenServlet</display-name>
+
+       <servlet-name>SERV_Add_ReqRetenServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_Add_ReqRetenServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_PrintReqRetenServlet</display-name>
+
+       <servlet-name>SERV_PrintReqRetenServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_PrintReqRetenServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_Add_RetRetenServlet</display-name>
+
+       <servlet-name>SERV_Add_RetRetenServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_Add_RetRetenServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_PrintRetRetenServlet</display-name>
+
+       <servlet-name>SERV_PrintRetRetenServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_PrintRetRetenServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_Conf_RetRetenServlet</display-name>
+
+       <servlet-name>SERV_Conf_RetRetenServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_Conf_RetRetenServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_Apprv_RetRetenServlet</display-name>
+
+       <servlet-name>SERV_Apprv_RetRetenServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_Apprv_RetRetenServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_ManageChequeServlet</display-name>
+
+       <servlet-name>SERV_ManageChequeServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_ManageChequeServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_PrintReport7Servlet</display-name>
+
+       <servlet-name>SERV_PrintReport7Servlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_PrintReport7Servlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_PrintReport8Servlet</display-name>
+
+       <servlet-name>SERV_PrintReport8Servlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_PrintReport8Servlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_PrintReport9Servlet</display-name>
+
+       <servlet-name>SERV_PrintReport9Servlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_PrintReport9Servlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_PrintAccRetenServlet</display-name>
+
+       <servlet-name>SERV_PrintAccRetenServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_PrintAccRetenServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_RepRetSumServlet</display-name>
+
+       <servlet-name>SERV_RepRetSumServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_RepRetSumServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_RepRetDetServlet</display-name>
+
+       <servlet-name>SERV_RepRetDetServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_RepRetDetServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_Conf_RetReten2Servlet</display-name>
+
+       <servlet-name>SERV_Conf_RetReten2Servlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_Conf_RetReten2Servlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_SignbServlet</display-name>
+
+       <servlet-name>SERV_SignbServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_SignbServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_PrintReport5Servlet</display-name>
+
+       <servlet-name>SERV_PrintReport5Servlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_PrintReport5Servlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_PrintReport5DetServlet</display-name>
+
+       <servlet-name>SERV_PrintReport5DetServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_PrintReport5DetServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_PrintReport2Servlet</display-name>
+
+       <servlet-name>SERV_PrintReport2Servlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_PrintReport2Servlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_PrintReport2DetServlet</display-name>
+
+       <servlet-name>SERV_PrintReport2DetServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_PrintReport2DetServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_PrintReport6Servlet</display-name>
+
+       <servlet-name>SERV_PrintReport6Servlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_PrintReport6Servlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>AddInfVendorServlet</display-name>
+
+       <servlet-name>AddInfVendorServlet</servlet-name>
+
+       <servlet-class>serv.servlets.AddInfVendorServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>AddTimeServlet</display-name>
+
+       <servlet-name>AddTimeServlet</servlet-name>
+
+       <servlet-class>serv.servlets.AddTimeServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>CancelInfraServlet</display-name>
+
+       <servlet-name>CancelInfraServlet</servlet-name>
+
+       <servlet-class>serv.servlets.CancelInfraServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>InitEdtInfraServlet</display-name>
+
+       <servlet-name>InitEdtInfraServlet</servlet-name>
+
+       <servlet-class>serv.servlets.InitEdtInfraServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>PrintInfPayInServlet</display-name>
+
+       <servlet-name>PrintInfPayInServlet</servlet-name>
+
+       <servlet-class>serv.servlets.PrintInfPayInServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SetInfAmntServlet</display-name>
+
+       <servlet-name>SetInfAmntServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SetInfAmntServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>UpdPayerServlet</display-name>
+
+       <servlet-name>UpdPayerServlet</servlet-name>
+
+       <servlet-class>serv.servlets.UpdPayerServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SetLckInfAmntServlet</display-name>
+
+       <servlet-name>SetLckInfAmntServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SetLckInfAmntServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>AddLockDetServlet</display-name>
+
+       <servlet-name>AddLockDetServlet</servlet-name>
+
+       <servlet-class>serv.servlets.AddLockDetServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>gensearchletter</display-name>
+
+       <servlet-name>gensearchletter</servlet-name>
+
+       <servlet-class>serv.servlets.gensearchletter</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_SearchLetter2Servlet</display-name>
+
+       <servlet-name>SERV_SearchLetter2Servlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_SearchLetter2Servlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>PrintPayinExcelServlet</display-name>
+
+       <servlet-name>PrintPayinExcelServlet</servlet-name>
+
+       <servlet-class>serv.servlets.PrintPayinExcelServlet</servlet-class>
+
+</servlet>
+
+
+
+<servlet>
+
+		<description></description>
+
+       <display-name>SERV_ConBOQServlet</display-name>
+
+       <servlet-name>SERV_ConBOQServlet</servlet-name>
+
+       <servlet-class>serv.servlets.SERV_ConBOQServlet</servlet-class>
+
+</servlet>
+
+<servlet>
+
+	<description>
+
+	</description>
+
+	<display-name>DWR Servlet</display-name>
+
+	<servlet-name>dwr-invoker</servlet-name>
+
+	<servlet-class>
+
+	uk.ltd.getahead.dwr.AbstractDWRServlet</servlet-class>
+
+	<init-param>
+
+		<param-name>debug</param-name>
+
+		<param-value>false</param-value>
+
+	</init-param>
+
+	<init-param>
+
+		<param-name>logLevel</param-name>
+
+		<param-value>WARN</param-value>
+
+	</init-param>
+
+</servlet>
+
+<servlet>
+
+	<description>
+
+	</description>
+
+	<display-name>
+
+	SERV_PrintImageServlet</display-name>
+
+	<servlet-name>SERV_PrintImageServlet</servlet-name>
+
+	<servlet-class>
+
+	serv.servlets.SERV_PrintImageServlet</servlet-class>
+
+</servlet>
+
+<servlet>
+
+	<description>
+
+	</description>
+
+	<display-name>
+
+	ApprInfJobServlet</display-name>
+
+	<servlet-name>ApprInfJobServlet</servlet-name>
+
+	<servlet-class>
+
+	serv.servlets.ApprInfJobServlet</servlet-class>
+
+</servlet>
+
+<servlet>
+
+	<description>
+
+	</description>
+
+	<display-name>
+
+	CancelInfJobServlet</display-name>
+
+	<servlet-name>CancelInfJobServlet</servlet-name>
+
+	<servlet-class>
+
+	serv.servlets.CancelInfJobServlet</servlet-class>
+
+</servlet>
+
+<servlet>
+
+	<description>
+
+	</description>
+
+	<display-name>
+
+	SERV_INFCompTaskServlet</display-name>
+
+	<servlet-name>SERV_INFCompTaskServlet</servlet-name>
+
+	<servlet-class>
+
+	serv.servlets.SERV_INFCompTaskServlet</servlet-class>
+
+</servlet>
+
+<servlet>
+
+	<description>
+
+	</description>
+
+	<display-name>
+
+	SERV_INFBOQServlet</display-name>
+
+	<servlet-name>SERV_INFBOQServlet</servlet-name>
+
+	<servlet-class>
+
+	serv.servlets.SERV_INFBOQServlet</servlet-class>
+
+</servlet>
+
+<servlet>
+
+	<description>
+
+	</description>
+
+	<display-name>
+
+	SERV_PrintInfOpenJobServlet</display-name>
+
+	<servlet-name>SERV_PrintInfOpenJobServlet</servlet-name>
+
+	<servlet-class>
+
+	serv.servlets.SERV_PrintInfOpenJobServlet</servlet-class>
+
+</servlet>
+
+<servlet>
+
+	<description>
+
+	</description>
+
+	<display-name>
+
+	ServOpenJob</display-name>
+
+	<servlet-name>ServOpenJob</servlet-name>
+
+	<servlet-class>
+
+	serv.servlets.ServOpenJob</servlet-class>
+
+</servlet>
+
+<servlet>
+
+	<description>
+
+	</description>
+
+	<display-name>
+
+	ServBOQSrch</display-name>
+
+	<servlet-name>ServBOQSrch</servlet-name>
+
+	<servlet-class>
+
+	serv.servlets.ServBOQSrch</servlet-class>
+
+</servlet>
+
+<servlet>
+
+	<description>
+
+	</description>
+
+	<display-name>
+
+	SERV_InfStaffConfServlet</display-name>
+
+	<servlet-name>SERV_InfStaffConfServlet</servlet-name>
+
+	<servlet-class>
+
+	serv.servlets.SERV_InfStaffConfServlet</servlet-class>
+
+</servlet>
+
+<servlet>
+
+	<description>
+
+	</description>
+
+	<display-name>
+
+	SERV_InfZoneConfServlet</display-name>
+
+	<servlet-name>SERV_InfZoneConfServlet</servlet-name>
+
+	<servlet-class>
+
+	serv.servlets.SERV_InfZoneConfServlet</servlet-class>
+
+</servlet>
+
+<servlet>
+
+	<description>
+
+	</description>
+
+	<display-name>
+
+	SERV_INFManagerConfServlet</display-name>
+
+	<servlet-name>SERV_INFManagerConfServlet</servlet-name>
+
+	<servlet-class>
+
+	serv.servlets.SERV_INFManagerConfServlet</servlet-class>
+
+</servlet>
+
+<servlet>
+
+	<description>
+
+	</description>
+
+	<display-name>
+
+	SERV_INFVPConfServlet</display-name>
+
+	<servlet-name>SERV_INFVPConfServlet</servlet-name>
+
+	<servlet-class>
+
+	serv.servlets.SERV_INFVPConfServlet</servlet-class>
+
+</servlet>
+
+<servlet>
+
+	<description>
+
+	</description>
+
+	<display-name>
+
+	SERV_INFPrintReport7Servlet</display-name>
+
+	<servlet-name>SERV_INFPrintReport7Servlet</servlet-name>
+
+	<servlet-class>
+
+	serv.servlets.SERV_INFPrintReport7Servlet</servlet-class>
+
+</servlet>
+
+<servlet>
+
+	<description>
+
+	</description>
+
+	<display-name>
+
+	SERV_INFPrintReport8Servlet</display-name>
+
+	<servlet-name>SERV_INFPrintReport8Servlet</servlet-name>
+
+	<servlet-class>
+
+	serv.servlets.SERV_INFPrintReport8Servlet</servlet-class>
+
+</servlet>
+
+<servlet>
+
+	<description>
+
+	</description>
+
+	<display-name>
+
+	SERV_INFPrintReport9Servlet</display-name>
+
+	<servlet-name>SERV_INFPrintReport9Servlet</servlet-name>
+
+	<servlet-class>
+
+	serv.servlets.SERV_INFPrintReport9Servlet</servlet-class>
+
+</servlet>
+
+<servlet>
+
+	<description>
+
+	</description>
+
+	<display-name>
+
+	EISLoginServlet</display-name>
+
+	<servlet-name>EISLoginServlet</servlet-name>
+
+	<servlet-class>
+
+	eis.servlets.LoginServlet</servlet-class>
+
+</servlet>
+
+<servlet>
+
+	<description>
+
+	</description>
+
+	<display-name>
+
+	InitResvTimeServlet</display-name>
+
+	<servlet-name>InitResvTimeServlet</servlet-name>
+
+	<servlet-class>
+
+	serv.servlets.InitResvTimeServlet</servlet-class>
+
+</servlet>
+
+<servlet>
+
+	<description>
+
+	</description>
+
+	<display-name>
+
+	ScrollResvTimeServlet</display-name>
+
+	<servlet-name>ScrollResvTimeServlet</servlet-name>
+
+	<servlet-class>
+
+	serv.servlets.ScrollResvTimeServlet</servlet-class>
+
+</servlet>
+
+<servlet>
+
+	<description>
+
+	</description>
+
+	<display-name>
+
+	ResvChkupTimeServlet</display-name>
+
+	<servlet-name>ResvChkupTimeServlet</servlet-name>
+
+	<servlet-class>
+
+	serv.servlets.ResvChkupTimeServlet</servlet-class>
+
+</servlet>
+
+<servlet>
+
+	<description>
+
+	</description>
+
+	<display-name>
+
+	ClrResvTimeServlet</display-name>
+
+	<servlet-name>ClrResvTimeServlet</servlet-name>
+
+	<servlet-class>
+
+	serv.servlets.ClrResvTimeServlet</servlet-class>
+
+</servlet>
+
+<servlet>
+
+	<description>
+
+	</description>
+
+	<display-name>
+
+	InitChkLckServlet</display-name>
+
+	<servlet-name>InitChkLckServlet</servlet-name>
+
+	<servlet-class>
+
+	serv.servlets.InitChkLckServlet</servlet-class>
+
+</servlet>
+
+<servlet>
+
+	<description>
+
+	</description>
+
+	<display-name>
+
+	InitSetLockServlet</display-name>
+
+	<servlet-name>InitSetLockServlet</servlet-name>
+
+	<servlet-class>
+
+	serv.servlets.InitSetLockServlet</servlet-class>
+
+</servlet>
+
+<servlet>
+
+	<description>
+
+	</description>
+
+	<display-name>
+
+	SetChkupLockServlet</display-name>
+
+	<servlet-name>SetChkupLockServlet</servlet-name>
+
+	<servlet-class>
+
+	serv.servlets.SetChkupLockServlet</servlet-class>
+
+</servlet>
+
+<servlet>
+
+	<description>
+
+	</description>
+
+	<display-name>
+
+	CancelChkLockServlet</display-name>
+
+	<servlet-name>CancelChkLockServlet</servlet-name>
+
+	<servlet-class>
+
+	serv.servlets.CancelChkLockServlet</servlet-class>
+
+</servlet>
+
+<servlet>
+
+	<description>
+
+	</description>
+
+	<display-name>
+
+	InitOpenChkupServlet</display-name>
+
+	<servlet-name>InitOpenChkupServlet</servlet-name>
+
+	<servlet-class>
+
+	serv.servlets.InitOpenChkupServlet</servlet-class>
+
+</servlet>
+
+<servlet>
+
+	<description>
+
+	</description>
+
+	<display-name>
+
+	ViewResvTimeServlet</display-name>
+
+	<servlet-name>ViewResvTimeServlet</servlet-name>
+
+	<servlet-class>
+
+	serv.servlets.ViewResvTimeServlet</servlet-class>
+
+</servlet>
+
+<servlet>
+
+	<description>
+
+	</description>
+
+	<display-name>
+
+	OpenChkupJobServlet</display-name>
+
+	<servlet-name>OpenChkupJobServlet</servlet-name>
+
+	<servlet-class>
+
+	serv.servlets.OpenChkupJobServlet</servlet-class>
+
+</servlet>
+
+<servlet>
+
+	<description>
+
+	</description>
+
+	<display-name>
+
+	CancelChkupJobServlet</display-name>
+
+	<servlet-name>CancelChkupJobServlet</servlet-name>
+
+	<servlet-class>
+
+	serv.servlets.CancelChkupJobServlet</servlet-class>
+
+</servlet>
+
+<servlet>
+
+	<description>
+
+	</description>
+
+	<display-name>
+
+	CompleteChkupJobServlet</display-name>
+
+	<servlet-name>CompleteChkupJobServlet</servlet-name>
+
+	<servlet-class>
+
+	serv.servlets.CompleteChkupJobServlet</servlet-class>
+
+</servlet>
+
+<servlet>
+
+	<description>
+
+	</description>
+
+	<display-name>
+
+	SERV_ChkVenPrjServlet</display-name>
+
+	<servlet-name>SERV_ChkVenPrjServlet</servlet-name>
+
+	<servlet-class>
+
+	serv.servlets.SERV_ChkVenPrjServlet</servlet-class>
+
+</servlet>
+
+<servlet>
+	<description>
+	</description>
+	<display-name>
+	StartChkupJobServlet</display-name>
+	<servlet-name>StartChkupJobServlet</servlet-name>
+	<servlet-class>
+	serv.servlets.StartChkupJobServlet</servlet-class>
+</servlet>
+
+<servlet>
+	<description>
+	</description>
+	<display-name>
+	ExportOpenChkupServlet</display-name>
+	<servlet-name>ExportOpenChkupServlet</servlet-name>
+	<servlet-class>
+	serv.servlets.ExportOpenChkupServlet</servlet-class>
+</servlet>
+<servlet>
+	<description>
+	</description>
+	<display-name>
+	SERV_INFAllotServlet</display-name>
+	<servlet-name>SERV_INFAllotServlet</servlet-name>
+	<servlet-class>
+	serv.servlets.SERV_INFAllotServlet</servlet-class>
+</servlet>
+<servlet>
+	<description>
+	</description>
+	<display-name>
+	InitChkupLckServlet</display-name>
+	<servlet-name>InitChkupLckServlet</servlet-name>
+	<servlet-class>
+	serv.servlets.InitChkupLckServlet</servlet-class>
+</servlet>
+<servlet>
+	<description>
+	</description>
+	<display-name>
+	DenyChkLckServlet</display-name>
+	<servlet-name>DenyChkLckServlet</servlet-name>
+	<servlet-class>
+	serv.servlets.DenyChkLckServlet</servlet-class>
+</servlet>
+<servlet>
+	<description>
+	</description>
+	<display-name>
+	SERV_OthPayServlet</display-name>
+	<servlet-name>SERV_OthPayServlet</servlet-name>
+	<servlet-class>
+	serv.servlets.SERV_OthPayServlet</servlet-class>
+</servlet>
+<servlet>
+	<description>
+	</description>
+	<display-name>
+	PrintSumPvdServlet</display-name>
+	<servlet-name>PrintSumPvdServlet</servlet-name>
+	<servlet-class>
+	serv.servlets.PrintSumPvdServlet</servlet-class>
+</servlet>
+<servlet>
+	<description>
+	</description>
+	<display-name>
+	InitChkResvLckServlet</display-name>
+	<servlet-name>InitChkResvLckServlet</servlet-name>
+	<servlet-class>
+	serv.servlets.InitChkResvLckServlet</servlet-class>
+</servlet>
+<servlet>
+	<description>
+	</description>
+	<display-name>
+	QCChkJobServlet</display-name>
+	<servlet-name>QCChkJobServlet</servlet-name>
+	<servlet-class>
+	serv.servlets.QCChkJobServlet</servlet-class>
+</servlet>
+<servlet>
+	<description>
+	</description>
+	<display-name>
+	ChckQCServlet</display-name>
+	<servlet-name>ChckQCServlet</servlet-name>
+	<servlet-class>
+	serv.servlets.ChckQCServlet</servlet-class>
+</servlet>
+<servlet>
+	<description>
+	</description>
+	<display-name>
+	QCSelProjServlet</display-name>
+	<servlet-name>QCSelProjServlet</servlet-name>
+	<servlet-class>
+	serv.servlets.QCSelProjServlet</servlet-class>
+</servlet>
+<servlet>
+	<description></description>
+	<display-name>DefaultServiceServlet</display-name>
+	<servlet-name>DefaultServiceServlet</servlet-name>
+	<servlet-class>serv.servlets.DefaultServiceServlet</servlet-class>
+	<load-on-startup>0</load-on-startup>
+</servlet>
+<servlet>
+	<description></description>
+	<display-name>ServiceDistributeServlet</display-name>
+	<servlet-name>ServiceDistributeServlet</servlet-name>
+	<servlet-class>serv.servlets.ServiceDistributeServlet</servlet-class>
+	</servlet>	
+<servlet>
+	<description></description>
+	<display-name>KeepAliveServlet</display-name>
+	<servlet-name>KeepAliveServlet</servlet-name>
+	<servlet-class>serv.servlets.KeepAliveServlet</servlet-class>
+</servlet>
+<servlet>
+	<description>
+	</description>
+	<display-name>
+	SERV_POthPayServlet</display-name>
+	<servlet-name>SERV_POthPayServlet</servlet-name>
+	<servlet-class>
+	serv.servlets.SERV_POthPayServlet</servlet-class>
+</servlet>
+<servlet>
+	<description>
+	</description>
+	<display-name>
+	PrintHSumPvdServlet</display-name>
+	<servlet-name>PrintHSumPvdServlet</servlet-name>
+	<servlet-class>
+	serv.servlets.PrintHSumPvdServlet</servlet-class>
+</servlet>
+<servlet>
+<description>
+</description>
+<display-name>ESERV_AfterAppointDateServlet</display-name>
+	<servlet-name>ESERV_AfterAppointDateServlet</servlet-name>
+	<servlet-class>serv.servlets.ESERV_AfterAppointDateServlet</servlet-class>
+</servlet>
+<servlet>
+<description>
+</description>
+<display-name>ESERV_AppointDateServlet</display-name>
+	<servlet-name>ESERV_AppointDateServlet</servlet-name>
+	<servlet-class>serv.servlets.ESERV_AppointDateServlet</servlet-class>
+</servlet>
+<servlet>
+<description>
+</description>
+<display-name>ESERV_GenPwdCustServlet</display-name>
+	<servlet-name>ESERV_GenPwdCustServlet</servlet-name>
+	<servlet-class>serv.servlets.ESERV_GenPwdCustServlet</servlet-class>
+</servlet>
+<servlet>
+<description>
+</description>
+<display-name>ESERV_MngAppointDateServlet</display-name>
+	<servlet-name>ESERV_MngAppointDateServlet</servlet-name>
+	<servlet-class>serv.servlets.ESERV_MngAppointDateServlet</servlet-class>
+</servlet>
+<servlet>
+<description>
+</description>
+<display-name>ESERV_OpenJobServlet</display-name>
+	<servlet-name>ESERV_OpenJobServlet</servlet-name>
+	<servlet-class>serv.servlets.ESERV_OpenJobServlet</servlet-class>
+</servlet>
+<servlet>
+<description>
+</description>
+<display-name>SERV_ZeroDefectMasterServlet</display-name>
+	<servlet-name>SERV_ZeroDefectMasterServlet</servlet-name>
+	<servlet-class>serv.servlets.SERV_ZeroDefectMasterServlet</servlet-class>
+</servlet>
+<servlet>
+<description>
+</description>
+<display-name>SERV_ZeroDefectServlet</display-name>
+	<servlet-name>SERV_ZeroDefectServlet</servlet-name>
+	<servlet-class>serv.servlets.SERV_ZeroDefectServlet</servlet-class>
+</servlet>
+<servlet>
+<description>
+</description>
+<display-name>PrintInfLetter1Servlet</display-name>
+	<servlet-name>PrintInfLetter1Servlet</servlet-name>
+	<servlet-class>serv.servlets.PrintInfLetter1Servlet</servlet-class>
+</servlet>
+<servlet>
+<description>
+</description>
+<display-name>PrintInfLetter2Servlet</display-name>
+	<servlet-name>PrintInfLetter2Servlet</servlet-name>
+	<servlet-class>serv.servlets.PrintInfLetter2Servlet</servlet-class>
+</servlet>
+<servlet>
+<description>
+</description>
+<display-name>PrintInfLetter3Servlet</display-name>
+	<servlet-name>PrintInfLetter3Servlet</servlet-name>
+	<servlet-class>serv.servlets.PrintInfLetter3Servlet</servlet-class>
+</servlet>
+<servlet>
+<description>
+</description>
+<display-name>PrintInfLetter4Servlet</display-name>
+	<servlet-name>PrintInfLetter4Servlet</servlet-name>
+	<servlet-class>serv.servlets.PrintInfLetter4Servlet</servlet-class>
+</servlet>
+<servlet>
+<description>
+</description>
+<display-name>PrintInfLetter5Servlet</display-name>
+	<servlet-name>PrintInfLetter5Servlet</servlet-name>
+	<servlet-class>serv.servlets.PrintInfLetter5Servlet</servlet-class>
+</servlet>
+<servlet>
+<description>
+</description>
+<display-name>PrintInfLetter6Servlet</display-name>
+	<servlet-name>PrintInfLetter6Servlet</servlet-name>
+	<servlet-class>serv.servlets.PrintInfLetter6Servlet</servlet-class>
+</servlet>
+<servlet>
+<description>
+</description>
+<display-name>ESERV_GenPwdCust2Servlet</display-name>
+	<servlet-name>ESERV_GenPwdCust2Servlet</servlet-name>
+	<servlet-class>serv.servlets.ESERV_GenPwdCust2Servlet</servlet-class>
+</servlet>
+<servlet>
+<description>
+</description>
+<display-name>ESERV_PrintPwdOldCustServlet</display-name>
+	<servlet-name>ESERV_PrintPwdOldCustServlet</servlet-name>
+	<servlet-class>serv.servlets.ESERV_PrintPwdOldCustServlet</servlet-class>
+</servlet>
+<servlet>
+<description>
+</description>
+<display-name>SVCMasterGCalendarServlet</display-name>
+	<servlet-name>SVCMasterGCalendarServlet</servlet-name>
+	<servlet-class>serv.servlets.SVCMasterGCalendarServlet</servlet-class>
+</servlet>
+<servlet>
+<description>
+</description>
+<display-name>SERV_SmsMasterServlet</display-name>
+	<servlet-name>SERV_SmsMasterServlet</servlet-name>
+	<servlet-class>serv.servlets.SERV_SmsMasterServlet</servlet-class>
+</servlet>
+<servlet>
+<description>
+</description>
+<display-name>SERV_PendingServlet</display-name>
+	<servlet-name>SERV_PendingServlet</servlet-name>
+	<servlet-class>serv.servlets.SERV_PendingServlet</servlet-class>
+</servlet>
+<servlet>
+	<description>
+	</description>
+	<display-name>SERV_ReportFollowMail</display-name>
+	<servlet-name>SERV_ReportFollowMail</servlet-name>
+	<servlet-class>serv.servlets.SERV_ReportFollowMail</servlet-class>
+</servlet>
+<servlet>
+	<description>
+	</description>
+	<display-name>SERV_BOQ_IPVQCServlet</display-name>
+	<servlet-name>SERV_BOQ_IPVQCServlet</servlet-name>
+	<servlet-class>serv.servlets.SERV_BOQ_IPVQCServlet</servlet-class>
+</servlet>
+<servlet>
+	<description>
+	</description>
+	<display-name>SERV_RecBeforeTransferServlet</display-name>
+	<servlet-name>SERV_RecBeforeTransferServlet</servlet-name>
+	<servlet-class>serv.servlets.SERV_RecBeforeTransferServlet</servlet-class>
+</servlet>
+<servlet>
+	<description>
+	</description>
+	<display-name>SERV_WageAppr</display-name>
+	<servlet-name>SERV_WageAppr</servlet-name>
+	<servlet-class>serv.servlets.SERV_WageAppr</servlet-class>
+</servlet>
+<servlet>
+	<description>
+	</description>
+	<display-name>SERV_ReportINTBaanServlet</display-name>
+	<servlet-name>SERV_ReportINTBaanServlet</servlet-name>
+	<servlet-class>serv.servlets.SERV_ReportINTBaanServlet</servlet-class>
+</servlet>
+<servlet>
+	<description>
+	</description>
+	<display-name>SERV_ReportInformRepairServlet</display-name>
+	<servlet-name>SERV_ReportInformRepairServlet</servlet-name>
+	<servlet-class>serv.servlets.SERV_ReportInformRepairServlet</servlet-class>
+</servlet>
+<servlet>
+	<description>
+	</description>
+	<display-name>SERV_ApproveTurnkeyServlet</display-name>
+	<servlet-name>SERV_ApproveTurnkeyServlet</servlet-name>
+	<servlet-class>serv.servlets.SERV_ApproveTurnkeyServlet</servlet-class>
+</servlet>
+<servlet>
+	<description>
+	</description>
+	<display-name>SERV_CompTaskSaveImgServlet</display-name>
+	<servlet-name>SERV_CompTaskSaveImgServlet</servlet-name>
+	<servlet-class>serv.servlets.SERV_CompTaskSaveImgServlet</servlet-class>
+</servlet>
+<servlet>
+	<description>
+	</description>
+	<display-name>SERV_OpenJobPrintImageServlet</display-name>
+	<servlet-name>SERV_OpenJobPrintImageServlet</servlet-name>
+	<servlet-class>serv.servlets.SERV_OpenJobPrintImageServlet</servlet-class>
+</servlet>
+<servlet>
+	<description>
+	</description>
+	<display-name>ReadFilePicServlet</display-name>
+	<servlet-name>ReadFilePicServlet</servlet-name>
+	<servlet-class>serv.servlets.ReadFilePicServlet</servlet-class>
+</servlet>
+<servlet>
+	<description>
+	</description>
+	<display-name>SERV_ReportSvcMonthlyServlet</display-name>
+	<servlet-name>SERV_ReportSvcMonthlyServlet</servlet-name>
+	<servlet-class>serv.servlets.SERV_ReportSvcMonthlyServlet</servlet-class>
+</servlet>
+<servlet>
+	<description>
+	</description>
+	<display-name>SERV_ReportSvcServlet</display-name>
+	<servlet-name>SERV_ReportSvcServlet</servlet-name>
+	<servlet-class>serv.servlets.SERV_ReportSvcServlet</servlet-class>
+</servlet>
+<servlet>
+	<description>
+	</description>
+	<display-name>SERV_RptKeepBeforeServlet</display-name>
+	<servlet-name>SERV_RptKeepBeforeServlet</servlet-name>
+	<servlet-class>serv.servlets.SERV_RptKeepBeforeServlet</servlet-class>
+</servlet>
+<servlet>
+	<description>
+	</description>
+	<display-name>SERV_RptTransAfterEndServlet</display-name>
+	<servlet-name>SERV_RptTransAfterEndServlet</servlet-name>
+	<servlet-class>serv.servlets.SERV_RptTransAfterEndServlet</servlet-class>
+</servlet>
+<servlet>
+	<description>
+	</description>
+	<display-name>SERV_RptTransAfterEndExport2Excel</display-name>
+	<servlet-name>SERV_RptTransAfterEndExport2Excel</servlet-name>
+	<servlet-class>serv.servlets.SERV_RptTransAfterEndExport2Excel</servlet-class>
+</servlet>
+
+
+<servlet>
+		<description></description>
+		<display-name>LSERV_AppointDateServlet</display-name>
+		<servlet-name>LSERV_AppointDateServlet</servlet-name>
+		<servlet-class>serv.servlets.LSERV_AppointDateServlet</servlet-class>
+	</servlet>
+<servlet>
+		<description></description>
+		<display-name>LSERV_MngAppointDateServlet</display-name>
+		<servlet-name>LSERV_MngAppointDateServlet</servlet-name>
+		<servlet-class>serv.servlets.LSERV_MngAppointDateServlet</servlet-class>
+</servlet>
+
+
+
+<servlet>
+	<description>
+	</description>
+	<display-name>SERV_SettingSendMailServlet</display-name>
+	<servlet-name>SERV_SettingSendMailServlet</servlet-name>
+	<servlet-class>serv.servlets.SERV_SettingSendMailServlet</servlet-class>
+</servlet>
+
+<servlet>
+		<description>
+		</description>
+		<display-name>
+		AddFingerScanServlet</display-name>
+		<servlet-name>AddFingerScanServlet</servlet-name>
+		<servlet-class>
+		serv.servlets.AddFingerScanServlet</servlet-class>
+</servlet>
+
+<servlet>
+	<description>
+	</description>
+	<display-name>
+	SERV_PrintReceiptServlet</display-name>
+	<servlet-name>SERV_PrintReceiptServlet</servlet-name>
+	<servlet-class>
+	serv.servlets.SERV_PrintReceiptServlet</servlet-class>
+</servlet>
+<servlet>
+	<description>
+	</description>
+	<display-name>
+	SERV_ContractServlet</display-name>
+	<servlet-name>SERV_ContractServlet</servlet-name>
+	<servlet-class>
+	serv.servlets.SERV_ContractServlet</servlet-class>
+</servlet>
+<servlet>
+	<description>
+	</description>
+	<display-name>
+	SERV_ConCompTaskServlet</display-name>
+	<servlet-name>SERV_ConCompTaskServlet</servlet-name>
+	<servlet-class>
+	serv.servlets.SERV_ConCompTaskServlet</servlet-class>
+</servlet>
+<servlet>
+	<description>
+	</description>
+	<display-name>
+	SERV_PrintConOpenJobServlet</display-name>
+	<servlet-name>SERV_PrintConOpenJobServlet</servlet-name>
+	<servlet-class>
+	serv.servlets.SERV_PrintConOpenJobServlet</servlet-class>
+</servlet>
+<servlet>
+	<description>
+	</description>
+	<display-name>
+	CancelConPaymentServlet</display-name>
+	<servlet-name>CancelConPaymentServlet</servlet-name>
+	<servlet-class>
+	serv.servlets.CancelConPaymentServlet</servlet-class>
+</servlet>
+<servlet>
+	<description>
+	</description>
+	<display-name>
+	SERV_CONManagerConfServlet</display-name>
+	<servlet-name>SERV_CONManagerConfServlet</servlet-name>
+	<servlet-class>
+	serv.servlets.SERV_CONManagerConfServlet</servlet-class>
+</servlet>
+<servlet>
+	<description>
+	</description>
+	<display-name>
+	SERV_ConZoneConfServlet</display-name>
+	<servlet-name>SERV_ConZoneConfServlet</servlet-name>
+	<servlet-class>
+	serv.servlets.SERV_ConZoneConfServlet</servlet-class>
+</servlet>
+<servlet>
+	<description>
+	</description>
+	<display-name>
+	SERV_CONVPConfServlet</display-name>
+	<servlet-name>SERV_CONVPConfServlet</servlet-name>
+	<servlet-class>
+	serv.servlets.SERV_CONVPConfServlet</servlet-class>
+</servlet>
+<servlet>
+		<description></description>
+		<display-name>IPVQC_VendorServlet</display-name>
+		<servlet-name>IPVQC_VendorServlet</servlet-name>
+		<servlet-class>serv.servlets.IPVQC_VendorServlet</servlet-class>
+</servlet>
+<servlet>
+		<description></description>
+		<display-name>IPVQC_FavoriteVendorServlet</display-name>
+		<servlet-name>IPVQC_FavoriteVendorServlet</servlet-name>
+		<servlet-class>serv.servlets.IPVQC_FavoriteVendorServlet</servlet-class>
+</servlet>
+<servlet>
+		<description></description>
+		<display-name>SERV_PrintPayInCBServlet</display-name>
+		<servlet-name>SERV_PrintPayInCBServlet</servlet-name>
+		<servlet-class>serv.servlets.SERV_PrintPayInCBServlet</servlet-class>
+</servlet>
+<servlet>
+	<description></description>
+	<display-name>SERV_PrintInfPayInCBServlet</display-name>
+	<servlet-name>SERV_PrintInfPayInCBServlet</servlet-name>
+	<servlet-class>serv.servlets.SERV_PrintInfPayInCBServlet</servlet-class>
+</servlet>
+<servlet>
+	<description></description>
+	<display-name>ExportCauseOfRepairServlet</display-name>
+	<servlet-name>ExportCauseOfRepairServlet</servlet-name>
+	<servlet-class>serv.servlets.ExportCauseOfRepairServlet</servlet-class>
+</servlet>
+<servlet>
+	<description></description>
+	<display-name>SERV_InfPubReportXlsServlet</display-name>
+	<servlet-name>SERV_InfPubReportXlsServlet</servlet-name>
+	<servlet-class>serv.servlets.SERV_InfPubReportXlsServlet</servlet-class>
+</servlet>
+<servlet>
+	<description></description>
+	<display-name>SERV_InfPubReportDetXlsServlet</display-name>
+	<servlet-name>SERV_InfPubReportDetXlsServlet</servlet-name>
+	<servlet-class>serv.servlets.SERV_InfPubReportDetXlsServlet</servlet-class>
+</servlet>
+<servlet>
+	<description></description>
+	<display-name>SERV_LStaffServlet</display-name>
+	<servlet-name>SERV_LStaffServlet</servlet-name>
+	<servlet-class>serv.servlets.SERV_LStaffServlet</servlet-class>
+</servlet>
+<servlet>
+	<description></description>
+	<display-name>SERV_RepRetDet2Servlet</display-name>
+	<servlet-name>SERV_RepRetDet2Servlet</servlet-name>
+	<servlet-class>serv.servlets.SERV_RepRetDet2Servlet</servlet-class>
+</servlet>
+<servlet>
+	<description></description>
+	<display-name>SERV_InfPubPostJVServlet</display-name>
+	<servlet-name>SERV_InfPubPostJVServlet</servlet-name>
+	<servlet-class>serv.servlets.SERV_InfPubPostJVServlet</servlet-class>
+</servlet>
+<servlet>
+	<description></description>
+	<display-name>SERV_SavePhaseProjServlet</display-name>
+	<servlet-name>SERV_SavePhaseProjServlet</servlet-name>
+	<servlet-class>serv.servlets.SERV_SavePhaseProjServlet</servlet-class>
+</servlet>
+<servlet>
+	<description></description>
+	<display-name>SERV_INFDenyServlet</display-name>
+	<servlet-name>SERV_INFDenyServlet</servlet-name>
+	<servlet-class>serv.servlets.SERV_INFDenyServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+
+       <servlet-name>SERV_XStdServlet</servlet-name>
+
+       <url-pattern>/SERV_XStdServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>LoginServlet</servlet-name>
+
+       <url-pattern>/LoginServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>LogoutServlet</servlet-name>
+
+       <url-pattern>/LogoutServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_InfJobServlet</servlet-name>
+
+       <url-pattern>/SERV_InfJobServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_OpenJobServlet</servlet-name>
+
+       <url-pattern>/SERV_OpenJobServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_StartTaskServlet</servlet-name>
+
+       <url-pattern>/SERV_StartTaskServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_CompTaskServlet</servlet-name>
+
+       <url-pattern>/SERV_CompTaskServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_PrintInfJobServlet</servlet-name>
+
+       <url-pattern>/SERV_PrintInfJobServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_PrintOpenJobServlet</servlet-name>
+
+       <url-pattern>/SERV_PrintOpenJobServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_BOQCodeServlet</servlet-name>
+
+       <url-pattern>/SERV_BOQCodeServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_BOQCodeApproveServlet</servlet-name>
+
+       <url-pattern>/SERV_BOQCodeApproveServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_CutLockServlet</servlet-name>
+
+       <url-pattern>/SERV_CutLockServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_PaySchdServlet</servlet-name>
+
+       <url-pattern>/SERV_PaySchdServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_PStaffServlet</servlet-name>
+
+       <url-pattern>/SERV_PStaffServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_ContractorConfServlet</servlet-name>
+
+       <url-pattern>/SERV_ContractorConfServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_StaffConfServlet</servlet-name>
+
+       <url-pattern>/SERV_StaffConfServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_ManagerConfServlet</servlet-name>
+
+       <url-pattern>/SERV_ManagerConfServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_ZoneConfServlet</servlet-name>
+
+       <url-pattern>/SERV_ZoneConfServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_BOQServlet</servlet-name>
+
+       <url-pattern>/SERV_BOQServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_VenPrjServlet</servlet-name>
+
+       <url-pattern>/SERV_VenPrjServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_VPConfServlet</servlet-name>
+
+       <url-pattern>/SERV_VPConfServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>AddVendorServlet</servlet-name>
+
+       <url-pattern>/AddVendorServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>LayRetentServlet</servlet-name>
+
+       <url-pattern>/LayRetentServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>PrintPayInServlet</servlet-name>
+
+       <url-pattern>/PrintPayInServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>ConfRetentServlet</servlet-name>
+
+       <url-pattern>/ConfRetentServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>PrintRetRetenServlet</servlet-name>
+
+       <url-pattern>/PrintRetRetenServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>InitAddRetenServlet</servlet-name>
+
+       <url-pattern>/InitAddRetenServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>CancelRetentServlet</servlet-name>
+
+       <url-pattern>/CancelRetentServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>InitConfRetentServlet</servlet-name>
+
+       <url-pattern>/InitConfRetentServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_Add_ReqRetenServlet</servlet-name>
+
+       <url-pattern>/SERV_Add_ReqRetenServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_PrintReqRetenServlet</servlet-name>
+
+       <url-pattern>/SERV_PrintReqRetenServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_Add_RetRetenServlet</servlet-name>
+
+       <url-pattern>/SERV_Add_RetRetenServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_PrintRetRetenServlet</servlet-name>
+
+       <url-pattern>/SERV_PrintRetRetenServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_Conf_RetRetenServlet</servlet-name>
+
+       <url-pattern>/SERV_Conf_RetRetenServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_Apprv_RetRetenServlet</servlet-name>
+
+       <url-pattern>/SERV_Apprv_RetRetenServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_ManageChequeServlet</servlet-name>
+
+       <url-pattern>/SERV_ManageChequeServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_PrintReport7Servlet</servlet-name>
+
+       <url-pattern>/SERV_PrintReport7Servlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_PrintReport8Servlet</servlet-name>
+
+       <url-pattern>/SERV_PrintReport8Servlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_PrintReport9Servlet</servlet-name>
+
+       <url-pattern>/SERV_PrintReport9Servlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_PrintAccRetenServlet</servlet-name>
+
+       <url-pattern>/SERV_PrintAccRetenServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_RepRetSumServlet</servlet-name>
+
+       <url-pattern>/SERV_RepRetSumServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_RepRetDetServlet</servlet-name>
+
+       <url-pattern>/SERV_RepRetDetServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_Conf_RetReten2Servlet</servlet-name>
+
+       <url-pattern>/SERV_Conf_RetReten2Servlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_SignbServlet</servlet-name>
+
+       <url-pattern>/SERV_SignbServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_PrintReport5Servlet</servlet-name>
+
+       <url-pattern>/SERV_PrintReport5Servlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_PrintReport5DetServlet</servlet-name>
+
+       <url-pattern>/SERV_PrintReport5DetServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_PrintReport2Servlet</servlet-name>
+
+       <url-pattern>/SERV_PrintReport2Servlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_PrintReport2DetServlet</servlet-name>
+
+       <url-pattern>/SERV_PrintReport2DetServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_PrintReport6Servlet</servlet-name>
+
+       <url-pattern>/SERV_PrintReport6Servlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>AddInfVendorServlet</servlet-name>
+
+       <url-pattern>/AddInfVendorServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>AddTimeServlet</servlet-name>
+
+       <url-pattern>/AddTimeServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>CancelInfraServlet</servlet-name>
+       <url-pattern>/CancelInfraServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>InitEdtInfraServlet</servlet-name>
+
+       <url-pattern>/InitEdtInfraServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>PrintInfPayInServlet</servlet-name>
+
+       <url-pattern>/PrintInfPayInServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SetInfAmntServlet</servlet-name>
+
+       <url-pattern>/SetInfAmntServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>UpdPayerServlet</servlet-name>
+
+       <url-pattern>/UpdPayerServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SetLckInfAmntServlet</servlet-name>
+
+       <url-pattern>/SetLckInfAmntServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>AddLockDetServlet</servlet-name>
+
+       <url-pattern>/AddLockDetServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>gensearchletter</servlet-name>
+
+       <url-pattern>/gensearchletter</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_SearchLetter2Servlet</servlet-name>
+
+       <url-pattern>/SERV_SearchLetter2Servlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>PrintPayinExcelServlet</servlet-name>
+
+       <url-pattern>/PrintPayinExcelServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+       <servlet-name>SERV_ConBOQServlet</servlet-name>
+
+       <url-pattern>/SERV_ConBOQServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+	<servlet-name>dwr-invoker</servlet-name>
+
+	<url-pattern>/dwr-invoker</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+	<servlet-name>SERV_PrintImageServlet</servlet-name>
+
+	<url-pattern>/SERV_PrintImageServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+	<servlet-name>ApprInfJobServlet</servlet-name>
+
+	<url-pattern>/ApprInfJobServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+	<servlet-name>CancelInfJobServlet</servlet-name>
+
+	<url-pattern>/CancelInfJobServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+	<servlet-name>SERV_INFCompTaskServlet</servlet-name>
+
+	<url-pattern>/SERV_INFCompTaskServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+	<servlet-name>SERV_INFBOQServlet</servlet-name>
+
+	<url-pattern>/SERV_INFBOQServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+	<servlet-name>SERV_PrintInfOpenJobServlet</servlet-name>
+
+	<url-pattern>/SERV_PrintInfOpenJobServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+	<servlet-name>ServOpenJob</servlet-name>
+
+	<url-pattern>/ServOpenJob</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+	<servlet-name>ServBOQSrch</servlet-name>
+
+	<url-pattern>/ServBOQSrch</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+	<servlet-name>SERV_InfStaffConfServlet</servlet-name>
+
+	<url-pattern>/SERV_InfStaffConfServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+	<servlet-name>SERV_InfZoneConfServlet</servlet-name>
+
+	<url-pattern>/SERV_InfZoneConfServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+	<servlet-name>SERV_INFManagerConfServlet</servlet-name>
+
+	<url-pattern>/SERV_INFManagerConfServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+	<servlet-name>SERV_INFVPConfServlet</servlet-name>
+
+	<url-pattern>/SERV_INFVPConfServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+	<servlet-name>SERV_INFPrintReport7Servlet</servlet-name>
+
+	<url-pattern>/SERV_INFPrintReport7Servlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+	<servlet-name>SERV_INFPrintReport8Servlet</servlet-name>
+
+	<url-pattern>/SERV_INFPrintReport8Servlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+	<servlet-name>SERV_INFPrintReport9Servlet</servlet-name>
+
+	<url-pattern>/SERV_INFPrintReport9Servlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+	<servlet-name>EISLoginServlet</servlet-name>
+
+	<url-pattern>/EISLoginServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+	<servlet-name>InitResvTimeServlet</servlet-name>
+
+	<url-pattern>/InitResvTimeServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+	<servlet-name>ScrollResvTimeServlet</servlet-name>
+
+	<url-pattern>/ScrollResvTimeServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+	<servlet-name>ResvChkupTimeServlet</servlet-name>
+
+	<url-pattern>/ResvChkupTimeServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+	<servlet-name>ClrResvTimeServlet</servlet-name>
+
+	<url-pattern>/ClrResvTimeServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+	<servlet-name>InitChkLckServlet</servlet-name>
+
+	<url-pattern>/InitChkLckServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+	<servlet-name>InitSetLockServlet</servlet-name>
+
+	<url-pattern>/InitSetLockServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+	<servlet-name>SetChkupLockServlet</servlet-name>
+
+	<url-pattern>/SetChkupLockServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+	<servlet-name>CancelChkLockServlet</servlet-name>
+
+	<url-pattern>/CancelChkLockServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+	<servlet-name>InitOpenChkupServlet</servlet-name>
+
+	<url-pattern>/InitOpenChkupServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+	<servlet-name>ViewResvTimeServlet</servlet-name>
+
+	<url-pattern>/ViewResvTimeServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+	<servlet-name>OpenChkupJobServlet</servlet-name>
+
+	<url-pattern>/OpenChkupJobServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+	<servlet-name>CancelChkupJobServlet</servlet-name>
+
+	<url-pattern>/CancelChkupJobServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+	<servlet-name>CompleteChkupJobServlet</servlet-name>
+
+	<url-pattern>/CompleteChkupJobServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+	<servlet-name>SERV_ChkVenPrjServlet</servlet-name>
+
+	<url-pattern>/SERV_ChkVenPrjServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+
+	<servlet-name>SERV_PendingServlet</servlet-name>
+
+	<url-pattern>/SERV_PendingServlet</url-pattern>
+
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>StartChkupJobServlet</servlet-name>
+	<url-pattern>/StartChkupJobServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>ExportOpenChkupServlet</servlet-name>
+	<url-pattern>/ExportOpenChkupServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>SERV_INFAllotServlet</servlet-name>
+	<url-pattern>/SERV_INFAllotServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>InitChkupLckServlet</servlet-name>
+	<url-pattern>/InitChkupLckServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>DenyChkLckServlet</servlet-name>
+	<url-pattern>/DenyChkLckServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>SERV_OthPayServlet</servlet-name>
+	<url-pattern>/SERV_OthPayServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>PrintSumPvdServlet</servlet-name>
+	<url-pattern>/PrintSumPvdServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>InitChkResvLckServlet</servlet-name>
+	<url-pattern>/InitChkResvLckServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>QCChkJobServlet</servlet-name>
+	<url-pattern>/QCChkJobServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>ChckQCServlet</servlet-name>
+	<url-pattern>/ChckQCServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>QCSelProjServlet</servlet-name>
+	<url-pattern>/QCSelProjServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>DefaultServiceServlet</servlet-name>
+	<url-pattern>/DefaultServiceServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>ServiceDistributeServlet</servlet-name>
+	<url-pattern>/ServiceDistributeServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>KeepAliveServlet</servlet-name>
+	<url-pattern>/KeepAliveServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>SERV_POthPayServlet</servlet-name>
+	<url-pattern>/SERV_POthPayServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>PrintHSumPvdServlet</servlet-name>
+	<url-pattern>/PrintHSumPvdServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+       <servlet-name>ESERV_AfterAppointDateServlet</servlet-name>
+       <url-pattern>/ESERV_AfterAppointDateServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+       <servlet-name>ESERV_AppointDateServlet</servlet-name>
+       <url-pattern>/ESERV_AppointDateServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+       <servlet-name>ESERV_MngAppointDateServlet</servlet-name>
+       <url-pattern>/ESERV_MngAppointDateServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+       <servlet-name>ESERV_OpenJobServlet</servlet-name>
+       <url-pattern>/ESERV_OpenJobServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+       <servlet-name>SERV_ZeroDefectMasterServlet</servlet-name>
+       <url-pattern>/SERV_ZeroDefectMasterServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+       <servlet-name>SERV_ZeroDefectServlet</servlet-name>
+       <url-pattern>/SERV_ZeroDefectServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+       <servlet-name>PrintInfLetter1Servlet</servlet-name>
+       <url-pattern>/PrintInfLetter1Servlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+       <servlet-name>PrintInfLetter2Servlet</servlet-name>
+       <url-pattern>/PrintInfLetter2Servlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+       <servlet-name>PrintInfLetter3Servlet</servlet-name>
+       <url-pattern>/PrintInfLetter3Servlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+       <servlet-name>PrintInfLetter4Servlet</servlet-name>
+       <url-pattern>/PrintInfLetter4Servlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+       <servlet-name>PrintInfLetter5Servlet</servlet-name>
+       <url-pattern>/PrintInfLetter5Servlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+       <servlet-name>PrintInfLetter6Servlet</servlet-name>
+       <url-pattern>/PrintInfLetter6Servlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+       <servlet-name>ESERV_GenPwdCust2Servlet</servlet-name>
+       <url-pattern>/ESERV_GenPwdCust2Servlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+       <servlet-name>ESERV_PrintPwdOldCustServlet</servlet-name>
+       <url-pattern>/ESERV_PrintPwdOldCustServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+       <servlet-name>SVCMasterGCalendarServlet</servlet-name>
+       <url-pattern>/SVCMasterGCalendarServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+       <servlet-name>SERV_SmsMasterServlet</servlet-name>
+       <url-pattern>/SERV_SmsMasterServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+       <servlet-name>SERV_PendingServlet</servlet-name>
+       <url-pattern>/SERV_PendingServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+       <servlet-name>SERV_ReportFollowMail</servlet-name>
+       <url-pattern>/SERV_ReportFollowMail</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+       <servlet-name>SERV_BOQ_IPVQCServlet</servlet-name>
+       <url-pattern>/SERV_BOQ_IPVQCServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+       <servlet-name>SERV_RecBeforeTransferServlet</servlet-name>
+       <url-pattern>/SERV_RecBeforeTransferServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+       <servlet-name>SERV_WageAppr</servlet-name>
+       <url-pattern>/SERV_WageAppr</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+       <servlet-name>SERV_ReportINTBaanServlet</servlet-name>
+       <url-pattern>/SERV_ReportINTBaanServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+       <servlet-name>SERV_ReportInformRepairServlet</servlet-name>
+       <url-pattern>/SERV_ReportInformRepairServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+       <servlet-name>SERV_ApproveTurnkeyServlet</servlet-name>
+       <url-pattern>/SERV_ApproveTurnkeyServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+       <servlet-name>SERV_CompTaskSaveImgServlet</servlet-name>
+       <url-pattern>/SERV_CompTaskSaveImgServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+       <servlet-name>SERV_OpenJobPrintImageServlet</servlet-name>
+       <url-pattern>/SERV_OpenJobPrintImageServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+       <servlet-name>ReadFilePicServlet</servlet-name>
+       <url-pattern>/ReadFilePicServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+       <servlet-name>SERV_ReportSvcMonthlyServlet</servlet-name>
+       <url-pattern>/SERV_ReportSvcMonthlyServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+       <servlet-name>SERV_ReportSvcServlet</servlet-name>
+       <url-pattern>/SERV_ReportSvcServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+       <servlet-name>SERV_RptKeepBeforeServlet</servlet-name>
+       <url-pattern>/SERV_RptKeepBeforeServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+       <servlet-name>SERV_RptTransAfterEndServlet</servlet-name>
+       <url-pattern>/SERV_RptTransAfterEndServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+       <servlet-name>SERV_RptTransAfterEndExport2Excel</servlet-name>
+       <url-pattern>/SERV_RptTransAfterEndExport2Excel</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+       <servlet-name>SERV_SettingSendMailServlet</servlet-name>
+       <url-pattern>/SERV_SettingSendMailServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+		<servlet-name>AddFingerScanServlet</servlet-name>
+		<url-pattern>/AddFingerScanServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>SERV_PrintReceiptServlet</servlet-name>
+	<url-pattern>/SERV_PrintReceiptServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>SERV_ContractServlet</servlet-name>
+	<url-pattern>/SERV_ContractServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>SERV_ConCompTaskServlet</servlet-name>
+	<url-pattern>/SERV_ConCompTaskServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>SERV_PrintConOpenJobServlet</servlet-name>
+	<url-pattern>/SERV_PrintConOpenJobServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>CancelConPaymentServlet</servlet-name>
+	<url-pattern>/CancelConPaymentServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>SERV_CONManagerConfServlet</servlet-name>
+	<url-pattern>/SERV_CONManagerConfServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>SERV_ConZoneConfServlet</servlet-name>
+	<url-pattern>/SERV_ConZoneConfServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>SERV_CONVPConfServlet</servlet-name>
+	<url-pattern>/SERV_CONVPConfServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+		<servlet-name>LSERV_AppointDateServlet</servlet-name>
+		<url-pattern>/LSERV_AppointDateServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+		<servlet-name>LSERV_MngAppointDateServlet</servlet-name>
+		<url-pattern>/LSERV_MngAppointDateServlet</url-pattern>
+</servlet-mapping>
+
+
+<servlet-mapping>
+	<servlet-name>IPVQC_VendorServlet</servlet-name>
+	<url-pattern>/IPVQC_VendorServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>IPVQC_FavoriteVendorServlet</servlet-name>
+	<url-pattern>/IPVQC_FavoriteVendorServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>SERV_PrintPayInCBServlet</servlet-name>
+	<url-pattern>/SERV_PrintPayInCBServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>SERV_PrintInfPayInCBServlet</servlet-name>
+	<url-pattern>/SERV_PrintInfPayInCBServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>ExportCauseOfRepairServlet</servlet-name>
+	<url-pattern>/ExportCauseOfRepairServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>SERV_InfPubReportXlsServlet</servlet-name>
+	<url-pattern>/SERV_InfPubReportXlsServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>SERV_InfPubReportDetXlsServlet</servlet-name>
+	<url-pattern>/SERV_InfPubReportDetXlsServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+		<servlet-name>SERV_LStaffServlet</servlet-name>
+		<url-pattern>/SERV_LStaffServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>SERV_RepRetDet2Servlet</servlet-name>
+	<url-pattern>/SERV_RepRetDet2Servlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>SERV_InfPubPostJVServlet</servlet-name>
+	<url-pattern>/SERV_InfPubPostJVServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>SERV_SavePhaseProjServlet</servlet-name>
+	<url-pattern>/SERV_SavePhaseProjServlet</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>SERV_INFDenyServlet</servlet-name>
+	<url-pattern>/SERV_INFDenyServlet</url-pattern>
+</servlet-mapping>
+<servlet>
+		<servlet-name>action</servlet-name>
+		<servlet-class>
+			org.apache.struts.action.ActionServlet
+		</servlet-class>
+		<init-param>
+			<param-name>config</param-name>
+			<param-value>/WEB-INF/struts-config.xml</param-value>
+		</init-param>
+		<init-param>
+			<param-name>debug</param-name>
+			<param-value>2</param-value>
+		</init-param>
+		<init-param>
+			<param-name>detail</param-name>
+			<param-value>2</param-value>
+		</init-param>
+		<init-param>
+			<param-name>validate</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>action</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+	<!--  ********* END ************ -->
+	<welcome-file-list>
+
+		<welcome-file>index.html</welcome-file>
+
+		<welcome-file>index.htm</welcome-file>
+
+		<welcome-file>index.jsp</welcome-file>
+
+		<welcome-file>default.html</welcome-file>
+
+		<welcome-file>default.htm</welcome-file>
+
+		<welcome-file>default.jsp</welcome-file>
+
+	</welcome-file-list>
+
+	<env-entry>
+
+		<env-entry-name>DATASOURCE_NAME</env-entry-name>
+
+		<env-entry-type>java.lang.String</env-entry-type>
+
+		<env-entry-value>jdbc/ServDB</env-entry-value>
+
+	</env-entry>
+
+	<env-entry>
+
+		<env-entry-name>mainPage</env-entry-name>
+
+		<env-entry-type>java.lang.String</env-entry-type>
+
+		<env-entry-value>SERV_Index.jsp</env-entry-value>
+
+	</env-entry>
+
+	<env-entry>
+
+		<env-entry-name>AppName</env-entry-name>
+
+		<env-entry-type>java.lang.String</env-entry-type>
+
+		<env-entry-value>LHServ</env-entry-value>
+
+	</env-entry>
+
+	<resource-ref id="ResourceRef_1242378835453">
+
+		<description>
+
+		</description>
+
+		<res-ref-name>jdbc/ServDB</res-ref-name>
+
+		<res-type>javax.sql.DataSource</res-type>
+
+		<res-auth>Container</res-auth>
+
+		<res-sharing-scope>Unshareable</res-sharing-scope>
+
+	</resource-ref>
+
+</web-app>
+

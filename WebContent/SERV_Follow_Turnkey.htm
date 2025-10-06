@@ -1,0 +1,400 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<HTML>
+<HEAD>
+<TITLE>ข้อมูลพื้นฐาน : 05
+ข้อมูลราคา BOQ จากส่วนกลาง</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=TIS-620">
+<LINK rel="StyleSheet" href="SERV_Style.css" type="text/css">
+<script language="javascript" src="script_fx.js"></script>
+
+
+<script language="javascript">
+
+function deleteData() {
+    if (confirm("คุณต้องการลบข้อมูลที่ทำการเลือกทั้งหมดนี้ ?")) {
+       document.forms[0].action = "/LHServ/SERV_BOQServlet?mode=delete&i_itmjob="; 
+       document.forms[0].submit();
+    } 
+}
+
+function searchBOQ(){
+     document.forms[0].action="/LHServ/SERV_BOQ01.jsp";
+     document.forms[0].submit();  
+  }
+
+function  checkAll(obj,mainCheck,subCheck) {
+     var main = document.forms[0].elements[mainCheck];
+     var sub = document.forms[0].elements[subCheck];
+     
+     if (obj!=null && main!=null && sub!=null) {
+     
+         var checkObj = document.forms[0].elements["check_"+obj.value];
+         if (checkObj!=null && obj.checked) {
+            checkObj.value = "checked";
+         } else {
+            if (checkObj!=null) checkObj.value = "";
+         }
+     
+         if (obj.name==mainCheck) {
+		    if (sub.length!=null) {
+				for (var i=0;i<sub.length;i++) {
+					  sub[i].checked = obj.checked;
+				}
+			} else {
+			   sub.checked = obj.checked;
+			}
+         } else {
+		    if (sub.length!=null) {
+			    var flag = true;
+				for (var i=0;i<sub.length;i++) {
+					  flag = sub[i].checked;
+					  if (!flag) break;
+				}
+				main.checked = flag;
+			} else {
+			   main.checked = obj.checked;
+			} // end if check sub
+         } // end if check mainCheck
+     } // end if check null
+  } 
+ 
+ function changeGroup() {
+     document.forms[0].action="/LHServ/SERV_BOQ01.jsp";
+     document.forms[0].submit();
+  } 
+ 
+ function changePage(page) {  
+ 	 document.forms[0].now_page.value=page;
+     document.forms[0].action="/LHServ/SERV_BOQ01.jsp";
+     document.forms[0].submit();
+  } 
+  
+
+function func_1(thisObj, thisEvent) {
+//use 'thisObj' to refer directly to this component instead of keyword 'this'
+//use 'thisEvent' to refer to the event generated instead of keyword 'event'
+
+}</script>
+
+<base target="_self">
+</HEAD>
+
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0">
+<FORM action="" method="get">
+
+<input type="hidden" name="now_page" value="1">
+<input type="hidden" name="d_keyin" value="">
+<input type="hidden" name="mode" value="delete">
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="100%" class="BD" >
+    
+    
+      <table border="0" width="100%" cellspacing="0" cellpadding="0">
+        <tr onclick="return func_1(this, event);">
+          <td width="100%" class="bigh"><img border="0" src="images/i_home.gif" align="absmiddle" width="20" height="20">&nbsp;
+            ข้อมูลพื้นฐาน</td>
+        </tr>
+      </table>
+
+
+<br style="font-size:10pt">
+                
+
+
+            <table border="0" width="100%" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="item_tab1"><img border="0" src="images/i_i.gif" align="absmiddle" width="20" height="20"></td>
+                <td class="item_tab2" width="250">ข้อมูลราคา BOQ จากส่วนกลาง</td>
+                <td class="item_tab3"></td>
+                <td>&nbsp;<input type="radio" value="L" checked name="display_type" >แสดงจำนวนรายการต่อหน้า&nbsp;
+                  <input type="text" name="display_line" class="boxC" style="width:50px" value="9">&nbsp;
+                  รายการ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="radio" value="A" name="display_type">
+                  แสดงรายการทั้งหมด&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a href="#" onclick="changePage(1);"><img border="0" src="images/bu_R.gif" align="absmiddle" style="cursor:hand" width="16" height="16"></a>
+                  </td>               
+              </tr>
+            </table>
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="5" valign="top"><img border="0" src="images/Corn01.gif" width="5" height="5"></td>
+    <td class="frmTop">&nbsp;</td>
+    <td width="5" valign="top" align="right"><img border="0" src="images/Corn02.gif" width="5" height="5"></td>
+  </tr>
+</table>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="100%" class="frmLR" align="center">
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="item ; dotline01" height="22" width="15%">รหัสหมวด
+      :</td>
+    <td height="22" width="35%" class="dotline01">
+       <select name='i_group'  size='1' class='box' style='width:200px' onchange='changeGroup();' ><option value=''>------ กรุณาเลือก ------</option><option value='01' >โครงสร้าง</option><option value='02' >หลังคา</option><option value='03' >ฝ้าเพดาน</option><option value='04' >ผนัง</option><option value='05' >พื้น</option><option value='06' >บันได</option><option value='07' >ประตู / หน้าต่าง</option><option value='08' >สุขภัณฑ์ / อุปกรณ์</option><option value='09' >งานสี</option><option value='10' >น้ำดี / น้ำเสีย</option><option value='11' >หมวดไฟฟ้า</option><option value='12' >อื่นๆ</option></select>
+    </td>
+    <td height="22" class="item ; dotline01" width="15%" >ตำแหน่ง/ที่ตั้ง
+      :</td>
+    <td height="22" width="35%" class="dotline01">
+       <select name='i_type'  size='1' class='box' style='width:200px' ><option value=''>------ กรุณาเลือก ------</option></select>
+    &nbsp;&nbsp;&nbsp;&nbsp; <img border="0" src="images/bu_go.gif"  align="absmiddle" width="40" height="22" onclick="searchBOQ();" style='cursor:hand'></td>
+  </tr>
+</table>
+
+</td>
+  </tr>
+</table>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="5" valign="bottom"><img border="0" src="images/Corn03.gif" width="5" height="5"></td>
+    <td class="frmBottom">&nbsp;</td>
+    <td width="5" valign="bottom" align="right"><img border="0" src="images/Corn04.gif" width="5" height="5"></td>
+  </tr>
+</table>
+
+
+<br style="font-size:2pt">
+
+
+      
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="5" valign="top" bgcolor="#D7E6FF"><img border="0" src="images/Corn01.gif" width="5" height="5"></td>
+    <td class="frmTop" bgcolor="#D7E6FF">&nbsp;</td>
+    <td width="5" valign="top" align="right" bgcolor="#D7E6FF"><img border="0" src="images/Corn02.gif" width="5" height="5"></td>
+  </tr>
+</table>
+
+
+
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="100%" class="frmL">
+    
+      <table border="0" width="100%" cellspacing="0" cellpadding="0">
+        <tr>
+          <td class="col_name" width="4%"><input type="checkbox" name="main_check" onclick="checkAll(this,'main_check','del_checkbox');"></td>
+          <td class="col_name" width="15%">หมวด</td>
+          <td class="col_name" width="15%">ตำแหน่ง</td>
+          <td class="col_name" width="30%">ชื่อรายละเอียดการซ่อม</td>
+          <td class="col_name" width="12%">ค่าแรงต่อหน่วย</td>
+          <td class="col_name" width="12%">ค่าของต่อหน่วย</td>
+          <td class="col_name" width="12%">หน่วยนับ</td>
+        </tr>
+           
+        <tr>
+          <td align="center" class="dotline" width="4%"  valign="top">&nbsp;</td>
+          <td align="left"   class="dotline" width="15%" valign="top">&nbsp;</td>
+          <td align="left"   class="dotline" width="15%" valign="top">&nbsp;</td>
+          <td align="left"   class="dotline ; item" width="30%" valign="top">&nbsp;</td>
+          <td align="right"  class="dotline" width="12%" valign="top">&nbsp;</td>
+          <td align="right"  class="dotline" width="12%" valign="top">&nbsp;</td>
+          <td align="center" class="dotline" width="12%" valign="top">&nbsp;</td>
+        </tr>
+        
+        <tr>
+          <td align="center" class="dotline" width="4%"  valign="top">&nbsp;</td>
+          <td align="left"   class="dotline" width="15%" valign="top">&nbsp;</td>
+          <td align="left"   class="dotline" width="15%" valign="top">&nbsp;</td>
+          <td align="left"   class="dotline ; item" width="30%" valign="top">&nbsp;</td>
+          <td align="right"  class="dotline" width="12%" valign="top">&nbsp;</td>
+          <td align="right"  class="dotline" width="12%" valign="top">&nbsp;</td>
+          <td align="center" class="dotline" width="12%" valign="top">&nbsp;</td>
+        </tr>
+        
+        <tr>
+          <td align="center" class="dotline" width="4%"  valign="top">&nbsp;</td>
+          <td align="left"   class="dotline" width="15%" valign="top">&nbsp;</td>
+          <td align="left"   class="dotline" width="15%" valign="top">&nbsp;</td>
+          <td align="left"   class="dotline ; item" width="30%" valign="top">&nbsp;</td>
+          <td align="right"  class="dotline" width="12%" valign="top">&nbsp;</td>
+          <td align="right"  class="dotline" width="12%" valign="top">&nbsp;</td>
+          <td align="center" class="dotline" width="12%" valign="top">&nbsp;</td>
+        </tr>
+        
+        <tr>
+          <td align="center" class="dotline" width="4%"  valign="top">&nbsp;</td>
+          <td align="left"   class="dotline" width="15%" valign="top">&nbsp;</td>
+          <td align="left"   class="dotline" width="15%" valign="top">&nbsp;</td>
+          <td align="left"   class="dotline ; item" width="30%" valign="top"><center>ไม่พบข้อมูล !!</center></td>
+          <td align="right"  class="dotline" width="12%" valign="top">&nbsp;</td>
+          <td align="right"  class="dotline" width="12%" valign="top">&nbsp;</td>
+          <td align="center" class="dotline" width="12%" valign="top">&nbsp;</td>
+        </tr>
+        
+        <tr>
+          <td align="center" class="dotline" width="4%"  valign="top">&nbsp;</td>
+          <td align="left"   class="dotline" width="15%" valign="top">&nbsp;</td>
+          <td align="left"   class="dotline" width="15%" valign="top">&nbsp;</td>
+          <td align="left"   class="dotline ; item" width="30%" valign="top">&nbsp;</td>
+          <td align="right"  class="dotline" width="12%" valign="top">&nbsp;</td>
+          <td align="right"  class="dotline" width="12%" valign="top">&nbsp;</td>
+          <td align="center" class="dotline" width="12%" valign="top">&nbsp;</td>
+        </tr>
+        
+        <tr>
+          <td align="center" class="dotline" width="4%"  valign="top">&nbsp;</td>
+          <td align="left"   class="dotline" width="15%" valign="top">&nbsp;</td>
+          <td align="left"   class="dotline" width="15%" valign="top">&nbsp;</td>
+          <td align="left"   class="dotline ; item" width="30%" valign="top">&nbsp;</td>
+          <td align="right"  class="dotline" width="12%" valign="top">&nbsp;</td>
+          <td align="right"  class="dotline" width="12%" valign="top">&nbsp;</td>
+          <td align="center" class="dotline" width="12%" valign="top">&nbsp;</td>
+        </tr>
+        
+        <tr>
+          <td align="center" class="dotline" width="4%"  valign="top">&nbsp;</td>
+          <td align="left"   class="dotline" width="15%" valign="top">&nbsp;</td>
+          <td align="left"   class="dotline" width="15%" valign="top">&nbsp;</td>
+          <td align="left"   class="dotline ; item" width="30%" valign="top">&nbsp;</td>
+          <td align="right"  class="dotline" width="12%" valign="top">&nbsp;</td>
+          <td align="right"  class="dotline" width="12%" valign="top">&nbsp;</td>
+          <td align="center" class="dotline" width="12%" valign="top">&nbsp;</td>
+        </tr>
+        
+        <tr>
+          <td align="center" class="dotline" width="4%"  valign="top">&nbsp;</td>
+          <td align="left"   class="dotline" width="15%" valign="top">&nbsp;</td>
+          <td align="left"   class="dotline" width="15%" valign="top">&nbsp;</td>
+          <td align="left"   class="dotline ; item" width="30%" valign="top">&nbsp;</td>
+          <td align="right"  class="dotline" width="12%" valign="top">&nbsp;</td>
+          <td align="right"  class="dotline" width="12%" valign="top">&nbsp;</td>
+          <td align="center" class="dotline" width="12%" valign="top">&nbsp;</td>
+        </tr>
+        
+        <tr>
+          <td align="center" class="dotline" width="4%"  valign="top">&nbsp;</td>
+          <td align="left"   class="dotline" width="15%" valign="top">&nbsp;</td>
+          <td align="left"   class="dotline" width="15%" valign="top">&nbsp;</td>
+          <td align="left"   class="dotline ; item" width="30%" valign="top">&nbsp;</td>
+          <td align="right"  class="dotline" width="12%" valign="top">&nbsp;</td>
+          <td align="right"  class="dotline" width="12%" valign="top">&nbsp;</td>
+          <td align="center" class="dotline" width="12%" valign="top">&nbsp;</td>
+        </tr>
+              
+      </table>
+    </td>
+  </tr>
+</table>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="5" valign="bottom"><img border="0" src="images/Corn03.gif" width="5" height="5"></td>
+    <td class="frmBottom">&nbsp;</td>
+    <td width="5" valign="bottom" align="right"><img border="0" src="images/Corn04.gif" width="5" height="5"></td>
+  </tr>
+</table>
+
+
+
+<br style="font-size:3pt">
+
+
+
+      <table border="0" width="100%" cellspacing="0" cellpadding="0">
+        <tr class="gray">
+          <td width="100%" align="right">หน้า <b>1</b></td>
+        </tr>
+      </table>
+
+
+
+
+<br style="font-size:10pt">
+
+
+
+        <table border="0" width="100%" cellspacing="0" cellpadding="0" height="30">
+          <tr>
+            <td class="act_tab1"></td>
+            <td width="150" class="act_tab2">
+
+            <a href="SERV_BOQ02.jsp?mode=add"><img border="0" src="images/act_add.gif"                                   
+    			onmouseout=nereidFade(this,70,50,5)    
+                  	onmouseover=nereidFade(this,100,50,5)     
+                  	style="FILTER: alpha(opacity=70)" width="70" height="27"></a>&nbsp; 
+             <a href="#" onclick="deleteData();"><img border="0" src="images/act_delete.gif"                                   
+    			onmouseout=nereidFade(this,70,50,5)    
+                  	onmouseover=nereidFade(this,100,50,5)     
+                  	style="FILTER: alpha(opacity=70)" width="70" height="27"></a>
+
+            </td>   
+                  	
+                  	
+            <td class="act_tab3"></td>   
+            <td class="act_tab4"><a href="/LHServ/SERV_Index.jsp" target="_top"><img border="0" src="images/bu_back.gif" align="absmiddle" width="50" height="15"></a>&nbsp;
+              <a href="/LHServ/SERV_Index.jsp" target="_top"><img border="0" src="images/bu_home.gif" align="absmiddle" width="50" height="15"></a></td>  
+          </tr>  
+        </table>  
+
+
+
+
+
+
+          </td>
+        </tr>
+      </table>
+
+			
+			
+
+<br style="font-size:30pt">
+
+<TABLE border=0 cellspacing=0 cellpadding=0 width="100%">
+  <tr><td width="100%" class="copyright" align="center">
+  Best viewed with 800x600 screen resolution on&nbsp;an Internet Explorer version 5 และ 5.5  
+  <br>ติดต่อสอบถามได้ที่ : <a href="mailto:Administrator@lh.co.th">Administrator@lh.co.th</a>&nbsp;
+  หรือ โทร. 0-2230-8279 (คุณประพัฒน์
+  ฝ่ายบริการ)&nbsp; 0-2230-8491-5 (ฝ่าย IT)  
+  <br><img src="images/copyright.gif" width="475" height="26"></td></tr>
+</TABLE> 
+</FORM>	
+</BODY>
+
+</HTML>
+
+
+

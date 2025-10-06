@@ -1,0 +1,1295 @@
+<HTML>
+<HEAD>
+<TITLE>Home</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=TIS-620">
+<LINK rel="StyleSheet" href="SERV_Style.css" type="text/css">
+<script language="javascript" src="script_fx.js"></script>
+
+
+<script language="javascript">
+<!--
+function gotoOpenJob(i_docno){
+	var form = document.frmSERV;
+	form.i_docno.value = i_docno;
+	form.edit.value = 'no';
+	form.action = '/LHServ/SERV_OpenJob_Disp.jsp';
+	form.submit();
+}
+function sortBy(theCol){
+	var form = document.frmSERV;
+	form.sort_col.value = theCol;
+	form.submit();
+}
+   
+//-->
+</script>
+
+
+<base target="_self">
+
+
+</HEAD>
+
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0">
+
+<FORM method="POST" action="#" name="frmSERV" >
+<input type="hidden" name="i_docno" value="" />
+<input type="hidden" name="edit" value="" />
+<input type="hidden" name="sort_col" value="default" />
+<input type="hidden" name="i_company" value="LH" />
+<input type="hidden" name="i_project" value="011" />
+<input type="hidden" name="d_keyin_beg" value="01/10/2556" />
+<input type="hidden" name="d_keyin_end" value="07/07/2557" />
+<input type="hidden" name="itmtype" value="4.2" />
+<input type="hidden" name="i_itmno" value="03" />
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="100%" align="center" class="BD">
+    
+
+      <table border="0" width="100%" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="100%" class="bigh"><img border="0" src="images/i_home.gif" align="absmiddle" width="20" height="20">&nbsp;
+            ยินดีต้อนรับสู่ระบบบริการหลังการขาย (สถานะ ไม่ Open - เลยวันนัดหมายแล้ว)</td>
+        </tr>
+      </table>
+
+
+<br style="font-size:10pt">
+                
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="5" valign="top"><img border="0" src="images/Corn01.gif" width="5" height="5"></td>
+    <td class="frmTop">&nbsp;</td>
+    <td width="5" valign="top" align="right"><img border="0" src="images/Corn02.gif" width="5" height="5"></td>
+  </tr>
+</table>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="100%" class="frmLR" align="center">
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="22" class="item ; dotline01">โครงการ : &nbsp; LH011 - นันทวัน-ศรีนครินทร์
+    &nbsp;</td>
+    <td  height="22" class="item ; dotline01" align="right">
+<input type="radio" value="L" checked name="display_type" >แสดงจำนวนรายการต่อหน้า&nbsp;
+                  <input type="text" name="display_line" class="boxC" style="width:50px" value="15">&nbsp;
+                  รายการ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="radio" value="A" name="display_type" >
+                  แสดงรายการทั้งหมด&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a href="#" onClick="changePage(1);"><img border="0" src="images/bu_R.gif" align="absmiddle" style="cursor:hand" width="16" height="16"></a>  
+    </td>
+  </tr>
+</table>
+
+</td>
+  </tr>
+</table>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="5" valign="bottom"><img border="0" src="images/Corn03.gif" width="5" height="5"></td>
+    <td class="frmBottom">&nbsp;</td>
+    <td width="5" valign="bottom" align="right"><img border="0" src="images/Corn04.gif" width="5" height="5"></td>
+  </tr>
+</table>
+
+
+<br style="font-size:10pt">
+
+
+
+
+			<table border="0" width="100%" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="item_tab1"><img border="0" src="images/i_i.gif" align="absmiddle" width="20" height="20"></td>
+                <td class="item_tab2" width="300">รายละเอียดการ Follow Up</td>
+                <td class="item_tab3"></td>
+                <td><span style="padding-right:20px"><a href="SERV_BeyondDetails2.html"><img src="images/i_arrow3.gif" width="15" height="15" hspace="5" border="0" align="absmiddle">Show All</a></span>
+                		 <span><a href="SERV_BeyondDetails1.html"><img src="images/i_arrow3.gif" width="15" height="15" hspace="5" border="0" align="absmiddle">Hide All</a></span>
+                </td>
+              </tr>
+            </table>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="5" valign="top" bgcolor="#D7E6FF"><img border="0" src="images/Corn01.gif" width="5" height="5"></td>
+    <td valign="bottom" class="frmTop" bgcolor="#D7E6FF">&nbsp;</td>
+    <td width="5" valign="top" align="right" bgcolor="#D7E6FF"><img border="0" src="images/Corn02.gif" width="5" height="5"></td>
+  </tr>
+</table>
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+
+
+
+  <tr>
+    <td width="100%" class="frmL" align="center">
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+	<tr>
+	<td width="5%" class="col_name">No.</td>
+	<td width="8%" class="col_name"><a href="javascript:sortBy('i_docno')" >แปลง</a></td>
+	<td width="12%" class="col_name"><a href="javascript:sortBy('i_lock')" >เลขที่เอกสาร</a></td>
+	<td width="10%" class="col_name">บ้านเลขที่</td>
+    <td width="20%" class="col_name">ชื่อผู้แจ้ง / ลูกค้า</td>
+    <td class="col_name"><a href="javascript:sortBy('i_date')" >วันที่แจ้งซ่อม</a></td>
+    
+    
+    
+    	<td class="col_name"><a href="javascript:sortBy('d_appoint')" >วันที่นัดหมายลูกค้า</a></td>
+    
+    
+    <td class="col_name"><a href="javascript:sortBy('count_date')" >ระยะเวลาดำเนินการ<span style="color:red" >*</span></a></td>
+    
+    
+	
+	
+	
+	<td class="col_name">ผู้รับผิดชอบ</td>
+	
+	
+	<td class="col_name"><a href="javascript:sortBy('d_print_inform')" >พิมพ์ Inform Job</a></td>
+    </tr>
+
+	<tr>
+	<td class="dotline01" align="center">1</td>
+	
+	<td class="dotline01 ; item"><a href="#">05L01</a></td>
+	
+	<td class="dotline01" align="center">LH-011-5700290</td>
+	<td class="dotline01" align="center">239/138</td>
+    <td class="dotline01" >นางสาว ชนัญพัชร์ มิลินวัชระกรณ์</td>
+    <td class="dotline01" align="center">25/05/2557</td>
+    
+    <!-- TD วันที่แจ้งซ่อม/วันที่ยกเลิก -->
+    
+    
+    
+    <!-- TD วันที่นัดหมายลูกค้า -->
+    
+    <td class="dotline01" align="center">26/05/2557</td>
+    
+    
+    <!-- TD ระยะเวลาดำเนินการ -->
+    
+    <td class="dotline01" align="center">42</td>
+    
+    
+    <!-- TD สถานะ -->
+    
+	
+	<!-- TD ผู้ Cancel -->
+	
+	
+	<!-- TD ผู้รับผิดชอบ -->
+	
+	
+	<td class="dotline01" align="left"> <span style="color:red;font-weight:bold;" >&nbsp;
+    Z</span>one Manager	</td>
+	
+	
+	
+	<td class="dotline" align="center">&nbsp;
+		<img src="images/i_pass2.gif" border="0" align="absmiddle" />	</td>
+    </tr>
+
+	<tr>
+	  <td class="dotline01">&nbsp;</td>
+	  <td colspan="9" class="dotline ; bold2"><img src="images/i_arrow2.gif" width="11" height="11" border="0" align="absmiddle"> Inform Job</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01">&nbsp;</td>
+	  <td colspan="9" class="dotline ; padding-left01">
+      1.ตรวจสอบ <br>
+      1.1.กำแพงรอบบ้านมีรอยร้าว <br>
+      1.2.Slab วางแอร์มีรอยร้าว <br>
+      1.3.วงกบห้องนอน 2 มีรอยร้าวลงไปข้างล่าง <br>
+      1.4.หน้าต่างห้องนอน 2 ปิดแล้วเสียงดัง <br>
+      1.5.ขอบกระจกห้องน้ำ 1 บิ่น (ลค.อยากให้ตรวจสอบรอยร้าวรอบบ้านคะ) <br><br>
+
+<span>นัดเข้าวันที่ 07/06/2557 เวลา 15:00 น. (SVC:201405310096)</span></td>
+	  </tr>
+	<tr>
+	  <td class="dotline01">&nbsp;</td>
+	  <td colspan="5" class="dotline01 ; bold2 ; padding-left02"><img src="images/i_arrow2.gif" width="11" height="11" border="0" align="absmiddle"> Open Job</td>
+	  <td colspan="2" class="dotline01">&nbsp;</td>
+	  <td colspan="2" class="dotline">&nbsp;</td>
+	  </tr>
+	<tr>
+	<td class="dotline01">&nbsp;</td>
+	<td colspan="5" class="dotline01_01">1. ผนังปูนฉาบร้าวลายงาแก้ไขโดยสกัดรอยร้าวผนังพร้อมเก็บปูนฉาบ</td>
+    <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+    <td colspan="2" class="dotline">ภายนอกอาคาร</td>
+	</tr>
+	<tr>
+	<td class="dotline01">&nbsp;</td>
+	<td colspan="5" class="dotline01_01">2. ชานพักบันไดไม้แตก / มีตำหนิ แก้ไขโดยเปลี่ยนไม้ใหม่ (ไม่รวมค่าไม้)</td>
+    <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+    <td colspan="2" class="dotline">ช่วงบันได</td>
+	</tr>
+	<tr>
+	<td class="dotline01">&nbsp;</td>
+	<td colspan="5" class="dotline01_01">3. ประตูน้ำซึมตามวงกบแก้ไขโดยยาซิลิโคนตามแนวต่อไม้ :ห้องครัว</td>
+    <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+    <td colspan="2" class="dotline">ห้องครัว</td>
+	</tr>    
+
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01">4. สายชำระแตก/เสียแก้ไขโดยเปลี่ยนใหม่ : ห้องนอน 1</td>
+	  <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="dotline">ห้องน้ำ</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01">5. กระจกเงาเป็นรอย บิ่น แตก/สารเคลือบปรอทกระจกหลุด แก้ไขโดยเปลี่ยนกระจกใหม่ : ห้องนอน 1</td>
+	  <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="dotline">ห้องน้ำ</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01">6. ภายนอกผนังปูนฉาบแตก/ร้าว แก้ไขโดยทาสีใหม่ (อย่างน้อย 5 ตร.ม.)</td>
+	  <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="dotline">ภายนอกอาคาร</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="noline07_01">7. วงกบประตูแก้ไขโดยทาสีน้ำมัน : ห้องนอน 2</td>
+	  <td colspan="2" class="noline07">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="solidline07">ห้องนอน</td>
+	  </tr>
+	<tr>
+	<td class="dotline01" align="center">2</td>
+	
+	<td class="dotline01 ; item"><a href="#">05H06</a></td>
+	
+	<td class="dotline01" align="center">LH-011-5700322</td>
+	<td class="dotline01" align="center">239/94</td>
+    <td class="dotline01" >นาง สาวิตรี     ปานเดย์</td>
+    <td class="dotline01" align="center">&nbsp;09/06/2557</td>
+    
+    <!-- TD วันที่แจ้งซ่อม/วันที่ยกเลิก -->
+    
+    
+    
+    <!-- TD วันที่นัดหมายลูกค้า -->
+    
+    <td class="dotline01" align="center">&nbsp;11/06/2557</td>
+    
+    
+    <!-- TD ระยะเวลาดำเนินการ -->
+    
+    <td class="dotline01" align="center">&nbsp;26</td>
+    
+    
+    <!-- TD สถานะ -->
+    
+	
+	<!-- TD ผู้ Cancel -->
+	
+	
+	<!-- TD ผู้รับผิดชอบ -->
+	
+	
+	<td class="dotline01" align="left">&nbsp;
+		<span style="color:red;font-weight:bold;" >Z</span>one Manager	</td>
+	
+	
+	
+	<td class="dotline" align="center">&nbsp;
+		<img src="images/i_pass2.gif" border="0" align="absmiddle" />	</td>
+    </tr>
+	<tr>
+	  <td class="dotline01">&nbsp;</td>
+	  <td colspan="9" class="dotline ; bold2"><img src="images/i_arrow2.gif" width="11" height="11" border="0" align="absmiddle"> Inform Job</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01">&nbsp;</td>
+	  <td colspan="9" class="dotline ; padding-left01">
+      1.ตรวจสอบ <br>
+      1.1.กำแพงรอบบ้านมีรอยร้าว <br>
+      1.2.Slab วางแอร์มีรอยร้าว <br>
+      1.3.วงกบห้องนอน 2 มีรอยร้าวลงไปข้างล่าง <br>
+      1.4.หน้าต่างห้องนอน 2 ปิดแล้วเสียงดัง <br>
+      1.5.ขอบกระจกห้องน้ำ 1 บิ่น (ลค.อยากให้ตรวจสอบรอยร้าวรอบบ้านคะ) <br><br>
+
+<span>นัดเข้าวันที่ 07/06/2557 เวลา 15:00 น. (SVC:201405310096)</span></td>
+	  </tr>
+	<tr>
+	  <td class="dotline01">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01 ; bold2 ; padding-left02"><img src="images/i_arrow2.gif" width="11" height="11" border="0" align="absmiddle"> Open Job</td>
+	  <td colspan="2" class="dotline01">&nbsp;</td>
+	  <td colspan="2" class="dotline">&nbsp;</td>
+	  </tr>
+	<tr>
+	<td class="dotline01">&nbsp;</td>
+	<td colspan="5" class="dotline01_01">1. ผนังปูนฉาบร้าวลายงาแก้ไขโดยสกัดรอยร้าวผนังพร้อมเก็บปูนฉาบ</td>
+    <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+    <td colspan="2" class="dotline">ภายนอกอาคาร</td>
+	</tr>
+	<tr>
+	<td class="dotline01">&nbsp;</td>
+	<td colspan="5" class="dotline01_01">2. ชานพักบันไดไม้แตก / มีตำหนิ แก้ไขโดยเปลี่ยนไม้ใหม่ (ไม่รวมค่าไม้)</td>
+    <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+    <td colspan="2" class="dotline">ช่วงบันได</td>
+	</tr>
+	<tr>
+	<td class="dotline01">&nbsp;</td>
+	<td colspan="5" class="dotline01_01">3. ประตูน้ำซึมตามวงกบแก้ไขโดยยาซิลิโคนตามแนวต่อไม้ :ห้องครัว</td>
+    <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+    <td colspan="2" class="dotline">ห้องครัว</td>
+	</tr>    
+
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01">4. สายชำระแตก/เสียแก้ไขโดยเปลี่ยนใหม่ : ห้องนอน 1</td>
+	  <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="dotline">ห้องน้ำ</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01">5. กระจกเงาเป็นรอย บิ่น แตก/สารเคลือบปรอทกระจกหลุด แก้ไขโดยเปลี่ยนกระจกใหม่ : ห้องนอน 1</td>
+	  <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="dotline">ห้องน้ำ</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01">6. ภายนอกผนังปูนฉาบแตก/ร้าว แก้ไขโดยทาสีใหม่ (อย่างน้อย 5 ตร.ม.)</td>
+	  <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="dotline">ภายนอกอาคาร</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="noline07_01">7. วงกบประตูแก้ไขโดยทาสีน้ำมัน : ห้องนอน 2</td>
+	  <td colspan="2" class="noline07">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="solidline07">ห้องนอน</td>
+	  </tr>  
+
+
+	<tr>
+	<td class="dotline01" align="center">3</td>
+	
+	<td class="dotline01 ; item"><a href="#">05H05</a></td>
+	
+	<td class="dotline01" align="center">LH-011-5700328</td>
+	<td class="dotline01" align="center">239/95</td>
+    <td class="dotline01" >นาง ธัญลักษณ์     ชัยพัฒนศิริชาติ</td>
+    <td class="dotline01" align="center">&nbsp;12/06/2557</td>
+    
+    <!-- TD วันที่แจ้งซ่อม/วันที่ยกเลิก -->
+    
+    
+    
+    <!-- TD วันที่นัดหมายลูกค้า -->
+    
+    <td class="dotline01" align="center">&nbsp;15/06/2557</td>
+    
+    
+    <!-- TD ระยะเวลาดำเนินการ -->
+    
+    <td class="dotline01" align="center">&nbsp;22</td>
+    
+    
+    <!-- TD สถานะ -->
+    
+	
+	<!-- TD ผู้ Cancel -->
+	
+	
+	<!-- TD ผู้รับผิดชอบ -->
+	
+	
+	<td class="dotline01" align="left">&nbsp;
+		<span style="color:red;font-weight:bold;" >Z</span>one Manager	</td>
+	
+	
+	
+	<td class="dotline" align="center">&nbsp;
+		<img src="images/i_pass2.gif" border="0" align="absmiddle" />	</td>
+    </tr>
+	<tr>
+	  <td class="dotline01">&nbsp;</td>
+	  <td colspan="9" class="dotline ; bold2"><img src="images/i_arrow2.gif" width="11" height="11" border="0" align="absmiddle"> Inform Job</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01">&nbsp;</td>
+	  <td colspan="9" class="dotline ; padding-left01">
+      1.ตรวจสอบ <br>
+      1.1.กำแพงรอบบ้านมีรอยร้าว <br>
+      1.2.Slab วางแอร์มีรอยร้าว <br>
+      1.3.วงกบห้องนอน 2 มีรอยร้าวลงไปข้างล่าง <br>
+      1.4.หน้าต่างห้องนอน 2 ปิดแล้วเสียงดัง <br>
+      1.5.ขอบกระจกห้องน้ำ 1 บิ่น (ลค.อยากให้ตรวจสอบรอยร้าวรอบบ้านคะ) <br><br>
+
+<span>นัดเข้าวันที่ 07/06/2557 เวลา 15:00 น. (SVC:201405310096)</span></td>
+	  </tr>
+	<tr>
+	  <td class="dotline01">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01 ; bold2 ; padding-left02"><img src="images/i_arrow2.gif" width="11" height="11" border="0" align="absmiddle"> Open Job</td>
+	  <td colspan="2" class="dotline01">&nbsp;</td>
+	  <td colspan="2" class="dotline">&nbsp;</td>
+	  </tr>
+	<tr>
+	<td class="dotline01">&nbsp;</td>
+	<td colspan="5" class="dotline01_01">1. ผนังปูนฉาบร้าวลายงาแก้ไขโดยสกัดรอยร้าวผนังพร้อมเก็บปูนฉาบ</td>
+    <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+    <td colspan="2" class="dotline">ภายนอกอาคาร</td>
+	</tr>
+	<tr>
+	<td class="dotline01">&nbsp;</td>
+	<td colspan="5" class="dotline01_01">2. ชานพักบันไดไม้แตก / มีตำหนิ แก้ไขโดยเปลี่ยนไม้ใหม่ (ไม่รวมค่าไม้)</td>
+    <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+    <td colspan="2" class="dotline">ช่วงบันได</td>
+	</tr>
+	<tr>
+	<td class="dotline01">&nbsp;</td>
+	<td colspan="5" class="dotline01_01">3. ประตูน้ำซึมตามวงกบแก้ไขโดยยาซิลิโคนตามแนวต่อไม้ :ห้องครัว</td>
+    <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+    <td colspan="2" class="dotline">ห้องครัว</td>
+	</tr>    
+
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01">4. สายชำระแตก/เสียแก้ไขโดยเปลี่ยนใหม่ : ห้องนอน 1</td>
+	  <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="dotline">ห้องน้ำ</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01">5. กระจกเงาเป็นรอย บิ่น แตก/สารเคลือบปรอทกระจกหลุด แก้ไขโดยเปลี่ยนกระจกใหม่ : ห้องนอน 1</td>
+	  <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="dotline">ห้องน้ำ</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01">6. ภายนอกผนังปูนฉาบแตก/ร้าว แก้ไขโดยทาสีใหม่ (อย่างน้อย 5 ตร.ม.)</td>
+	  <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="dotline">ภายนอกอาคาร</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="noline07_01">7. วงกบประตูแก้ไขโดยทาสีน้ำมัน : ห้องนอน 2</td>
+	  <td colspan="2" class="noline07">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="solidline07">ห้องนอน</td>
+	  </tr>
+
+	<tr>
+	<td class="dotline01" align="center">4</td>
+	
+	<td class="dotline01 ; item"><a href="#">00P16</a></td>
+	
+	<td class="dotline01" align="center">LH-011-5700340</td>
+	<td class="dotline01" align="center">233/260</td>
+    <td class="dotline01" >คุณ กิตติชัย ไวกิจเอนก</td>
+    <td class="dotline01" align="center">15/06/2557</td>
+    
+    <!-- TD วันที่แจ้งซ่อม/วันที่ยกเลิก -->
+    
+    
+    
+    <!-- TD วันที่นัดหมายลูกค้า -->
+    
+    <td class="dotline01" align="center">&nbsp;17/06/2557</td>
+    
+    
+    <!-- TD ระยะเวลาดำเนินการ -->
+    
+    <td class="dotline01" align="center">&nbsp;20</td>
+    
+    
+    <!-- TD สถานะ -->
+    
+	
+	<!-- TD ผู้ Cancel -->
+	
+	
+	<!-- TD ผู้รับผิดชอบ -->
+	
+	
+	<td class="dotline01" align="left">&nbsp;
+		<span style="color:red;font-weight:bold;" >Z</span>one Manager	</td>
+	
+	
+	
+	<td class="dotline" align="center">&nbsp;
+		<img src="images/i_pass2.gif" border="0" align="absmiddle" />	</td>
+    </tr>
+	<tr>
+	  <td class="dotline01">&nbsp;</td>
+	  <td colspan="9" class="dotline ; bold2"><img src="images/i_arrow2.gif" width="11" height="11" border="0" align="absmiddle"> Inform Job</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01">&nbsp;</td>
+	  <td colspan="9" class="dotline ; padding-left01">
+      1.ตรวจสอบ <br>
+      1.1.กำแพงรอบบ้านมีรอยร้าว <br>
+      1.2.Slab วางแอร์มีรอยร้าว <br>
+      1.3.วงกบห้องนอน 2 มีรอยร้าวลงไปข้างล่าง <br>
+      1.4.หน้าต่างห้องนอน 2 ปิดแล้วเสียงดัง <br>
+      1.5.ขอบกระจกห้องน้ำ 1 บิ่น (ลค.อยากให้ตรวจสอบรอยร้าวรอบบ้านคะ) <br><br>
+
+<span>นัดเข้าวันที่ 07/06/2557 เวลา 15:00 น. (SVC:201405310096)</span></td>
+	  </tr>
+	<tr>
+	  <td class="dotline01">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01 ; bold2 ; padding-left02"><img src="images/i_arrow2.gif" width="11" height="11" border="0" align="absmiddle"> Open Job</td>
+	  <td colspan="2" class="dotline01">&nbsp;</td>
+	  <td colspan="2" class="dotline">&nbsp;</td>
+	  </tr>
+	<tr>
+	<td class="dotline01">&nbsp;</td>
+	<td colspan="5" class="dotline01_01">1. ผนังปูนฉาบร้าวลายงาแก้ไขโดยสกัดรอยร้าวผนังพร้อมเก็บปูนฉาบ</td>
+    <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+    <td colspan="2" class="dotline">ภายนอกอาคาร</td>
+	</tr>
+	<tr>
+	<td class="dotline01">&nbsp;</td>
+	<td colspan="5" class="dotline01_01">2. ชานพักบันไดไม้แตก / มีตำหนิ แก้ไขโดยเปลี่ยนไม้ใหม่ (ไม่รวมค่าไม้)</td>
+    <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+    <td colspan="2" class="dotline">ช่วงบันได</td>
+	</tr>
+	<tr>
+	<td class="dotline01">&nbsp;</td>
+	<td colspan="5" class="dotline01_01">3. ประตูน้ำซึมตามวงกบแก้ไขโดยยาซิลิโคนตามแนวต่อไม้ :ห้องครัว</td>
+    <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+    <td colspan="2" class="dotline">ห้องครัว</td>
+	</tr>    
+
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01">4. สายชำระแตก/เสียแก้ไขโดยเปลี่ยนใหม่ : ห้องนอน 1</td>
+	  <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="dotline">ห้องน้ำ</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01">5. กระจกเงาเป็นรอย บิ่น แตก/สารเคลือบปรอทกระจกหลุด แก้ไขโดยเปลี่ยนกระจกใหม่ : ห้องนอน 1</td>
+	  <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="dotline">ห้องน้ำ</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01">6. ภายนอกผนังปูนฉาบแตก/ร้าว แก้ไขโดยทาสีใหม่ (อย่างน้อย 5 ตร.ม.)</td>
+	  <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="dotline">ภายนอกอาคาร</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="noline07_01">7. วงกบประตูแก้ไขโดยทาสีน้ำมัน : ห้องนอน 2</td>
+	  <td colspan="2" class="noline07">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="solidline07">ห้องนอน</td>
+	  </tr> 
+
+	<tr>
+	<td class="dotline01" align="center">5</td>
+	
+	<td class="dotline01 ; item"><a href="#">05K05</a></td>
+	
+	<td class="dotline01" align="center">LH-011-5700342</td>
+	<td class="dotline01" align="center">239/124</td>
+    <td class="dotline01" >คุณจุฑาทิพย์</td>
+    <td class="dotline01" align="center">&nbsp;17/06/2557</td>
+    
+    <!-- TD วันที่แจ้งซ่อม/วันที่ยกเลิก -->
+    
+    
+    
+    <!-- TD วันที่นัดหมายลูกค้า -->
+    
+    <td class="dotline01" align="center">&nbsp;23/06/2557</td>
+    
+    
+    <!-- TD ระยะเวลาดำเนินการ -->
+    
+    <td class="dotline01" align="center">&nbsp;14</td>
+    
+    
+    <!-- TD สถานะ -->
+    
+	
+	<!-- TD ผู้ Cancel -->
+	
+	
+	<!-- TD ผู้รับผิดชอบ -->
+	
+	
+	<td class="dotline01" align="left">&nbsp;
+		<span style="color:red;font-weight:bold;" >Z</span>one Manager	</td>
+	
+	
+	
+	<td class="dotline" align="center">&nbsp;
+		<img src="images/i_pass2.gif" border="0" align="absmiddle" />	</td>
+    </tr>
+	<tr>
+	  <td class="dotline01">&nbsp;</td>
+	  <td colspan="9" class="dotline ; bold2"><img src="images/i_arrow2.gif" width="11" height="11" border="0" align="absmiddle"> Inform Job</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01">&nbsp;</td>
+	  <td colspan="9" class="dotline ; padding-left01">
+      1.ตรวจสอบ <br>
+      1.1.กำแพงรอบบ้านมีรอยร้าว <br>
+      1.2.Slab วางแอร์มีรอยร้าว <br>
+      1.3.วงกบห้องนอน 2 มีรอยร้าวลงไปข้างล่าง <br>
+      1.4.หน้าต่างห้องนอน 2 ปิดแล้วเสียงดัง <br>
+      1.5.ขอบกระจกห้องน้ำ 1 บิ่น (ลค.อยากให้ตรวจสอบรอยร้าวรอบบ้านคะ) <br><br>
+
+<span>นัดเข้าวันที่ 07/06/2557 เวลา 15:00 น. (SVC:201405310096)</span></td>
+	  </tr>
+	<tr>
+	  <td class="dotline01">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01 ; bold2 ; padding-left02"><img src="images/i_arrow2.gif" width="11" height="11" border="0" align="absmiddle"> Open Job</td>
+	  <td colspan="2" class="dotline01">&nbsp;</td>
+	  <td colspan="2" class="dotline">&nbsp;</td>
+	  </tr>
+	<tr>
+	<td class="dotline01">&nbsp;</td>
+	<td colspan="5" class="dotline01_01">1. ผนังปูนฉาบร้าวลายงาแก้ไขโดยสกัดรอยร้าวผนังพร้อมเก็บปูนฉาบ</td>
+    <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+    <td colspan="2" class="dotline">ภายนอกอาคาร</td>
+	</tr>
+	<tr>
+	<td class="dotline01">&nbsp;</td>
+	<td colspan="5" class="dotline01_01">2. ชานพักบันไดไม้แตก / มีตำหนิ แก้ไขโดยเปลี่ยนไม้ใหม่ (ไม่รวมค่าไม้)</td>
+    <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+    <td colspan="2" class="dotline">ช่วงบันได</td>
+	</tr>
+	<tr>
+	<td class="dotline01">&nbsp;</td>
+	<td colspan="5" class="dotline01_01">3. ประตูน้ำซึมตามวงกบแก้ไขโดยยาซิลิโคนตามแนวต่อไม้ :ห้องครัว</td>
+    <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+    <td colspan="2" class="dotline">ห้องครัว</td>
+	</tr>    
+
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01">4. สายชำระแตก/เสียแก้ไขโดยเปลี่ยนใหม่ : ห้องนอน 1</td>
+	  <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="dotline">ห้องน้ำ</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01">5. กระจกเงาเป็นรอย บิ่น แตก/สารเคลือบปรอทกระจกหลุด แก้ไขโดยเปลี่ยนกระจกใหม่ : ห้องนอน 1</td>
+	  <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="dotline">ห้องน้ำ</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01">6. ภายนอกผนังปูนฉาบแตก/ร้าว แก้ไขโดยทาสีใหม่ (อย่างน้อย 5 ตร.ม.)</td>
+	  <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="dotline">ภายนอกอาคาร</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="noline07_01">7. วงกบประตูแก้ไขโดยทาสีน้ำมัน : ห้องนอน 2</td>
+	  <td colspan="2" class="noline07">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="solidline07">ห้องนอน</td>
+	  </tr>
+
+	<tr>
+	<td class="dotline01" align="center">6</td>
+	
+	<td class="dotline01 ; item"><a href="#">05L04</a></td>
+	
+	<td class="dotline01" align="center">LH-011-5700346</td>
+	<td class="dotline01" align="center">239/135</td>
+    <td class="dotline01" >นาง ศิราวดี     เกษรคำ</td>
+    <td class="dotline01" align="center">&nbsp;22/06/2557</td>
+    
+    <!-- TD วันที่แจ้งซ่อม/วันที่ยกเลิก -->
+    
+    
+    
+    <!-- TD วันที่นัดหมายลูกค้า -->
+    
+    <td class="dotline01" align="center">&nbsp;23/06/2557</td>
+    
+    
+    <!-- TD ระยะเวลาดำเนินการ -->
+    
+    <td class="dotline01" align="center">&nbsp;14</td>
+    
+    
+    <!-- TD สถานะ -->
+    
+	
+	<!-- TD ผู้ Cancel -->
+	
+	
+	<!-- TD ผู้รับผิดชอบ -->
+	
+	
+	<td class="dotline01" align="left">&nbsp;
+		<span style="color:red;font-weight:bold;" >Z</span>one Manager	</td>
+	
+	
+	
+	<td class="dotline" align="center">&nbsp;
+		<img src="images/i_pass2.gif" border="0" align="absmiddle" />	</td>
+    </tr>
+	<tr>
+	  <td class="dotline01">&nbsp;</td>
+	  <td colspan="9" class="dotline ; bold2"><img src="images/i_arrow2.gif" width="11" height="11" border="0" align="absmiddle"> Inform Job</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01">&nbsp;</td>
+	  <td colspan="9" class="dotline ; padding-left01">
+      1.ตรวจสอบ <br>
+      1.1.กำแพงรอบบ้านมีรอยร้าว <br>
+      1.2.Slab วางแอร์มีรอยร้าว <br>
+      1.3.วงกบห้องนอน 2 มีรอยร้าวลงไปข้างล่าง <br>
+      1.4.หน้าต่างห้องนอน 2 ปิดแล้วเสียงดัง <br>
+      1.5.ขอบกระจกห้องน้ำ 1 บิ่น (ลค.อยากให้ตรวจสอบรอยร้าวรอบบ้านคะ) <br><br>
+
+<span>นัดเข้าวันที่ 07/06/2557 เวลา 15:00 น. (SVC:201405310096)</span></td>
+	  </tr>
+	<tr>
+	  <td class="dotline01">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01 ; bold2 ; padding-left02"><img src="images/i_arrow2.gif" width="11" height="11" border="0" align="absmiddle"> Open Job</td>
+	  <td colspan="2" class="dotline01">&nbsp;</td>
+	  <td colspan="2" class="dotline">&nbsp;</td>
+	  </tr>
+	<tr>
+	<td class="dotline01">&nbsp;</td>
+	<td colspan="5" class="dotline01_01">1. ผนังปูนฉาบร้าวลายงาแก้ไขโดยสกัดรอยร้าวผนังพร้อมเก็บปูนฉาบ</td>
+    <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+    <td colspan="2" class="dotline">ภายนอกอาคาร</td>
+	</tr>
+	<tr>
+	<td class="dotline01">&nbsp;</td>
+	<td colspan="5" class="dotline01_01">2. ชานพักบันไดไม้แตก / มีตำหนิ แก้ไขโดยเปลี่ยนไม้ใหม่ (ไม่รวมค่าไม้)</td>
+    <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+    <td colspan="2" class="dotline">ช่วงบันได</td>
+	</tr>
+	<tr>
+	<td class="dotline01">&nbsp;</td>
+	<td colspan="5" class="dotline01_01">3. ประตูน้ำซึมตามวงกบแก้ไขโดยยาซิลิโคนตามแนวต่อไม้ :ห้องครัว</td>
+    <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+    <td colspan="2" class="dotline">ห้องครัว</td>
+	</tr>    
+
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01">4. สายชำระแตก/เสียแก้ไขโดยเปลี่ยนใหม่ : ห้องนอน 1</td>
+	  <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="dotline">ห้องน้ำ</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01">5. กระจกเงาเป็นรอย บิ่น แตก/สารเคลือบปรอทกระจกหลุด แก้ไขโดยเปลี่ยนกระจกใหม่ : ห้องนอน 1</td>
+	  <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="dotline">ห้องน้ำ</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01">6. ภายนอกผนังปูนฉาบแตก/ร้าว แก้ไขโดยทาสีใหม่ (อย่างน้อย 5 ตร.ม.)</td>
+	  <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="dotline">ภายนอกอาคาร</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="noline07_01">7. วงกบประตูแก้ไขโดยทาสีน้ำมัน : ห้องนอน 2</td>
+	  <td colspan="2" class="noline07">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="solidline07">ห้องนอน</td>
+	  </tr>  
+
+	<tr>
+	<td class="dotline01" align="center">7</td>
+	
+	<td class="dotline01 ; item"><a href="#">03E05</a></td>
+	
+	<td class="dotline01" align="center">LH-011-5700349</td>
+	<td class="dotline01" align="center">233/202</td>
+    <td class="dotline01" >บริษัท หัวเหลียน คอมพิวเตอร์ จำกัดโดยนายเฉียน เฉิน</td>
+    <td class="dotline01" align="center">&nbsp;25/06/2557</td>
+    
+    <!-- TD วันที่แจ้งซ่อม/วันที่ยกเลิก -->
+    
+    
+    
+    <!-- TD วันที่นัดหมายลูกค้า -->
+    
+    <td class="dotline01" align="center">&nbsp;29/06/2557</td>
+    
+    
+    <!-- TD ระยะเวลาดำเนินการ -->
+    
+    <td class="dotline" align="center">&nbsp;8</td>
+    
+    
+    <!-- TD สถานะ -->
+    
+	
+	<!-- TD ผู้ Cancel -->
+	
+	
+	<!-- TD ผู้รับผิดชอบ -->
+	
+	
+	<td class="dotline" align="left">&nbsp;
+		<span style="color:orange;font-weight:bold;" >M</span>anager	</td>
+	
+	
+	
+	<td class="dotline" align="center">&nbsp;
+		<img src="images/i_pass2.gif" border="0" align="absmiddle" />	</td>
+    </tr>
+	<tr>
+	  <td class="dotline01">&nbsp;</td>
+	  <td colspan="9" class="dotline ; bold2"><img src="images/i_arrow2.gif" width="11" height="11" border="0" align="absmiddle"> Inform Job</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01">&nbsp;</td>
+	  <td colspan="9" class="dotline ; padding-left01">
+      1.ตรวจสอบ <br>
+      1.1.กำแพงรอบบ้านมีรอยร้าว <br>
+      1.2.Slab วางแอร์มีรอยร้าว <br>
+      1.3.วงกบห้องนอน 2 มีรอยร้าวลงไปข้างล่าง <br>
+      1.4.หน้าต่างห้องนอน 2 ปิดแล้วเสียงดัง <br>
+      1.5.ขอบกระจกห้องน้ำ 1 บิ่น (ลค.อยากให้ตรวจสอบรอยร้าวรอบบ้านคะ) <br><br>
+
+<span>นัดเข้าวันที่ 07/06/2557 เวลา 15:00 น. (SVC:201405310096)</span></td>
+	  </tr>
+	<tr>
+	  <td class="dotline01">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01 ; bold2 ; padding-left02"><img src="images/i_arrow2.gif" width="11" height="11" border="0" align="absmiddle"> Open Job</td>
+	  <td colspan="2" class="dotline01">&nbsp;</td>
+	  <td colspan="2" class="dotline">&nbsp;</td>
+	  </tr>
+	<tr>
+	<td class="dotline01">&nbsp;</td>
+	<td colspan="5" class="dotline01_01">1. ผนังปูนฉาบร้าวลายงาแก้ไขโดยสกัดรอยร้าวผนังพร้อมเก็บปูนฉาบ</td>
+    <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+    <td colspan="2" class="dotline">ภายนอกอาคาร</td>
+	</tr>
+	<tr>
+	<td class="dotline01">&nbsp;</td>
+	<td colspan="5" class="dotline01_01">2. ชานพักบันไดไม้แตก / มีตำหนิ แก้ไขโดยเปลี่ยนไม้ใหม่ (ไม่รวมค่าไม้)</td>
+    <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+    <td colspan="2" class="dotline">ช่วงบันได</td>
+	</tr>
+	<tr>
+	<td class="dotline01">&nbsp;</td>
+	<td colspan="5" class="dotline01_01">3. ประตูน้ำซึมตามวงกบแก้ไขโดยยาซิลิโคนตามแนวต่อไม้ :ห้องครัว</td>
+    <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+    <td colspan="2" class="dotline">ห้องครัว</td>
+	</tr>    
+
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01">4. สายชำระแตก/เสียแก้ไขโดยเปลี่ยนใหม่ : ห้องนอน 1</td>
+	  <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="dotline">ห้องน้ำ</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01">5. กระจกเงาเป็นรอย บิ่น แตก/สารเคลือบปรอทกระจกหลุด แก้ไขโดยเปลี่ยนกระจกใหม่ : ห้องนอน 1</td>
+	  <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="dotline">ห้องน้ำ</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01">6. ภายนอกผนังปูนฉาบแตก/ร้าว แก้ไขโดยทาสีใหม่ (อย่างน้อย 5 ตร.ม.)</td>
+	  <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="dotline">ภายนอกอาคาร</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="noline07_01">7. วงกบประตูแก้ไขโดยทาสีน้ำมัน : ห้องนอน 2</td>
+	  <td colspan="2" class="noline07">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="solidline07">ห้องนอน</td>
+	  </tr> 
+
+	<td class="dotline01" align="center">8</td>
+	
+	<td class="dotline01 ; item"><a href="#">04X02</a></td>
+	
+	<td class="dotline01" align="center">LH-011-5700350</td>
+	<td class="dotline01" align="center">234/491</td>
+    <td class="dotline01" >นาง พจนีย์</td>
+    <td class="dotline01" align="center">&nbsp;25/06/2557</td>
+    
+    <!-- TD วันที่แจ้งซ่อม/วันที่ยกเลิก -->
+    
+    
+    
+    <!-- TD วันที่นัดหมายลูกค้า -->
+    
+    <td class="dotline01" align="center">&nbsp;29/06/2557</td>
+    
+    
+    <!-- TD ระยะเวลาดำเนินการ -->
+    
+    <td class="dotline01" align="center">&nbsp;8</td>
+    
+    
+    <!-- TD สถานะ -->
+    
+	
+	<!-- TD ผู้ Cancel -->
+	
+	
+	<!-- TD ผู้รับผิดชอบ -->
+	
+	
+	<td class="dotline01" align="left">&nbsp;
+		<span style="color:orange;font-weight:bold;" >M</span>anager	</td>
+	
+	
+	
+	<td class="dotline" align="center">&nbsp;
+		<img src="images/i_pass2.gif" border="0" align="absmiddle" />	</td>
+    </tr>
+	<tr>
+	  <td class="dotline01">&nbsp;</td>
+	  <td colspan="9" class="dotline ; bold2"><img src="images/i_arrow2.gif" width="11" height="11" border="0" align="absmiddle"> Inform Job</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01">&nbsp;</td>
+	  <td colspan="9" class="dotline ; padding-left01">
+      1.ตรวจสอบ <br>
+      1.1.กำแพงรอบบ้านมีรอยร้าว <br>
+      1.2.Slab วางแอร์มีรอยร้าว <br>
+      1.3.วงกบห้องนอน 2 มีรอยร้าวลงไปข้างล่าง <br>
+      1.4.หน้าต่างห้องนอน 2 ปิดแล้วเสียงดัง <br>
+      1.5.ขอบกระจกห้องน้ำ 1 บิ่น (ลค.อยากให้ตรวจสอบรอยร้าวรอบบ้านคะ) <br><br>
+
+<span>นัดเข้าวันที่ 07/06/2557 เวลา 15:00 น. (SVC:201405310096)</span></td>
+	  </tr>
+	<tr>
+	  <td class="dotline01">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01 ; bold2 ; padding-left02"><img src="images/i_arrow2.gif" width="11" height="11" border="0" align="absmiddle"> Open Job</td>
+	  <td colspan="2" class="dotline01">&nbsp;</td>
+	  <td colspan="2" class="dotline">&nbsp;</td>
+	  </tr>
+	<tr>
+	<td class="dotline01">&nbsp;</td>
+	<td colspan="5" class="dotline01_01">1. ผนังปูนฉาบร้าวลายงาแก้ไขโดยสกัดรอยร้าวผนังพร้อมเก็บปูนฉาบ</td>
+    <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+    <td colspan="2" class="dotline">ภายนอกอาคาร</td>
+	</tr>
+	<tr>
+	<td class="dotline01">&nbsp;</td>
+	<td colspan="5" class="dotline01_01">2. ชานพักบันไดไม้แตก / มีตำหนิ แก้ไขโดยเปลี่ยนไม้ใหม่ (ไม่รวมค่าไม้)</td>
+    <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+    <td colspan="2" class="dotline">ช่วงบันได</td>
+	</tr>
+	<tr>
+	<td class="dotline01">&nbsp;</td>
+	<td colspan="5" class="dotline01_01">3. ประตูน้ำซึมตามวงกบแก้ไขโดยยาซิลิโคนตามแนวต่อไม้ :ห้องครัว</td>
+    <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+    <td colspan="2" class="dotline">ห้องครัว</td>
+	</tr>    
+
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01">4. สายชำระแตก/เสียแก้ไขโดยเปลี่ยนใหม่ : ห้องนอน 1</td>
+	  <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="dotline">ห้องน้ำ</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01">5. กระจกเงาเป็นรอย บิ่น แตก/สารเคลือบปรอทกระจกหลุด แก้ไขโดยเปลี่ยนกระจกใหม่ : ห้องนอน 1</td>
+	  <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="dotline">ห้องน้ำ</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01">6. ภายนอกผนังปูนฉาบแตก/ร้าว แก้ไขโดยทาสีใหม่ (อย่างน้อย 5 ตร.ม.)</td>
+	  <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="dotline">ภายนอกอาคาร</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="noline07_01">7. วงกบประตูแก้ไขโดยทาสีน้ำมัน : ห้องนอน 2</td>
+	  <td colspan="2" class="noline07">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="solidline07">ห้องนอน</td>
+	  </tr> 
+
+	<tr>
+	<td class="dotline01" align="center">9</td>
+	
+	<td class="dotline01 ; item"><a href="#">05M06</a></td>
+	
+	<td class="dotline01" align="center">LH-011-5700351</td>
+	<td class="dotline01" align="center">239/19</td>
+    <td class="dotline01" >คุณ</td>
+    <td class="dotline01" align="center">&nbsp;25/06/2557</td>
+    
+    <!-- TD วันที่แจ้งซ่อม/วันที่ยกเลิก -->
+    
+    
+    
+    <!-- TD วันที่นัดหมายลูกค้า -->
+    
+    <td class="dotline01" align="center">&nbsp;29/06/2557</td>
+    
+    
+    <!-- TD ระยะเวลาดำเนินการ -->
+    
+    <td class="dotline01" align="center">&nbsp;8</td>
+    
+    
+    <!-- TD สถานะ -->
+    
+	
+	<!-- TD ผู้ Cancel -->
+	
+	
+	<!-- TD ผู้รับผิดชอบ -->
+	
+	
+	<td class="dotline01" align="left">&nbsp;
+		<span style="color:orange;font-weight:bold;" >M</span>anager	</td>
+	
+	
+	
+	<td class="dotline" align="center">&nbsp;
+		<img src="images/i_pass2.gif" border="0" align="absmiddle" />	</td>
+    </tr>
+	<tr>
+	  <td class="dotline01">&nbsp;</td>
+	  <td colspan="9" class="dotline ; bold2"><img src="images/i_arrow2.gif" width="11" height="11" border="0" align="absmiddle"> Inform Job</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01">&nbsp;</td>
+	  <td colspan="9" class="dotline ; padding-left01">
+      1.ตรวจสอบ <br>
+      1.1.กำแพงรอบบ้านมีรอยร้าว <br>
+      1.2.Slab วางแอร์มีรอยร้าว <br>
+      1.3.วงกบห้องนอน 2 มีรอยร้าวลงไปข้างล่าง <br>
+      1.4.หน้าต่างห้องนอน 2 ปิดแล้วเสียงดัง <br>
+      1.5.ขอบกระจกห้องน้ำ 1 บิ่น (ลค.อยากให้ตรวจสอบรอยร้าวรอบบ้านคะ) <br><br>
+
+<span>นัดเข้าวันที่ 07/06/2557 เวลา 15:00 น. (SVC:201405310096)</span></td>
+	  </tr>
+	<tr>
+	  <td class="dotline01">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01 ; bold2 ; padding-left02"><img src="images/i_arrow2.gif" width="11" height="11" border="0" align="absmiddle"> Open Job</td>
+	  <td colspan="2" class="dotline01">&nbsp;</td>
+	  <td colspan="2" class="dotline">&nbsp;</td>
+	  </tr>
+	<tr>
+	<td class="dotline01">&nbsp;</td>
+	<td colspan="5" class="dotline01_01">1. ผนังปูนฉาบร้าวลายงาแก้ไขโดยสกัดรอยร้าวผนังพร้อมเก็บปูนฉาบ</td>
+    <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+    <td colspan="2" class="dotline">ภายนอกอาคาร</td>
+	</tr>
+	<tr>
+	<td class="dotline01">&nbsp;</td>
+	<td colspan="5" class="dotline01_01">2. ชานพักบันไดไม้แตก / มีตำหนิ แก้ไขโดยเปลี่ยนไม้ใหม่ (ไม่รวมค่าไม้)</td>
+    <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+    <td colspan="2" class="dotline">ช่วงบันได</td>
+	</tr>
+	<tr>
+	<td class="dotline01">&nbsp;</td>
+	<td colspan="5" class="dotline01_01">3. ประตูน้ำซึมตามวงกบแก้ไขโดยยาซิลิโคนตามแนวต่อไม้ :ห้องครัว</td>
+    <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+    <td colspan="2" class="dotline">ห้องครัว</td>
+	</tr>    
+
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01">4. สายชำระแตก/เสียแก้ไขโดยเปลี่ยนใหม่ : ห้องนอน 1</td>
+	  <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="dotline">ห้องน้ำ</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01">5. กระจกเงาเป็นรอย บิ่น แตก/สารเคลือบปรอทกระจกหลุด แก้ไขโดยเปลี่ยนกระจกใหม่ : ห้องนอน 1</td>
+	  <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="dotline">ห้องน้ำ</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01">6. ภายนอกผนังปูนฉาบแตก/ร้าว แก้ไขโดยทาสีใหม่ (อย่างน้อย 5 ตร.ม.)</td>
+	  <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="dotline">ภายนอกอาคาร</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="noline07_01">7. วงกบประตูแก้ไขโดยทาสีน้ำมัน : ห้องนอน 2</td>
+	  <td colspan="2" class="noline07">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="solidline07">ห้องนอน</td>
+	  </tr>
+
+	<tr>
+	<td class="dotline01" align="center">10</td>
+	
+	<td class="dotline01 ; item"><a href="#">05H06</a></td>
+	
+	<td class="dotline01" align="center">LH-011-5700352</td>
+	<td class="dotline01" align="center">239/94</td>
+    <td class="dotline01" >นาง สาวิตรี     ปานเดย์</td>
+    <td class="dotline01" align="center">&nbsp;25/06/2557</td>
+    
+    <!-- TD วันที่แจ้งซ่อม/วันที่ยกเลิก -->
+    
+    
+    
+    <!-- TD วันที่นัดหมายลูกค้า -->
+    
+    <td class="dotline01" align="center">&nbsp;29/06/2557</td>
+    
+    
+    <!-- TD ระยะเวลาดำเนินการ -->
+    
+    <td class="dotline01" align="center">&nbsp;8</td>
+    
+    
+    <!-- TD สถานะ -->
+    
+	
+	<!-- TD ผู้ Cancel -->
+	
+	
+	<!-- TD ผู้รับผิดชอบ -->
+	
+	
+	<td class="dotline01" align="left">&nbsp;
+		<span style="color:orange;font-weight:bold;" >M</span>anager	</td>
+	
+	
+	
+	<td class="dotline" align="center">&nbsp;
+		<img src="images/i_pass2.gif" border="0" align="absmiddle" />	</td>
+    </tr>
+	<tr>
+	  <td class="dotline01">&nbsp;</td>
+	  <td colspan="9" class="dotline ; bold2"><img src="images/i_arrow2.gif" width="11" height="11" border="0" align="absmiddle"> Inform Job</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01">&nbsp;</td>
+	  <td colspan="9" class="dotline ; padding-left01">
+      1.ตรวจสอบ <br>
+      1.1.กำแพงรอบบ้านมีรอยร้าว <br>
+      1.2.Slab วางแอร์มีรอยร้าว <br>
+      1.3.วงกบห้องนอน 2 มีรอยร้าวลงไปข้างล่าง <br>
+      1.4.หน้าต่างห้องนอน 2 ปิดแล้วเสียงดัง <br>
+      1.5.ขอบกระจกห้องน้ำ 1 บิ่น (ลค.อยากให้ตรวจสอบรอยร้าวรอบบ้านคะ) <br><br>
+
+<span>นัดเข้าวันที่ 07/06/2557 เวลา 15:00 น. (SVC:201405310096)</span></td>
+	  </tr>
+	<tr>
+	  <td class="dotline01">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01 ; bold2 ; padding-left02"><img src="images/i_arrow2.gif" width="11" height="11" border="0" align="absmiddle"> Open Job</td>
+	  <td colspan="2" class="dotline01">&nbsp;</td>
+	  <td colspan="2" class="dotline">&nbsp;</td>
+	  </tr>
+	<tr>
+	<td class="dotline01">&nbsp;</td>
+	<td colspan="5" class="dotline01_01">1. ผนังปูนฉาบร้าวลายงาแก้ไขโดยสกัดรอยร้าวผนังพร้อมเก็บปูนฉาบ</td>
+    <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+    <td colspan="2" class="dotline">ภายนอกอาคาร</td>
+	</tr>
+	<tr>
+	<td class="dotline01">&nbsp;</td>
+	<td colspan="5" class="dotline01_01">2. ชานพักบันไดไม้แตก / มีตำหนิ แก้ไขโดยเปลี่ยนไม้ใหม่ (ไม่รวมค่าไม้)</td>
+    <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+    <td colspan="2" class="dotline">ช่วงบันได</td>
+	</tr>
+	<tr>
+	<td class="dotline01">&nbsp;</td>
+	<td colspan="5" class="dotline01_01">3. ประตูน้ำซึมตามวงกบแก้ไขโดยยาซิลิโคนตามแนวต่อไม้ :ห้องครัว</td>
+    <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+    <td colspan="2" class="dotline">ห้องครัว</td>
+	</tr>    
+
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01">4. สายชำระแตก/เสียแก้ไขโดยเปลี่ยนใหม่ : ห้องนอน 1</td>
+	  <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="dotline">ห้องน้ำ</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01">5. กระจกเงาเป็นรอย บิ่น แตก/สารเคลือบปรอทกระจกหลุด แก้ไขโดยเปลี่ยนกระจกใหม่ : ห้องนอน 1</td>
+	  <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="dotline">ห้องน้ำ</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="dotline01_01">6. ภายนอกผนังปูนฉาบแตก/ร้าว แก้ไขโดยทาสีใหม่ (อย่างน้อย 5 ตร.ม.)</td>
+	  <td colspan="2" class="dotline01">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="dotline">ภายนอกอาคาร</td>
+	  </tr>
+	<tr>
+	  <td class="dotline01" align="center">&nbsp;</td>
+	  <td colspan="5" class="noline07_01">7. วงกบประตูแก้ไขโดยทาสีน้ำมัน : ห้องนอน 2</td>
+	  <td colspan="2" class="noline07">บ.พระราม ๕ การโยธา จก.</td>
+	  <td colspan="2" class="solidline07">ห้องนอน</td>
+	  </tr>
+</table>       
+    
+    </td>
+  </tr>
+</table>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="5" valign="bottom"><img border="0" src="images/Corn03.gif" width="5" height="5"></td>
+    <td class="frmBottom">&nbsp;</td>
+    <td width="5" valign="bottom" align="right"><img border="0" src="images/Corn04.gif" width="5" height="5"></td>
+  </tr>
+</table>
+<br>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+  	<td align="left" >
+
+<span style="color:red">*</span>&nbsp;&nbsp;วันที่นัดเข้าซ่อม - ปัจจุบัน
+
+	</td>
+ <td align="right">
+<a href='#' onclick='changePage(1);'>หน้าก่อน</a>&nbsp; &nbsp; <b>1</b> &nbsp; <a href='#' onclick='changePage(2);'>2</a> &nbsp; <a href='#' onclick='changePage(3);'>3</a> &nbsp; <a href='#' onclick='changePage(2);'>หน้าถัดไป</a>
+    </td>    
+</tr>
+</table>
+<br/>
+        <table border="0" width="100%" cellspacing="0" cellpadding="0" height="30">
+          <tr>
+            <td class="act_tab1"></td>
+            <td width="75" class="act_tab2"><a href="#"><img border="0" src="images/act_print.gif"                                   
+    			onmouseout=nereidFade(this,70,50,5)    
+                  	onmouseover=nereidFade(this,100,50,5)     
+                  	style="FILTER: alpha(opacity=70)" width="70" height="27"></a>            </td>   
+                  	
+                  	
+            <td class="act_tab3"></td>   
+            <td class="act_tab4"><a href="javascript:history.back()" target="_top"><img border="0" src="images/bu_back.gif" align="absmiddle" width="50" height="15"></a>&nbsp;
+              <a href="/LHServ/SERV_Index.jsp" target="_top"><img border="0" src="images/bu_home.gif" align="absmiddle" width="50" height="15"></a></td>  
+          </tr>  
+        </table>  
+
+
+
+
+          </td>
+        </tr>
+      </table>
+
+			
+			
+
+<br style="font-size:30pt">
+
+<TABLE border=0 cellspacing=0 cellpadding=0 width="100%">
+  <tr><td width="100%" class="copyright" align="center">
+  Best viewed with 800x600 screen resolution on&nbsp;an Internet Explorer version 5 และ 5.5  
+  <br>ติดต่อสอบถามได้ที่ : <a href="mailto:Administrator@lh.co.th">Administrator@lh.co.th</a>&nbsp;
+  หรือ โทร. 0-2230-8279 (คุณประพัฒน์
+  ฝ่ายบริการ)&nbsp; 0-2230-8491-5 (ฝ่าย IT)  
+  <br><img src="images/copyright.gif" width="475" height="26"></td></tr>
+</TABLE> 
+	
+</FORM>
+
+</BODY>
+
+</HTML>
+

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+	<!--  verion 1.0
+		  create by: pradoem
+	      date :2013.04.01
+	      project :Service Center
+	     ********************
+	     Last update :
+	-->
+	
+	<!-- Data Sources -->
+	<data-sources>
+	</data-sources>
+
+	<!-- Form Beans -->
+	<form-beans>
+		<form-bean name="blankForm" type="com.svc.call.web.form.TestBlankForm" /> 
+	</form-beans>
+
+	<!-- Global Exceptions -->
+	<global-exceptions>
+	</global-exceptions>
+
+	<!-- Global Forwards -->
+	<global-forwards>
+	</global-forwards>
+
+	<!-- Action Mappings -->
+	<action-mappings>
+		<!-- For Test krub -->
+		<action  path="/TestAction" scope="request"  type="com.svc.call.web.controller.TestBlankAction" name="blankForm" parameter="test">
+            <forward name="success" path="/SVC_blank.jsp" />
+        </action>
+		<action path="/TestDispactAction"  scope="request" type="com.svc.call.web.controller.TestBlankDispatchAction" name="blankForm" parameter="cmd">			
+			  <forward name="success" path="/SVC_blank.jsp" />
+		</action>
+		
+		<action path="/SVCInformController"  scope="request" type="com.svc.call.web.controller.SVCInformAction"  parameter="cmd">			
+			  <forward name="SHOW_SORRY_PAGE" path="/SVC_CallMsgError.jsp" />
+			  <forward name="SHOW_SUCCESS_PAGE" path="/SVC_CallMsgSuccess.jsp"/>
+			  <forward name="SHOW_CALL_INFORM" path="/SVC_CallInForm.jsp" />
+			  <forward name="SHOW_POPPROJECT_PAGE" path="/SVC_PopupSearchProject.jsp" />
+		</action>
+		
+		<action path="/SVCHistoryController"  scope="request" type="com.svc.call.web.controller.SVCHistoryAction"  parameter="cmd">			
+			  <forward name="SHOW_SORRY_PAGE" path="/SVC_CallMsgError.jsp" />
+			  <forward name="SHOW_CALL_INFORM" path="/SVC_CallInForm.jsp" />
+			  <forward name="SHOW_HISTORY_FORM" path="/SVC_CallHistory.jsp" />
+		</action>
+		
+		<action path="/SVCMasterGCalendarController"  scope="request" type="com.svc.call.web.controller.SVCMasterGCalendarAction"  parameter="cmd">			
+			  <forward name="SHOW_SORRY_PAGE" path="/SVC_CallMsgError.jsp" />
+			  <forward name="SHOW_GCALENDAR_FORM" path="/SVC_GCalendarViewer.jsp" />
+			  <forward name="SHOW_GCALENDAR_VIEW" path="/SVC_GCalendarViewer.jsp" />
+		</action>
+
+	</action-mappings>
+
+	<!-- Message Resources -->
+	<message-resources parameter="crm.resources.ApplicationResources"/>
+
+</struts-config>

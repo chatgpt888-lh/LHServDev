@@ -1,0 +1,53 @@
+
+P					{ 	font-size:10.0pt ; font-family : Microsoft Sans Serif ; color : rgb(0,0,0) ; 		}
+TD				{ 	font-size:7.5pt ; font-family : Microsoft Sans Serif ; color : rgb(0,0,0) ; 		}
+HR				{ 	color : rgb(200,220,255) ; height: 1px ; }
+
+
+.bigh				{	font-size: 12.0pt ; font-family: Microsoft Sans Serif ; TEXT-DECORATION: none ;
+						letter-spacing:1px ;	}
+.bigh1			{	font-size: 12.0pt ; font-family: Microsoft Sans Serif ; TEXT-DECORATION: none ;
+						letter-spacing:0px ; text-align: right ;	}
+
+
+
+
+/* For SERV_Report Table */
+
+.col_nameREP						{ 	font-size: 7.5pt ; color: rgb(0,0,0) ; text-align: center ;  
+												background-color: rgb(200,220,255) ; 
+												border-right:1px solid rgb(135,185,247) ; border-bottom:1px solid rgb(135,185,247) ; 	}
+.col_nameREP A:link				{ 	color: rgb(0,50,200) ; text-decoration: none ; width: 100% ;	 	}
+.col_nameREP A:visited			{ 	color: rgb(0,50,200) ; text-decoration: none ; width: 100% ;	 	}
+.col_nameREP A:hover			{ 	color: rgb(0,50,200) ; text-decoration: none ; width: 100% ;	
+												background-color:rgb(255,255,180) ;  	}
+												
+.col_nameREP01							{ 	font-size: 7.5pt ; color: rgb(0,0,0) ; text-align: center ;  
+													background-color: rgb(230,245,250) ; 
+													border-right:1px solid rgb(135,185,247) ; border-bottom:1px solid rgb(135,185,247) ; 	}
+.col_nameREP01 A:link				{ 	color: rgb(0,50,200) ; text-decoration: none ; width: 100% ;	 	}
+.col_nameREP01 A:visited			{ 	color: rgb(0,50,200) ; text-decoration: none ; width: 100% ;	 	}
+.col_nameREP01 A:hover			{ 	color: rgb(0,50,200) ; text-decoration: none ; width: 100% ;	
+													background-color:rgb(255,255,180) ;  	}												
+												
+
+td.dotlineREP							{	border-bottom:1px dotted rgb(220,220,220) ; border-right:1px solid rgb(135,185,247) ; 
+												padding:3px ;  }
+												
+td.dotlineREP01						{	border-bottom:1px dotted rgb(220,220,220) ; border-right:1px solid rgb(135,185,247) ; 
+												padding:3px ; background-color:rgb(230,245,250) ;   }												
+
+
+td.solidlineREP01					{	border-bottom:2px solid rgb(255,153,102) ; border-right:1px solid rgb(135,185,247) ; 
+												padding:3px ;  }
+
+td.solidlineREP02					{	border-bottom:1px solid rgb(135,185,247) ; border-right:1px solid rgb(135,185,247) ; 
+												padding:3px ;  }
+												
+td.solidlineREP02_01				{	border-bottom:1px solid rgb(135,185,247) ; border-right:1px solid rgb(135,185,247) ; 
+												padding:3px ; background-color:rgb(230,245,250) ;  }												
+
+.bold3									{	color:rgb(0,100,255) ; 	}
+
+/* End of SERV_Report Table */
+

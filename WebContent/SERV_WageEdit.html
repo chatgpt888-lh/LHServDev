@@ -1,0 +1,538 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Home</TITLE>
+
+<meta http-equiv="Content-Type" content="text/html; charset=TIS-620">
+
+<LINK rel="StyleSheet" href="SERV_Style.css" type="text/css">
+
+<script language="javascript" src="script_fx.js"></script>
+
+<style type="text/css"> 
+
+.hidden-class { display:none;  } 
+
+.show-class { display:compact;    } 
+
+</style>
+
+
+
+
+<script language="javascript">
+
+<!-- 
+
+function initPage(){ 
+
+if(document.frmSERV.hide_detail.value == 'N') { 
+
+showDetail(); 
+
+} 
+
+if(document.frmSERV.hide_detail.value == 'Y'){ 
+
+hideDetail(); 
+
+} 
+
+}
+
+function gotoOpenJob(i_docno){
+
+var form = document.frmSERV;
+
+form.i_docno.value = i_docno;
+
+form.edit.value = 'no'; 
+
+
+
+form.action = '/LHServ/SERV_OpenJob_Follow.jsp'; 
+
+
+
+form.submit();
+
+}
+
+function sortBy(theCol){
+
+var form = document.frmSERV;
+
+form.sort_col.value = theCol;
+
+form.submit();
+
+}
+
+function showDetail(){ 
+
+var elements = getElementsByClass('hidden-class'); 
+
+for (i = 0 ; i < elements.length ; i++ ) { 
+
+elements[i].className = 'show-class'; 
+
+} 
+
+document.frmSERV.hide_detail.value = 'N'; 
+
+} 
+
+function hideDetail(){ 
+
+var elements = getElementsByClass('show-class'); 
+
+for (i = 0 ; i < elements.length ; i++ ) { 
+
+elements[i].className = 'hidden-class'; 
+
+} 
+
+document.frmSERV.hide_detail.value = 'Y'; 
+
+} 
+
+function getElementsByClass( searchClass, domNode, tagName) { 
+
+if (domNode == null) domNode = document; 
+
+if (tagName == null) tagName = '*'; 
+
+var el = new Array(); 
+
+var tags = domNode.getElementsByTagName(tagName); 
+
+var tcl = " "+searchClass+" "; 
+
+for(i=0,j=0; i<tags.length; i++) { 
+
+var test = " " + tags[i].className + " "; 
+
+if (test.indexOf(tcl) != -1) 
+
+el[j++] = tags[i]; 
+
+} 
+
+return el; 
+
+} 
+
+//-->
+
+</script>
+
+
+
+
+
+
+
+<base target="_self">
+
+
+
+
+
+
+
+</HEAD>
+
+
+
+
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0" onLoad="initPage()">
+
+
+
+
+<FORM method="POST" action="#" name="frmSERV" >
+
+<input type="hidden" name="i_docno" value="" />
+
+<input type="hidden" name="edit" value="" />
+
+<input type="hidden" name="sort_col" value="default" />
+
+<input type="hidden" name="i_company" value="LH" />
+
+<input type="hidden" name="i_project" value="080" />
+
+<input type="hidden" name="d_keyin_beg" value="" />
+
+<input type="hidden" name="d_keyin_end" value="" />
+
+<input type="hidden" name="itmtype" value="4.1" /> 
+
+<input type="hidden" name="hide_detail" value="Y" />
+
+
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="100%" align="center" class="BD">
+
+
+
+
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="100%" class="bigh"><img border="0" src="images/i_home.gif" align="absmiddle" width="20" height="20">&nbsp;
+
+ค่าแรงช่าง และค่าแรงคนงาน</td>
+
+
+</tr>
+
+</table>
+
+
+
+
+
+
+
+<br style="font-size:10pt">
+
+
+
+
+            <table border="0" width="100%" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="item_tab1"><img border="0" src="images/i_i.gif" align="absmiddle" width="20" height="20"></td>
+                <td class="item_tab2" width="220">รายละเอียด</td>
+                <td class="item_tab3"></td>
+                <td>&nbsp;</td>                
+              </tr>
+            </table>
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="5" valign="top"><img border="0" src="images/Corn01.gif" width="5" height="5"></td>
+    <td class="frmTop">&nbsp;</td>
+    <td width="5" valign="top" align="right"><img border="0" src="images/Corn02.gif" width="5" height="5"></td>
+  </tr>
+</table>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="100%" class="frmLR" align="center">
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="item ; dotline01" height="22" width="22%">เลขที่เอกสาร :
+      :</td>
+    <td height="22" width="35%" class="dotline01">1235467890</td>
+    <td height="22" class="item ; dotline01" width="6%">เดือน :</td>
+    <td height="22" width="12%" class="dotline01">ธันวาคม</td>
+    <td width="3%" class="item ; dotline01">ปี :</td>
+    <td width="22%" class="dotline01">2558</td>
+  </tr>
+  <tr>
+    <td class="item ; dotline01" height="22">เลขที่บัตรประชาชน / Passport
+      :</td>
+    <td height="22" class="dotline01">3800700677833</td>
+    <td height="22" class="item ; dotline01">ชื่อ
+      :</td>
+    <td height="22" colspan="3" class="dotline01"> วนิดา จงสวัสดิ์</td>
+    </tr>
+</table>
+
+</td>
+  </tr>
+</table>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="5" valign="bottom"><img border="0" src="images/Corn03.gif" width="5" height="5"></td>
+    <td class="frmBottom">&nbsp;</td>
+    <td width="5" valign="bottom" align="right"><img border="0" src="images/Corn04.gif" width="5" height="5"></td>
+  </tr>
+</table>
+
+
+
+
+<br style="font-size:5pt">
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="5" valign="top" bgcolor="#D7E6FF"><img border="0" src="images/Corn01.gif" width="5" height="5"></td>
+
+<td valign="bottom" class="frmTop" bgcolor="#D7E6FF">&nbsp;</td>
+
+<td width="5" valign="top" align="right" bgcolor="#D7E6FF"><img border="0" src="images/Corn02.gif" width="5" height="5"></td>
+
+</tr>
+
+</table>
+
+
+
+
+
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+
+
+
+
+
+
+
+
+
+
+<tr>
+
+<td width="100%" class="frmL" align="center">
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+
+<tr>
+<td width="4%" class="col_name">
+  <label>
+  <input type="checkbox" name="checkbox" id="checkbox">
+  </label></td> 
+<td width="10%" class="col_name"><a href="#">วันที่</a></td>
+<td width="12%" class="col_name"><a href="#">เวลาเข้างานจริง</a></td>
+<td width="12%" class="col_name"><a href="#">เวลาออกงานจริง</a></td>
+<td width="14%" class="col_name"><a href="#">เวลาเข้างาน (แก้ไข)</a></td>
+<td width="14%" class="col_name"><a href="#">เวลาออกงาน (แก้ไข)</a></td>
+<td width="22%" class="col_name"><a href="#">หมายเหตุ</a></td>
+<td width="16%" class="col_name"><a href="#">สถานะ</a></td>
+</tr>
+
+<tr>
+<td class="dotline" align="center"><input type="checkbox" name="checkbox2" id="checkbox2"></td> 
+<td align="center" class="dotline ; item" >21/12/2558</td>
+<td class="dotline" align="center">07:45 น.</td>
+<td class="dotline" align="center">17:45 น.</td>
+<td class="dotline" align="center"><input name="" type="text" class="boxC" style="width:60px"></td>
+<td class="dotline" align="center"><input name="input" type="text" class="boxC" style="width:60px"></td>
+<td class="dotline" align="center"><input name="input2" type="text" class="box" style="width:96%"></td>
+<td class="dotline" align="center">รอ Approve</td>
+</tr>
+
+<tr>
+<td class="dotline" align="center"><input type="checkbox" name="checkbox2" id="checkbox2"></td> 
+<td align="center" class="dotline ; item" >22/12/2558</td>
+<td class="dotline" align="center">-</td>
+<td class="dotline" align="center">17:50 น.</td>
+<td class="dotline" align="center"><input name="" type="text" class="boxC" style="width:60px"></td>
+<td class="dotline" align="center"><input name="input" type="text" class="boxC" style="width:60px"></td>
+<td class="dotline" align="center"><input name="input2" type="text" class="box" style="width:96%"></td>
+<td class="dotline" align="center">Approve</td>
+</tr>
+<tr>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td align="center" class="dotline ; item" >&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+</tr>
+<tr>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td align="center" class="dotline ; item" >&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+</tr>
+<tr>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td align="center" class="dotline ; item" >&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+</tr>
+<tr>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td align="center" class="dotline ; item" >&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+</tr>
+<tr>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td align="center" class="dotline ; item" >&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+</tr>
+<tr>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td align="center" class="dotline ; item" >&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+</tr>
+<tr>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td align="center" class="dotline ; item" >&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+</tr>
+<tr>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td align="center" class="dotline ; item" >&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+</tr>
+</table> 
+
+
+
+</td>
+
+</tr>
+
+</table>
+
+
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="5" valign="bottom"><img border="0" src="images/Corn03.gif" width="5" height="5"></td>
+
+<td class="frmBottom">&nbsp;</td>
+
+<td width="5" valign="bottom" align="right"><img border="0" src="images/Corn04.gif" width="5" height="5"></td>
+
+</tr>
+
+</table>
+
+<br style="font-size:5pt">
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0" height="30">
+
+<tr>
+
+<td class="act_tab1"></td>
+
+<td width="230" class="act_tab2">
+
+<a href="#"><img border="0" src="images/act_send2app.gif"                                   
+    			onmouseout=nereidFade(this,70,50,5)    
+                  	onmouseover=nereidFade(this,100,50,5)     
+                  	style="FILTER: alpha(opacity=70)" width="70" height="27"></a>
+                    
+<a href="#"><img border="0" src="images/act_approve.gif"                                   
+    			onmouseout=nereidFade(this,70,50,5)    
+                  	onmouseover=nereidFade(this,100,50,5)     
+                  	style="FILTER: alpha(opacity=70)" width="70" height="27"></a>
+
+<a href="#"><img border="0" src="images/act_deny.gif"                                   
+    			onmouseout=nereidFade(this,70,50,5)    
+                  	onmouseover=nereidFade(this,100,50,5)     
+                  	style="FILTER: alpha(opacity=70)" width="70" height="27"></a>             
+                     </td> 
+
+<td class="act_tab3"></td> 
+
+<td class="act_tab4"><a href="/LHServ/SERV_ReportService.jsp" target="_self"><img border="0" src="images/bu_back.gif" align="absmiddle" width="50" height="15"></a>&nbsp;
+
+<a href="/LHServ/SERV_Index.jsp" target="_top"><img border="0" src="images/bu_home.gif" align="absmiddle" width="50" height="15"></a></td> 
+
+</tr> 
+
+</table> 
+
+</td>
+
+</tr>
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+<br style="font-size:30pt">
+
+
+
+
+<TABLE border=0 cellspacing=0 cellpadding=0 width="100%">
+
+<tr><td width="100%" class="copyright" align="center">
+
+Best viewed with 800x600 screen resolution on&nbsp;an Internet Explorer version 5 และ 5.5 
+
+<br>ติดต่อสอบถามได้ที่ : <a href="mailto:Administrator@lh.co.th">Administrator@lh.co.th</a>&nbsp;
+
+หรือ โทร. 0-2230-8279 (คุณประพัฒน์
+
+ฝ่ายบริการ)&nbsp; 0-2230-8491-5 (ฝ่าย IT) 
+
+<br><img src="images/copyright.gif" width="475" height="26"></td></tr>
+
+</TABLE> 
+
+
+
+</FORM>
+
+
+
+
+</BODY>
+
+
+
+
+</HTML>
+

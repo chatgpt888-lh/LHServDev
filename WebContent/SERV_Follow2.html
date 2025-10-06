@@ -1,0 +1,273 @@
+<HTML> 
+<HEAD>
+<TITLE>Add Inform Job - Display</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=TIS-620">
+<LINK rel="StyleSheet" href="SERV_Style.css" type="text/css">
+<script language="javascript" src="script_fx.js"></script>
+<script language="javascript">
+<!--
+var ggWinCal ;
+function selChqDate(dateType) {
+	var vWinCal = window.open('calendar.jsp?dateType='+dateType,'blank','width=300,height=250,left=200,top=100');
+	vWinCal.opener = self;
+	ggWinCal = vWinCal;
+}
+function openJob() {
+   document.forms[0].action="SERV_OpenJob.jsp?load=yes";
+   document.forms[0].target="";   
+   document.forms[0].submit();
+}
+
+function cancelJob() {
+   if (confirm(" คุณแน่ใจว่าต้องการยกเลิก Inform Job ใบนี้ ?")) {
+	   document.forms[0].action="/LHServ/ESERV_OpenJobServlet?cmd=can&i_docno=E-LH-191-560080";
+	   document.forms[0].submit();
+   }
+}
+
+function doConfirm(){
+	  var count = "3";
+	  var temp = 0;
+	  for(i = 1;i<=count;i++){ 
+			if(document.getElementById("rbt"+i).checked == false){
+			   temp++;
+			}
+		}
+	 if(count==temp){
+	     alert("กรุณาคลิกปุ่ม Cancel เนื่องจากคุณไม่ได้เลือกรายการซ่อม ");
+	 }else if(document.forms[0].appointDate.value==""){
+	 	 alert("กรุณากรอกวันนัดเข้าตรวจสอบ ด้วย.. ");
+	     document.forms[0].appointDate.value="";
+	     document.forms[0].appointDate.focus();
+	 }else if(document.forms[0].timeLine.value==""){
+	 	 alert("กรุณากรอกเวลาด้วย");
+	     document.forms[0].timeLine.value="";
+	     document.forms[0].timeLine.focus();
+	 }else{ 
+		  document.forms[0].mode.value="view";
+		  document.forms[0].action="/LHServ/ESERV_OpenJobServlet?cmd=view&i_docno=E-LH-191-560080&sel_project=LH:191";
+		  document.forms[0].submit();
+	 }
+}
+
+function doSubmit(vDate,vTime){
+	  document.forms[0].mode.value="add";
+	  document.forms[0].appointDate.value = vDate;
+	  document.forms[0].timeLine.value = vTime;
+	  document.forms[0].action="/LHServ/ESERV_OpenJobServlet?cmd=add&i_docno=E-LH-191-560080&sel_project=LH:191";
+	  document.forms[0].submit();
+}
+
+function doChangeDDL() {
+ 	  document.forms[0].mode.value="";	
+	  document.forms[0].action="/LHServ/ESERV_OpenJobServlet?cmd=find&i_docno=E-LH-191-560080&sel_project=LH:191";
+	  document.forms[0].submit();
+}
+//-->
+</script>
+<SCRIPT language="JavaScript">
+<!--
+//  check for valid numeric strings	
+function IsNumeric(strString) {
+   var strValidChars = "0123456789.";
+   var strChar;
+   var blnResult = true;
+   if (strString.length == 0) return false;
+   //  test strString consists of valid characters listed above
+   for (i = 0; i < strString.length && blnResult == true; i++){
+      strChar = strString.charAt(i);
+      if (strValidChars.indexOf(strChar) == -1){
+         blnResult = false;
+        }
+      }
+ 	return blnResult;
+  }
+ // -->
+</SCRIPT>
+<base target="_self">
+</HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0">
+<FORM METHOD="POST" ACTION=""  name="frmConfReten">
+<input type="hidden" name="mode" value="edit">
+<input type="hidden" name="d_appoint" value="">
+<input type="hidden" name="d_est_close" value="">
+<input type="hidden" name="cntDesc" value="3">
+<input type="hidden" name="iLock" value="02L06">
+<input type="hidden" name="nCustomer" value="นาย วงศ์วิวัฒน์   ศิริทัศนกุล">
+<input type="hidden" name="nCustel" value="0818114800,">
+<input type="hidden" name="msg1" value="นัดวันเข้าตรวจสอบวันที่">
+<input type="hidden" name="msg2" value=" เวลา ">
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="100%" class="BD" >
+      <table border="0" width="100%" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="50%" class="bigh"><img border="0" src="images/i_home.gif" align="absmiddle" width="20" height="20">&nbsp;&nbsp;Call Center List : Wait</td>
+          <td width="50%" align="right">
+          &nbsp;</td>
+        </tr>
+      </table>
+<br style="font-size:10pt">
+            <table border="0" width="100%" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="item_tab1"><img border="0" src="images/i_i.gif" align="absmiddle" width="20" height="20"></td>
+                <td class="item_tab2" width="200">รายละเอียดการแจ้งซ่อม</td>
+                <td class="item_tab3"></td>
+                <td>&nbsp;</td>                
+              </tr>
+            </table>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="5" valign="top"><img border="0" src="images/Corn01.gif" width="5" height="5"></td>
+    <td class="frmTop">&nbsp;</td>
+    <td width="5" valign="top" align="right"><img border="0" src="images/Corn02.gif" width="5" height="5"></td>
+  </tr>
+</table>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="100%" class="frmLR" align="center">
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="item ; dotline01" height="22" width="13%">โครงการ :</td>
+    <td height="22" width="39%" class="dotline01">LH 211 พฤกษลดา ประชาอุทิศ 90</td>
+    <td height="22" class="item ; dotline01" width="14%">เลขที่ใบแจ้งซ่อม :</td>
+    <td height="22" width="34%" class="dotline01">Auto Generate</td>
+  </tr>
+  <tr>
+    <td class="item ; dotline01" height="22" width="13%">บ้านเลขที่ :</td>
+    <td height="22" width="39%" class="dotline01">9/101</td>
+    <td height="22" class="item ; dotline01" width="14%">แปลง :</td>
+    <td height="22" width="34%" class="dotline01">02L06</td>
+  </tr>
+  <tr>
+    <td class="item ; dotline01" height="22" width="13%">แบบบ้าน :</td>
+    <td height="22" width="39%" class="dotline01">124MTA24T</td>
+    <td height="22" class="item ; dotline01" width="14%">&nbsp;</td>
+    <td height="22" width="34%" class="dotline01">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="item ; dotline01" height="22" width="13%">ชื่อผู้แจ้ง/ลูกค้า:</td>
+    <td height="22" width="39%" class="dotline01">นาย วงศ์วิวัฒน์   ศิริทัศนกุล</td>
+    <td height="22" class="item ; dotline01" width="14%">โทรศัพท์ติดต่อ :</td>
+    <td height="22" width="34%" class="dotline01">0818114800,</td>
+  </tr>
+  <tr>
+    <td class="item ; dotline01" height="22" width="13%">การประกัน :</td>
+    <td height="22" width="39%" class="dotline01">
+      หมดประกัน
+
+    </td>
+    <td height="22" class="item ; dotline01" width="14%">วันที่หมดประกัน :</td>
+    <td height="22" width="34%" class="dotline01">25/09/2555</td>
+  </tr>
+  <tr>
+    <td class="item ; dotline01" height="22" width="13%">ผู้รับเรื่อง :</td>
+    <td height="22" width="39%" class="dotline01">นาย วิชัย ธรรมวรากรกุล
+
+</td>
+    <td height="22" class="item ; dotline01" width="14%">วันเวลาที่แจ้ง:</td>
+    <td height="22" width="34%" class="dotline01">21/10/2556 17:03:00.0 น.</td>
+  </tr>
+</table>
+</td>
+  </tr>
+</table>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="5" valign="bottom"><img border="0" src="images/Corn03.gif" width="5" height="5"></td>
+    <td class="frmBottom">&nbsp;</td>
+    <td width="5" valign="bottom" align="right"><img border="0" src="images/Corn04.gif" width="5" height="5"></td>
+  </tr>
+</table>
+<br style="font-size:10pt">
+            <table border="0" width="100%" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="item_tab1"><img border="0" src="images/i_i.gif" align="absmiddle" width="20" height="20"></td>
+                <td class="item_tab2" width="200">รายการซ่อมสาธารณูฯ</td>
+                <td class="item_tab3"></td>
+                <td>&nbsp;</td>
+              </tr>
+            </table>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="5" valign="top"><img border="0" src="images/Corn01.gif" width="5" height="5"></td>
+    <td class="frmTop">&nbsp;</td>
+    <td width="5" valign="top" align="right"><img border="0" src="images/Corn02.gif" width="5" height="5"></td>
+  </tr>
+</table>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+    <tr>
+    <td width="100%" class="frmLRpad01">     
+      
+	  <TEXTAREA NAME="" ROWS="5" COLS="150"  class="box">เสาไฟหน้าบ้านแตก  เคยแจ้งครั้งที่แล้วแต่ยังไม่ได้เข้าซ่อม (มีเจ้าหน้าที่ มาตรวจสอบแล้ว)</TEXTAREA>
+      </span><span class="dotline01"></span>
+      
+						
+	<!--	
+      <p>รายการที่ 2. <span class="dotline01">
+      <input type="text" name="jobDesc2" class="box" style="width:300px" value="เสารั้วหน้าบ้านแตก  เคยแจ้งครั้งที่แล้วแต่ยังไม่ได้เข้าซ่อม (มีเจ้าหน้าที่ มาตรวจสอบแล้ว)" >
+      </span><span class="dotline01"></span>
+      
+						
+		
+      <p>รายการที่ 3. <span class="dotline01">
+      <input type="text" name="jobDesc3" class="box" style="width:300px" value="พื้นทรุด บริเวณประตูรั้วหน้าบ้าน เคยแจ้งแล้วแต่ยังไม่ได้เข้าซ่อม (มีเจ้าหน้าที่ มาตรวจสอบแล้ว)" >
+      </span><span class="dotline01"></span>
+      
+		-->				
+		
+      <p>
+      ระบุวันเวลาให้เจ้าหน้าที่เข้าตรวจสอบ&nbsp;&nbsp;วัน ศุกร์ 25/10/2556 &nbsp; 11:00
+
+	        	<input type="hidden" name="appointDate"  value="2013-10-25">
+	        	<input type="hidden" name="timeLine"   value=" 11:00">
+	        	
+        <br>
+        <br>
+        <br></p></td>
+  </tr>
+</table>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="5" valign="bottom"><img border="0" src="images/Corn03.gif" width="5" height="5"></td>
+    <td class="frmBottom">&nbsp;</td>
+    <td width="5" valign="bottom" align="right"><img border="0" src="images/Corn04.gif" width="5" height="5"></td>
+  </tr>
+</table>
+<br style="font-size:10pt">
+        <table border="0" width="100%" cellspacing="0" cellpadding="0" height="30">
+          <tr>
+            <td class="act_tab1"></td>
+            <td width="260" class="act_tab2">&nbsp;
+                  	
+                  	     <img border="0" src="images/act_cancel.gif" onClick="javascript:cancelJob();"                                  
+    					onMouseOut=nereidFade(this,70,50,5)    
+                  		onMouseOver=nereidFade(this,100,50,5)     
+                  		style="FILTER: alpha(opacity=70);cursor:hand" width="70" height="27">	&nbsp;&nbsp;
+                  	   <a href="javascript:doConfirm();"><img src="images/act_confirm.gif" width="70" height="27" border="0"></a>
+                  	
+                  	&nbsp; &nbsp;</td>   
+            <td class="act_tab3"></td>   
+            <td class="act_tab4">      
+		    <a href="javascript:history.back();" target="_self"><img border="0" src="images/bu_back.gif" align="absmiddle" width="50" height="15"></a>&nbsp;
+          <a href="/LHServ/SERV_Index.jsp" target="_top"><img border="0" src="images/bu_home.gif" align="absmiddle" width="50" height="15"></a>         
+           </td></tr>  
+        </table>  
+      </td>
+        </tr>
+      </table>
+<br style="font-size:30pt">
+<TABLE border=0 cellspacing=0 cellpadding=0 width="100%">
+  <tr><td width="100%" class="copyright" align="center">
+  Best viewed with 800x600 screen resolution on&nbsp;an Internet Explorer version 5 และ 5.5  
+  <br>ติดต่อสอบถามได้ที่ : <a href="mailto:Administrator@lh.co.th">Administrator@lh.co.th</a>&nbsp;หรือ โทร. 0-2230-8279 (คุณประพัฒน์ฝ่ายบริการ)&nbsp; 0-2230-8491-5 (ฝ่าย IT)  
+  <br><img src="images/copyright.gif" width="475" height="26"></td></tr>
+</TABLE> 
+<input type="hidden" name="iDay" value="5">
+</FORM>
+</BODY>
+</HTML>
+

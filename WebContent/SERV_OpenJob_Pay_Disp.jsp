@@ -1,0 +1,1260 @@
+<%@page language="java" contentType="text/html; charset=TIS-620" pageEncoding="TIS-620"%>
+<%@page import="com.lh.util.DateUtil" %>
+<%@page import="java.io.*" %>
+<%@page import="java.util.*" %>
+<%@page import="java.text.*" %>
+<%@page import="serv.common.*" %>
+<%@ include file="confirmLogin.jsp" %>
+<%@ include file="function.jsp" %>
+<%! 
+  
+ public String GenCauseHtmlDDL(Connection conn,String name, String value, String params){
+        StringBuffer html = new StringBuffer();
+        StringBuffer sql = new StringBuffer();
+        Statement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = conn.createStatement();
+            sql.append(" select i_type,i_code,n_desc  from lan:serv_xstd where i_type='55' ").append(" order by i_type,i_code,n_desc  ");
+            rs = stmt.executeQuery(sql.toString());
+            html.append("<select name='").append(name).append("' ").append(params).append(" >");
+            html.append("<option value=''>" + Constants.LISTBOX_SELECT_LABEL + "</option>");
+            String iCode;
+            String nDesc;
+            String selected;
+            for(; rs.next(); html.append("<option value='").append(iCode).append("' ").append(selected).append(">").append(nDesc).append("</option>")) {
+                iCode = doString.checkString(rs.getString("i_code"), "");
+                nDesc = doString.checkString(doString.DisplayThai(rs.getString("n_desc")), "");
+                selected = "";
+                if(value != null && iCode.equalsIgnoreCase(value)){
+                    selected = " selected ";
+                }
+            }
+
+            html.append("</select>");
+            rs.close();
+            stmt.close();
+        }catch(Exception e) {
+            System.out.println("  GenCauseHtmlDDL Error : " + e.getMessage());
+        } finally{
+            try  {
+                if(rs != null) {
+                    rs.close();
+                }
+                if(stmt != null){
+                    stmt.close();
+                }
+            }
+            catch(Exception ex) { }
+        }
+        return html.toString();
+    }
+    
+      /**** For condominium repair 2015.06.24 ****/ 
+     public String[] GetCondoProfile(Connection conn,String comId,String projId){
+        StringBuffer sql = new StringBuffer();
+        Statement stmt = null;
+        ResultSet rs = null;
+
+		boolean isCondo = false;
+        String tempStr[] = new String[] {"","","","","","",""}; //"YES,NO","LH","075","2015-06-24","Y,N","หมดประกัน/อยู่ระหว่างประกัน","0841013129"
+        java.sql.Timestamp dCloseLaw = null;
+        try {
+            stmt = conn.createStatement();
+            /*1. Check project is Condo avaliable ?*/
+  			sql.delete(0, sql.length());
+			sql.append(" Select i_company,i_project,d_close_law ")
+				.append(" From  lan:serv_condo ")
+				.append(" Where i_company  = '"+comId+"'  ")
+				.append(" and i_project = '"+projId+"' ");
+
+				//System.out.println("SQL GetCondo  :"+sql.toString());
+				rs = stmt.executeQuery(sql.toString());    				   
+			    if(rs.next()){
+			       tempStr[0] = "YES";
+			       tempStr[1] = doString.checkString(rs.getString("i_company"),"");
+			       tempStr[2] = doString.checkString(rs.getString("i_project"),"");
+			       //tempStr[3] = doString.checkString(rs.getString("d_close_law"),"");
+			       dCloseLaw = rs.getTimestamp("d_close_law");	
+			       
+			        Calendar gurantee = Calendar.getInstance();
+                    gurantee.setTime(dCloseLaw);
+                    gurantee.add(1, 1);
+         
+                    if(Calendar.getInstance().after(gurantee)) {
+	                    tempStr[4] = "N";
+	                    tempStr[5] = doString.DisplayThai(doString.UnicodeToMS874("หมดประกัน"));
+                    } else{
+						tempStr[4] = "Y";
+	                    tempStr[5] = doString.DisplayThai(doString.UnicodeToMS874("อยู่ระหว่างประกัน"));
+                    }
+                    tempStr[3] = getDateFromCalendar(gurantee);
+			        isCondo = true;       
+			    }else{
+				    tempStr[0] = "NO";
+				    tempStr[2] = "";
+				    tempStr[3] ="";
+				    tempStr[4] ="";
+			    }
+ 				/** CASE : Condo = true **/
+ 				if(isCondo){					
+	 				sql.delete(0, sql.length());
+					sql.append(" Select i_tel ")
+						.append(" From  lan:serv_prjdt ")
+						.append(" Where i_company  = '"+comId+"'  ")
+						.append(" and i_project = '"+projId+"' ");
+						//System.out.println("SQL I_tel  :"+sql.toString());
+					rs = stmt.executeQuery(sql.toString());    				   
+				    if(rs.next()){
+				    	tempStr[6] =  doString.checkString(rs.getString("i_tel"),"");
+	 				}//#RS.Close
+	 			}	  
+                rs.close();
+                stmt.close();
+                
+        }catch(Exception e) {
+            System.out.println(" GetCondoProfile[]  Error : " + e.getMessage());
+        } finally{
+            try  {
+                if(rs != null) {
+                    rs.close();
+                }
+                if(stmt != null){
+                    stmt.close();
+                }
+            }
+            catch(Exception ex) { }
+        }       
+        return tempStr;
+    }  
+ %>
+<%
+
+
+
+   doString str = new doString();
+   String empname = user.getEmpName();
+
+   //----============ Declare Variables for input data ===========----//
+   String iDocNo = doString.checkString(request.getParameter("i_docno"),"");
+   String edit = doString.checkString(request.getParameter("edit"),"");
+   String popup = doString.checkString(request.getParameter("popup"),"");
+   
+   
+   //-----========= Declare Variables for OpenJob Page ===========----//
+   String mode = doString.checkString(request.getParameter("mode"),"edit");
+   //String dAppoint= doString.checkString(request.getParameter("d_appoint"),"");
+   //String dEstClose= doString.checkString(request.getParameter("d_est_close"),"");   
+   ItmJobManagement itm = new ItmJobManagement(request,response);
+   itm.updateValuesFromRequest(); // update new values from request.
+   itm.updateItemSession(); // update session before use
+  //---=======================================================----//   
+    
+   
+   //-----========= Declare Variables for Search Custoemr ===========----//
+   String selProj = "";
+   String iCompany = "";
+   String iProject = "";
+   String projDesc = "";
+   String houseId = "";
+   String iLock = "";
+   String nCustomer = "";
+   String nCustTel = "";
+   String cDesc = "";   
+   String inFormDate = "";
+   String inFormEmp = "";
+   String dAppoint = "";
+   String dEstClose = "";
+      
+   String housePlan = "-";
+   String custName = "-";
+   String custTel = "-";
+   String guranteeDesc = "-";
+   String guranteeDate = "-";
+   String iCustomer = "";
+   String name_serv = "";
+   String emp_serv = "";
+   String chk_condo = "";
+   Vector jobList = new Vector();
+   
+			       
+	StringBuffer sql = new StringBuffer();
+	Connection conn = null;
+	Statement stmt = null;
+	ResultSet rs = null;
+	SERV_CommonData common = null;
+
+	try {
+	
+        //----============ Initialize Variable ============----//
+		if (ds == null) getDS();
+		conn = ds.getConnection();
+		conn.setTransactionIsolation(Connection.TRANSACTION_READ_UNCOMMITTED);
+		conn.setAutoCommit(true);
+		stmt = conn.createStatement();        
+		common = new SERV_CommonData(conn);
+        //----=======================================----//   
+        
+		Hashtable tmpHeader =  null;
+		//Hashtable tmpCust = null;
+		Hashtable docdt = null;
+		
+		 /** Last Update 2015.06.24 For Repair Condo ***/
+        String tempArr[] = null;
+        if(iDocNo.length()>0){
+           tempArr  = iDocNo.split("\\-");
+        }
+        String condoProfileArr[] = GetCondoProfile(conn,tempArr[0],tempArr[1]);
+        //---------------------------------------------------------------------
+		
+
+	   if (iDocNo.length()>0) {
+	        //----======================== Find DocHD Data =============================----//
+			 tmpHeader = common.getDocHeaderDetails(iDocNo);
+		     inFormEmp = doString.checkString((String) tmpHeader.get("inform_emp"),"");
+	         projDesc = doString.checkString((String) tmpHeader.get("proj_desc"),"");
+	         iCompany = doString.checkString((String) tmpHeader.get("i_company"),"");
+	         iProject = doString.checkString((String) tmpHeader.get("i_project"),"");
+	         selProj = iCompany+":"+iProject;
+	         nCustomer = doString.checkString((String) tmpHeader.get("n_customer"),"");
+	         nCustTel = doString.checkString((String) tmpHeader.get("n_cust_tel"),"");
+	         iLock = doString.checkString((String) tmpHeader.get("i_lock"),"");
+	         cDesc = doString.checkString((String) tmpHeader.get("c_desc"),"");
+	         cDesc = str.replace(cDesc,"|break|","<br>");
+	         cDesc = str.replace(cDesc," ","&nbsp;"); 			
+			 inFormDate = doString.checkString((String) tmpHeader.get("inform_date"),"");
+			 dAppoint = doString.checkString((String) tmpHeader.get("d_appoint"),"-");
+			 dEstClose = doString.checkString((String) tmpHeader.get("d_est_close"),"-");
+
+
+			 //----------------------------- Project Condo ------------------------
+			sql.delete(0, sql.length());
+			sql.append("select i_company, i_project ")
+				 .append("from lan:serv_condo ")
+				 .append("where i_company = '"+iCompany+"' ")
+				 .append("and i_project = '"+iProject+"' ");
+			rs = stmt.executeQuery(sql.toString());
+			if (rs.next()==true) {
+				chk_condo = "Y";
+			} else {
+				chk_condo = "N";
+			}
+
+			sql.delete(0, sql.length());
+			sql.append("select distinct i_service_employ ")
+				 .append("from lan:serv_dochd ")
+				 .append("where i_docno = '"+iDocNo+"' ");		
+			rs = stmt.executeQuery(sql.toString());
+			if (rs.next()) {
+				emp_serv = doString.checkString(rs.getString("i_service_employ"));
+			}                       
+						 
+			name_serv = "";			
+			if (emp_serv.trim().length()>4) {
+						sql.delete(0, sql.length());
+						sql.append("select distinct i_employ, n_prename_th, n_nemploy_th, n_semploy_th ")
+							 .append("from docflow:acemploy ")
+							 .append("where i_employ = '"+emp_serv+"' ");		
+						rs = stmt.executeQuery(sql.toString());		
+						if (rs.next()) {
+							name_serv = doString.checkString(doString.DisplayThai(rs.getString("n_prename_th")))+doString.checkString(doString.DisplayThai(rs.getString("n_nemploy_th")))+" "+doString.checkString(doString.DisplayThai(rs.getString("n_semploy_th")));
+						}	
+			} else {
+		
+						sql.delete(0, sql.length());
+						sql.append("select distinct i_cust, n_name, n_sname ")
+							 .append("from lan:serv_cname ")
+							 .append("where i_cust = '"+emp_serv+"' ");		
+						rs = stmt.executeQuery(sql.toString());
+						if (rs.next()) {
+							name_serv = doString.checkString(doString.DisplayThai(rs.getString("n_name")))+" "+doString.checkString(doString.DisplayThai(rs.getString("n_sname")));
+						}				
+			}//end if chk emp_serv
+			 
+			
+			
+			//----======================= Get Customer Details ===========================----//
+
+			tmpHeader = new Hashtable();
+			tmpHeader = common.getCustomerDetails(iCompany,iProject,iLock);
+		    housePlan = doString.checkString((String) tmpHeader.get("i_model"),"");
+		    houseId = doString.checkString((String) tmpHeader.get("i_house"),"");
+		    iLock = doString.checkString((String) tmpHeader.get("i_lock"),"");
+		    iCustomer = doString.checkString((String) tmpHeader.get("i_customer"),"");
+			guranteeDesc = doString.checkString((String) tmpHeader.get("gurantee_desc"),"");
+			guranteeDate = doString.checkString((String) tmpHeader.get("gurantee_date"),"");
+			custName = doString.checkString((String) tmpHeader.get("n_customer"),"");
+			custTel = doString.checkString((String) tmpHeader.get("n_cust_tel"),"");
+	
+			//----============================= Get JobItem =============================----//
+			sql.delete(0,sql.length());
+			sql.append(" select a.*,b.n_itmjob,b.n_count,c.n_desc,d.bus_name,e.n_desc as remark_desc  ")
+				 // .append(" f.b_name,f.b_file_name,f.b_name2,f.b_file_name2 , ")
+				 // .append(" f.p_name1,f.p_file_name1,f.p_name2,f.p_file_name2 , ")
+				//  .append(" f.a_name,f.a_file_name,f.a_name2,f.a_file_name2  ")
+				  .append(" from lan:serv_payment a ")
+			      .append(" left join lan:serv_boq b on b.i_itmjob=a.i_itmjob ")
+			      .append(" left join lan:serv_xstd c on c.i_type='01' and c.i_code=a.i_itmjob_area ")
+			      .append(" left join lan:stpvendr d on d.vend_code=a.i_ven_cut ")
+				  .append(" left join lan:serv_xstd e on e.i_type='06' and e.i_code=a.f_remark ")
+				  //.append(" left join lan:serv_docatt f on f.i_docno=a.i_docno and f.i_seq=a.i_seq and f.i_itmjob=a.i_itmjob ")				 
+				  //.append(" and f.i_vendor=a.i_vendor and f.i_itmjob_area=a.i_itmjob_area")
+				  //.append(" and ( ")
+				 // .append(" length(f.b_name)>0 or length(f.b_name2)>0 ")
+				 // .append(" or length(f.a_name)>0 or length(f.a_name2)>0 ")
+				 // .append(" or length(f.p_name1)>0 or length(f.p_name2)>0 ")
+			      // .append(" ) ")
+			      .append(" where a.i_docno='").append(iDocNo).append("' and a.f_itmstatus<>'CAN' ");
+			      //.append(" order by i_itmjob,i_seq ");
+			rs = stmt.executeQuery(sql.toString());
+			while (rs.next()) {
+				   docdt = new Hashtable();
+				   docdt.put("i_itmjob",doString.checkString(rs.getString("i_itmjob"),""));
+				   docdt.put("n_itmjob",doString.checkString(rs.getString("n_itmjob"),""));
+				   docdt.put("n_count",doString.checkString(rs.getString("n_count"),""));
+				   docdt.put("i_vendor",doString.checkString(rs.getString("i_vendor"),""));
+				   docdt.put("bus_name",doString.checkString(rs.getString("bus_name"),""));
+				   docdt.put("i_ven_cut",doString.checkString(rs.getString("i_ven_cut"),""));
+				   docdt.put("p_cut",doString.checkString(rs.getString("p_cut"),""));
+				   docdt.put("f_remark",doString.checkString(rs.getString("f_remark"),""));
+				   docdt.put("remark_desc",doString.checkString(rs.getString("remark_desc"),""));
+				   docdt.put("q_wage_unit",doString.checkString(rs.getString("q_wage_unit"),""));
+				   docdt.put("z_wage_price",doString.checkString(Double.toString(rs.getDouble("z_wage_price")),""));
+				   docdt.put("q_good_unit",doString.checkString(rs.getString("q_good_unit"),""));
+				   docdt.put("z_good_price",doString.checkString(Double.toString(rs.getDouble("z_good_price")),""));
+				   docdt.put("z_amount_pay",doString.checkString(rs.getString("z_amount_pay"),""));
+				   docdt.put("c_itmjob",doString.checkString(rs.getString("c_itmjob"),""));
+				   docdt.put("n_desc",doString.checkString(rs.getString("n_desc"),""));			   
+				   docdt.put("f_itmstatus",doString.checkString(rs.getString("f_itmstatus"),""));			 
+
+				   //docdt.put("i_seq",doString.checkString(rs.getString("i_seq"),""));	
+				   //docdt.put("i_keygen",doString.checkString(rs.getString("i_keygen"),""));	
+				   
+					//----- add new , 2009-06-30 -------//
+					/*docdt.put("b_name",doString.checkString(rs.getString("b_name"),""));			 
+					docdt.put("b_file_name",doString.checkString(rs.getString("b_file_name"),""));			 
+					docdt.put("b_name2",doString.checkString(rs.getString("b_name2"),""));			 
+					docdt.put("b_file_name2",doString.checkString(rs.getString("b_file_name2"),""));			 
+
+					docdt.put("p_name",doString.checkString(rs.getString("p_name1"),""));			 
+					docdt.put("p_file_name",doString.checkString(rs.getString("p_file_name1"),""));			 
+					docdt.put("p_name2",doString.checkString(rs.getString("p_name2"),""));			 
+					docdt.put("p_file_name2",doString.checkString(rs.getString("p_file_name2"),""));		
+
+					docdt.put("a_name",doString.checkString(rs.getString("a_name"),""));			 
+					docdt.put("a_file_name",doString.checkString(rs.getString("a_file_name"),""));			 
+					docdt.put("a_name2",doString.checkString(rs.getString("a_name2"),""));			 
+					docdt.put("a_file_name2",doString.checkString(rs.getString("a_file_name2"),""));		
+					 */
+					
+				   docdt.put("i_docno",doString.checkString(rs.getString("i_docno"),""));	
+				   docdt.put("i_itmjob",doString.checkString(rs.getString("i_itmjob"),""));
+				   docdt.put("i_vendor",doString.checkString(rs.getString("i_vendor"),""));	
+				   docdt.put("i_itmjob_area",doString.checkString(rs.getString("i_itmjob_area"),""));		
+				   
+				   docdt.put("i_seq",doString.checkString(rs.getString("i_seq"),""));	
+				   docdt.put("i_keygen",doString.checkString(rs.getString("i_keygen"),""));	
+   				   //docdt.put("i_seq",doString.checkString(rs.getString("i_seq"),""));			 
+				   //docdt.put("i_itmjob_area",doString.checkString(rs.getString("i_itmjob_area"),""));			 
+
+				   jobList.addElement(docdt);
+			} // end while
+			rs.close();
+			//----=====================================================================----//
+				
+		    
+	   } // end if check i_docno
+   
+%>
+
+
+<HTML>
+<HEAD>
+<TITLE>Open Job - Display2</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=TIS-620">
+<LINK rel="StyleSheet" href="SERV_Style.css" type="text/css">
+<script language="javascript" src="script_fx.js"></script>
+
+<script language="javascript">
+<!--
+
+function openJob() {
+MM_showLayersCanBox(false); 
+   document.forms[0].action="SERV_OpenJob.jsp?load=yes";
+   document.forms[0].target="";      
+   document.forms[0].submit();
+}
+
+function printInfJob() {
+MM_showLayersCanBox(false); 
+   document.forms[0].action="<%=Constants.APP_PATH%>/SERV_PrintInfJobServlet";
+   document.forms[0].target="_blank";   
+   document.forms[0].submit();
+}
+
+function printOpenJob() {
+MM_showLayersCanBox(false); 
+/*alert("            ขออภัย !! เนื่องจากระบบพิมพ์ใบแจ้งซ่อมมีปัญหา(ชั่วคราว) \n\nถ้าต้องการพิมพ์กรุณาส่งเลขที่ใบแจ้งซ่อมมาทางเมลล์ watinee@lh.co.th \nหรือติดต่อ เป้ 0-2230-8458, ลี่ 0-2230-8491");*/
+
+   document.forms[0].action="/LHServ/SERV_PrintOpenJobServlet?empname=<%=doString.DisplayThai(doString.checkString(empname))%>";
+   //document.forms[0].action="/LHServ/SERV_PrintOpenJobServlet";
+   document.forms[0].target="_blank";   
+   document.forms[0].submit();
+
+}
+
+function prinImage() {
+MM_showLayersCanBox(false); 
+   document.forms[0].action="/LHServ/SERV_PrintImageServlet";
+   //document.forms[0].action="/LHServ/SERV_OpenJobPrintImageServlet";
+   document.forms[0].target="_blank";   
+   document.forms[0].submit();
+}
+
+function cancelDoc() {
+MM_showLayersCanBox(false); 
+   if (confirm(" คุณแน่ใจว่าต้องการยกเลิกใบแจ้งซ่อมนี้ ?")) {
+       document.forms[0].mode.value="CANCEL";//CANCEL_DOC2
+	  
+	   /*document.forms[0].action="<%=Constants.APP_PATH%>/SERV_OpenJobServlet";
+	   document.forms[0].target="";
+	   document.forms[0].submit();*/
+	   
+	    MM_showLayersCanBox(true);
+   }
+}
+
+function doCancelBox(status) {
+		if(status){
+			if(document.forms[0].iCanTypeDDL.value ==''){
+				alert("กรุณาเลือกสาเหตุกรณี 'CANCEL' ด้วย!! ");
+				document.forms[0].iCanTypeDDL.focus();
+		        return;
+			}else{   			
+			    document.forms[0].action="<%=Constants.APP_PATH%>/SERV_OpenJobServlet";
+			    document.forms[0].target="";
+			    document.forms[0].submit();
+			 }
+		}
+		document.getElementById("canBox").style.visibility ='hidden';
+}
+
+function MM_showLayersCanBox(status) {
+	 if(status){			 
+		document.getElementById("canBox").style.visibility ='visible';
+	}else{
+		 document.getElementById("canBox").style.visibility ='hidden';
+	}
+}
+//-->
+</script>
+
+<base target="_self">
+</HEAD>
+
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0">
+
+<FORM METHOD="POST" ACTION="">
+
+<input type="hidden" name="mode" value="<%=mode%>">
+<input type="hidden" name="print_target" value="PAYMENT">
+<input type="hidden" name="i_docno" value="<%=iDocNo%>">
+<input type="hidden" name="d_appoint" value="<%=dAppoint%>">
+<input type="hidden" name="d_est_close" value="<%=dEstClose%>">
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="100%" class="BD" >
+    
+    
+      <table border="0" width="100%" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="50%" class="bigh"><img border="0" src="images/i_home.gif" align="absmiddle" width="20" height="20">&nbsp;
+            Print Open Job</td>
+          <td width="50%" align="right"></td>
+        </tr>
+      </table>
+
+
+<br style="font-size:10pt">
+                
+
+            <table border="0" width="100%" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="item_tab1"><img border="0" src="images/i_i.gif" align="absmiddle" width="20" height="20"></td>
+                <td class="item_tab2" width="200">รายละเอียดการแจ้งซ่อม</td>
+                <td class="item_tab3"></td>
+                <td>&nbsp;</td>                
+              </tr>
+            </table>
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="5" valign="top"><img border="0" src="images/Corn01.gif" width="5" height="5"></td>
+    <td class="frmTop">&nbsp;</td>
+    <td width="5" valign="top" align="right"><img border="0" src="images/Corn02.gif" width="5" height="5"></td>
+  </tr>
+</table>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="100%" class="frmLR" align="center">
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="item ; dotline01" height="22" width="13%">โครงการ :</td>
+    <td height="22" width="39%" class="dotline01"><%=doString.DisplayThai(projDesc)%></td>
+    <td height="22" class="item ; dotline01" width="14%">เลขที่ใบแจ้งซ่อม
+      :</td>
+    <td height="22" width="34%" class="dotline01"><%=iDocNo%></td>
+  </tr>
+  <tr>
+    <td class="item ; dotline01" height="22" width="13%">บ้านเลขที่ :</td>
+    <td height="22" width="39%" class="dotline01"><%=houseId%></td>
+    <td height="22" class="item ; dotline01" width="14%">แปลง :</td>
+    <td height="22" width="34%" class="dotline01"><%=iLock%></td>
+  </tr>
+  <tr>
+    <td class="item ; dotline01" height="22" width="13%">แบบบ้าน :</td>
+    <td height="22" width="39%" class="dotline01"><%=housePlan%></td>
+    <td height="22" class="item ; dotline01" width="14%">&nbsp;</td>
+    <td height="22" width="34%" class="dotline01">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="item ; dotline01" height="22" width="13%">ชื่อผู้แจ้ง/ลูกค้า
+      :</td>
+    <td height="22" width="39%" class="dotline01"><%=doString.DisplayThai(common.joinContactAndOwner(nCustomer,custName))%></td>
+    <td height="22" class="item ; dotline01" width="14%">โทรศัพท์ติดต่อ :</td>
+    <td height="22" width="34%" class="dotline01"><%=common.joinContactAndOwner(nCustTel,custTel)%></td>
+  </tr>
+  <tr>
+    <td class="item ; dotline01" height="22" width="13%">การประกัน :</td>
+    <td height="22" width="39%" class="dotline01"><%
+   // =doString.DisplayThai(guranteeDesc)
+    if(condoProfileArr[0].equals("YES")){ //CASE : is Condo
+    	out.println(condoProfileArr[5]);
+    }else{ // CASE : Not Condo
+    	out.println(doString.DisplayThai(guranteeDesc));
+    }
+    %></td>
+    <td height="22" class="item ; dotline01" width="14%">วันที่หมดประกัน
+      :</td>
+    <td height="22" width="34%" class="dotline01"><%   
+    //=guranteeDate
+    if(condoProfileArr[0].equals("YES")){ //CASE : is Condo
+    	out.println(condoProfileArr[3]);
+    }else{ // CASE : Not Condo
+    	out.println(guranteeDate);
+    }
+    %></td>
+  </tr>
+  <tr>
+    <td class="item ; dotline01" height="22" width="13%">ผู้รับเรื่อง
+      :</td>
+    <td height="22" width="39%" class="dotline01"><% if(chk_condo.equals("Y")) { out.println(name_serv); } else {  out.println(doString.DisplayThai(inFormEmp));  } %></td>
+    <td height="22" class="item ; dotline01" width="14%">วันเวลาที่แจ้ง
+      :</td>
+    <td height="22" width="34%" class="dotline01"><%=inFormDate%></td>
+  </tr>
+  <tr>
+    <td class="item ; dotline01" height="22" width="13%">วันที่นัดซ่อม
+      :</td>
+    <td height="22" width="39%" class="dotline01"><%=dAppoint%></td>
+    <td height="22" class="item ; dotline01" width="14%">วันที่ประมาณการเสร็จ
+      :</td>
+    <td height="22" width="34%" class="dotline01"><%=dEstClose%></td>
+  </tr>
+</table>
+
+</td>
+  </tr>
+</table>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="5" valign="bottom"><img border="0" src="images/Corn03.gif" width="5" height="5"></td>
+    <td class="frmBottom">&nbsp;</td>
+    <td width="5" valign="bottom" align="right"><img border="0" src="images/Corn04.gif" width="5" height="5"></td>
+  </tr>
+</table>
+
+
+<br style="font-size:10pt">
+
+
+            <table border="0" width="100%" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="item_tab1"><img border="0" src="images/i_i.gif" align="absmiddle" width="20" height="20"></td>
+                <td class="item_tab2" width="200">รายการซ่อม</td>
+                <td class="item_tab3"></td>
+                <td>&nbsp;</td>
+              </tr>
+            </table>
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="5" valign="top" bgcolor="#D7E6FF"><img border="0" src="images/Corn01.gif" width="5" height="5"></td>
+    <td class="frmTop" bgcolor="#D7E6FF">&nbsp;</td>
+    <td width="5" valign="top" align="right" bgcolor="#D7E6FF"><img border="0" src="images/Corn02.gif" width="5" height="5"></td>
+  </tr>
+</table>
+
+
+
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="100%" class="frmL">
+    
+      <table border="0" width="100%" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="3%" rowspan="2" class="col_name">No.</td>
+          <td width="15%" rowspan="2" class="col_name">รายการซ่อม</td>
+          <td width="6%" rowspan="2" class="col_name">หน่วยนับ</td>
+          <td width="6%" rowspan="2" class="col_name">ผู้รับเหมา</td>
+          <td colspan="3" class="col_name">ค่าแรง</td>
+          <td colspan="3" class="col_name">ค่าของ</td>
+          <td width="8%" rowspan="2" class="col_name">รวมเงิน</td>
+          <td width="15%" rowspan="2" class="col_name">ตัดเงิน</td>
+          <td width="6%" rowspan="2" class="col_name">%</td>
+          <td width="4%" rowspan="2" class="col_name">สาเหตุ</td>
+        </tr>
+        <tr>
+          <td width="8%" class="col_nameLow">ต่อหน่วย</td>
+          <td width="5%" class="col_nameLow">จำนวน</td>
+          <td width="9%" class="col_nameLow">รวม</td>
+          <td width="8%" class="col_nameLow">ต่อหน่วย</td>
+          <td width="5%" class="col_nameLow">จำนวน</td>
+          <td width="9%" class="col_nameLow">รวม</td>
+        </tr>
+        <%
+        int line = 0;
+        DecimalFormat format = new DecimalFormat("#,##0.00");
+        double grandTotalWage = 0.00;
+        double grandTotalGoods = 0.00;
+        double grandTotal = 0.00;
+
+	//------- Get Company Name for used in vendor cut = 999999 ------------//
+	String companyName = "-", fstatus = "", iVenCut = "", venCutName = "", showPercentCut = "", remarkDiff = "", wrongType = "" ;
+	String comId = iDocNo.length()>2 ? iDocNo.substring(0,2) : "";
+	 sql.delete(0,sql.length());
+	 sql.append(" select * from lan:acxcompa where i_company='").append(comId).append("' ");
+	 rs = stmt.executeQuery(sql.toString());
+	 if (rs.next()) {
+		companyName = doString.checkString(rs.getString("n_company"),"");		 	 
+	 }
+	 rs.close();
+
+        boolean foundClose = false;
+		boolean foundNoChange = false;
+		double wageUnit = 0, goodsUnit = 0, wagePrice = 0, goodsPrice = 0, totalWage = 0, totalGoods = 0, subTotal = 0;
+		double checkWage = 0, checkGoods = 0;
+		double checkPriceW = 0, checkPriceG = 0;
+
+        for (int i=0;i<jobList.size();i++) {
+                line++;
+                //Hashtable docdt  = (Hashtable) jobList.elementAt(i);
+				docdt = new Hashtable();
+				docdt  = (Hashtable) jobList.elementAt(i);
+                wageUnit = Double.parseDouble((String) docdt.get("z_wage_price"));
+                goodsUnit = Double.parseDouble((String) docdt.get("z_good_price"));
+
+                wagePrice = Double.parseDouble((String) docdt.get("q_wage_unit"));
+                goodsPrice = Double.parseDouble((String) docdt.get("q_good_unit"));
+                totalWage = 0;
+                totalWage = 0;
+                subTotal = 0;
+                
+                totalWage = wagePrice * (double) wageUnit;
+                totalGoods = goodsPrice * (double) goodsUnit;
+                subTotal = totalWage + totalGoods;
+                
+                grandTotalWage += totalWage;
+                grandTotalGoods += totalGoods;
+                grandTotal += subTotal;
+
+
+				//-------- check item status ------------------//
+			   fstatus = doString.checkString((String) docdt.get("f_itmstatus"),"");
+			   if (fstatus.equalsIgnoreCase("CLS")) foundClose = true;
+
+
+
+				//-------- Get Vendor Cut Name -----------//
+				iVenCut = doString.checkString((String) docdt.get("i_ven_cut"));
+				venCutName = "";
+				if (iVenCut.equalsIgnoreCase("999999")) {
+				   venCutName = companyName;
+				} else {
+				   venCutName = doString.checkString((String) docdt.get("bus_name"));
+				}
+
+
+				//------- Get Percent Cut ---------//
+				showPercentCut = doString.checkString((String) docdt.get("p_cut"),"");
+				try {
+				   showPercentCut = format.format(Double.parseDouble(showPercentCut));
+				} catch (Exception e) {
+				   showPercentCut = "";
+				}
+
+
+	
+		//------ Get Different from docdt and payment -------//
+		remarkDiff = "";
+		foundNoChange = false;
+		sql.delete(0,sql.length());
+		sql.append(" select * from lan:serv_docdt where i_itmjob='").append(doString.checkString((String) docdt.get("i_itmjob"))).append("' ")
+			  .append(" and i_docno='").append(iDocNo).append("' ")
+			  .append(" and i_vendor='").append(doString.checkString((String) docdt.get("i_vendor"))).append("' ");
+		rs = stmt.executeQuery(sql.toString());
+		while (rs.next()) {
+			checkWage = rs.getDouble("z_wage_price");
+			checkGoods = rs.getDouble("z_good_price");
+			checkPriceW = rs.getDouble("q_wage_unit");
+			checkPriceG = rs.getDouble("q_good_unit");
+			
+			if (wageUnit==checkWage && goodsUnit==checkGoods &&
+				wagePrice==checkPriceW && goodsPrice==checkPriceG					
+			) {
+				 foundNoChange = true;
+				 break;
+			}
+		} // end while
+		rs.close();
+
+		if (!foundNoChange) {
+			remarkDiff = "<b style='color:red'>*</b>";
+		}
+		/*
+		String remarkDiff = "";
+		sql.delete(0,sql.length());
+		sql.append(" select * from lan:serv_docdt where i_itmjob='").append(doString.checkString((String) docdt.get("i_itmjob"))).append("' ")
+		  .append(" and i_docno='").append(iDocNo).append("' ")
+	  .append(" and i_vendor='").append(doString.checkString((String) docdt.get("i_vendor"))).append("' ");
+		rs = stmt.executeQuery(sql.toString());
+		if (rs.next()) {
+			double checkWage = rs.getDouble("z_wage_price");
+			double checkGoods = rs.getDouble("z_good_price");
+			if (wageUnit!=checkWage || goodsUnit!=checkGoods) {
+				remarkDiff = "<b style='color:red'>*</b> ";
+			}
+		}
+		rs.close();*/
+
+
+
+		//----------- Get Wrong Type Flag ------------//
+		wrongType = doString.checkString((String) docdt.get("remark_desc"));
+		/*
+		String wrongType = doString.checkString((String) docdt.get("f_remark"));
+		if (venCutName.trim().length()>0 && showPercentCut.trim().length()>0) {
+  		    if (wrongType.trim().equalsIgnoreCase("1")) {
+		        wrongType = "Y";
+		    } else {
+		        wrongType = "N";
+		    } 
+		} else { 
+		    wrongType = "";
+		}*/
+
+
+		%>
+		<tr>
+		  <td width="3%" align="center" class="dotline"><%=line%></td>
+		  <td width="17%" class="dotline"><%=remarkDiff+doString.DisplayThai(doString.checkString((String) docdt.get("n_itmjob")))%></td>
+		  <td width="6%" class="dotline" align="center"><%=doString.DisplayThai(doString.checkString((String) docdt.get("n_count")))%></td>
+		  <td width="6%" class="dotline ; item"><%=doString.checkString((String) docdt.get("i_vendor"))%></td>
+		  <td width="8%" align="right" class="dotline"><%=format.format(wagePrice)%></td>
+		  <td width="5%" align="right" class="dotline"><%=format.format(wageUnit)%></td>
+		  <td width="9%" align="right" class="dotline"><%=format.format(totalWage)%></td>
+		  <td width="8%" align="right" class="dotline"><%=format.format(goodsPrice)%></td>
+		  <td width="5%" align="right" class="dotline"><%=format.format(goodsUnit)%></td>
+		  <td width="9%" align="right" class="dotline"><%=format.format(totalGoods)%></td>
+		  <td width="8%" align="right" class="dotline"><%=format.format(subTotal)%></td>
+		  <td width="15%" align="left" class="dotline"><%=doString.DisplayThai(doString.checkString(venCutName,"-"))%></td>
+		  <td width="6%" align="right" class="dotline"><%=doString.checkString(showPercentCut,"-")%></td>
+		  <td width="4%" align="center" class="dotline"><%=doString.DisplayThai(doString.checkString(wrongType,"-"))%></td>
+		</tr>
+		<%
+
+           } // end for
+           
+           while (line<Constants.SERV_OPENJOB_LINE) {
+                line++;
+		        %>
+		        <tr>
+		          <td width="3%" align="center" class="dotline">&nbsp;</td>
+		          <td width="17%" class="dotline">&nbsp;</td>
+		          <td width="6%" class="dotline" align="center">&nbsp;</td>
+		          <td width="6%" class="dotline ; item">&nbsp;</td>
+		          <td width="8%" align="right" class="dotline">&nbsp;</td>
+		          <td width="5%" align="right" class="dotline">&nbsp;</td>
+		          <td width="9%" align="right" class="dotline">&nbsp;</td>
+		          <td width="8%" align="right" class="dotline">&nbsp;</td>
+		          <td width="5%" align="right" class="dotline">&nbsp;</td>
+		          <td width="9%" align="right" class="dotline">&nbsp;</td>
+		          <td width="8%" align="right" class="dotline">&nbsp;</td>
+		          <td width="15%" align="right" class="dotline">&nbsp;</td>
+		          <td width="6%" align="right" class="dotline">&nbsp;</td>
+		          <td width="4%" align="right" class="dotline">&nbsp;</td>
+		        </tr>
+		        <%
+		     }  // end while
+        %>
+        <tr>
+          <td width="3%" align="center" class="dotline">&nbsp;</td>
+          <td width="17%" class="dotline">&nbsp;</td>
+          <td width="6%" class="dotline" align="center">&nbsp;</td>
+          <td width="6%" class="dotline ; item" align="right">รวม</td>
+          <td width="8%" align="right" class="dotline ; item">&nbsp;</td>
+          <td width="5%" align="right" class="dotline ; item">&nbsp;</td>
+          <td width="9%" align="right" class="dotline ; item"><%=format.format(grandTotalWage)%></td>
+          <td width="8%" align="right" class="dotline ; item">&nbsp;</td>
+          <td width="5%" align="right" class="dotline ; item">&nbsp;</td>
+          <td width="9%" align="right" class="dotline ; item"><%=format.format(grandTotalGoods)%></td>
+          <td width="8%" align="right" class="dotline ; item"><%=format.format(grandTotal)%></td>
+	  <td width="15%" align="right" class="dotline">&nbsp;</td>
+	  <td width="6%" align="right" class="dotline">&nbsp;</td>
+	  <td width="4%" align="right" class="dotline">&nbsp;</td>
+        </tr>      
+      </table>
+    
+    </td>
+  </tr>
+</table>
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="5" valign="bottom"><img border="0" src="images/Corn03.gif" width="5" height="5"></td>
+    <td class="frmBottom">&nbsp;</td>
+    <td width="5" valign="bottom" align="right"><img border="0" src="images/Corn04.gif" width="5" height="5"></td>
+  </tr>
+</table>
+
+
+<br style="font-size:10pt">
+
+
+<%
+   if (jobList.size()>0) {
+%>
+            <table border="0" width="100%" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="item_tab1"><img border="0" src="images/i_i.gif" align="absmiddle" width="20" height="20"></td>
+                <td class="item_tab2" width="200">หมายเหตุ</td>
+                <td class="item_tab3"></td>
+                <td>&nbsp;</td>
+              </tr>
+            </table>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="5" valign="top"><img border="0" src="images/Corn01.gif" width="5" height="5"></td>
+    <td class="frmTop">&nbsp;</td>
+    <td width="5" valign="top" align="right"><img border="0" src="images/Corn02.gif" width="5" height="5"></td>
+  </tr>
+</table>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="100%" class="frmLR" align="center">
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+
+ 
+         <%
+        line = 0;
+        for (int i=0;i<jobList.size();i++) {
+                line++;
+				docdt = new Hashtable();
+                docdt  = (Hashtable) jobList.elementAt(i);          
+                %>
+				  <tr>
+				    <td class="item ; dotline01" height="22" width="12%">รายการที่ <%=line%> :</td>
+				    <td height="22" width="80%" class="dotline01"><%=doString.DisplayThai(doString.checkString((String) docdt.get("c_itmjob")))%></td>
+				    <td height="22" width="8%" class="dotline01"><%=doString.DisplayThai(doString.checkString((String) docdt.get("n_desc")))%></td>
+				  </tr>
+                <%
+         } // end for
+        
+        while (line<Constants.SERV_OPENJOB_LINE) {
+            line++;
+		        %>  
+				  <tr>
+				    <td class="item ; dotline01" height="22" width="12%">&nbsp;</td>
+				    <td height="22" width="80%" class="dotline01">&nbsp;</td>
+				    <td height="22" width="8%" class="dotline01">&nbsp;</td>
+				  </tr>
+				<%
+		  } // end while
+       %>  
+       
+</table>
+
+</td>
+  </tr>
+</table>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="5" valign="bottom"><img border="0" src="images/Corn03.gif" width="5" height="5"></td>
+    <td class="frmBottom">&nbsp;</td>
+    <td width="5" valign="bottom" align="right"><img border="0" src="images/Corn04.gif" width="5" height="5"></td>
+  </tr>
+</table>
+
+<%
+   } // end if check jobList
+        //String pathUrlX = hostName+"/AppServ/uploads/";
+		String keyFile = "";
+		String yyyyMMdd =  GetDateKeyinYYYYMMDD(conn,iDocNo);
+		String []tmp = yyyyMMdd.split("\\-"); //2012-08-15
+        String yyyy = tmp[0];
+        String month = tmp[1];
+        
+        String imagesIdUrl = "";
+	    //pathUrlX += yyyy+"/"+month+"/"+iDocNo+"/";	
+	    
+	    String pathUrlX = Utilizer.getPropValue("DOMAIN_NAME")+Utilizer.getPropValue("PATH_UPLOAD")+yyyy+"/"+month+"/"+iDocNo+"/";	
+	    String pathTmp = Utilizer.getPropValue("IP_HOST_UPLOAD")+Utilizer.getPropValue("PATH_UPLOAD")+yyyy+"/"+month+"/"+iDocNo+"/";
+	    
+	    
+		String docPdfPath = "";
+		String pdfFileName = "";
+		//System.out.println("docPdfPath1="+docPdfPath);
+		pdfFileName = "pdf_"+iDocNo+".pdf";
+		//System.out.println("pdfFileName="+pdfFileName);							
+		docPdfPath = pathUrlX+"/"+pdfFileName;
+		//System.out.println("docPdfPath2="+docPdfPath);
+%>
+<br style="font-size:10pt">
+
+<%-- ===================================  Attach File ================================================ --%>
+<br style="font-size:10pt">
+			            <table border="0" width="100%" cellspacing="0" cellpadding="0">
+			              <tr>
+			                <td class="item_tab1"><img border="0" src="images/i_i.gif" align="absmiddle" width="20" height="20"></td>
+			                <td class="item_tab2" width="160">รูปภาพงานซ่อม(ขนาดไม่เกิน 500 K)</td>
+			                <td class="item_tab3"></td>
+			                <td class="textgray">
+			                           <!--  &nbsp;&nbsp;<a href="http://132.146.1.105:8080/share.cgi?ssid=0myU1EL" target="blank_">ตรวจสอบรูปภาพ Backup</a> 
+											-->
+											&nbsp;
+											<%
+
+											//if(getHttpResponseCode(docPdfPath)==200){
+											%>
+											   <img border="0" src="images/attach-file_90371.png" align="absmiddle" width="20" height="20">
+											   <a href="<%=docPdfPath%>" target="_blank"><%=pdfFileName%></a>
+											   &nbsp;
+											<%//}
+											%>			                
+			                </td>
+			              </tr>
+			            </table>
+
+			<table border="0" width="100%" cellspacing="0" cellpadding="0">
+			  <tr>
+			    <td width="5" valign="top"><img border="0" src="images/Corn01.gif" width="5" height="5"></td>
+			    <td class="frmTop">&nbsp;</td>
+			    <td width="5" valign="top" align="right"><img border="0" src="images/Corn02.gif" width="5" height="5"></td>
+			  </tr>
+			</table>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="100%" class="frmLR" align="center">
+			<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<%	 
+		line = 0;
+		int seq = 1;
+		String urlImg =  "";//request.getContextPath()+"/pictures/"+iDocNo+"/";
+		String bgColor = "";
+		for (int i=0;i<jobList.size();i++) {
+						 line++;
+						 bgColor = "#e8f2fe";
+						 if(line%2==0){
+						  bgColor= "#ffffff";
+						 }								
+	                     docdt  = (Hashtable) jobList.elementAt(i);    
+                         keyFile   = iDocNo+"_"+docdt.get("i_keygen").toString()+"_"+docdt.get("i_vendor").toString()+"_"+docdt.get("i_itmjob_area").toString()+"_"+line;
+						// System.out.println("keyFile = "+keyFile);
+						// System.out.println("======================== print file line ================================");
+						//======================== print file line 1 ================================//
+						%>
+						  <tr bgcolor="<%=bgColor%>">
+							<td class="item" height="22" width="5%"><nobr>รายการที่ <%=line%> : </nobr></td>	
+							<td class="item" height="22" width="20%"><nobr>รูปภาพก่อนซ่อม1 : 
+							<%
+							imagesIdUrl = pathUrlX+keyFile+"_a.jpg";
+							System.out.println("imagesIdUrl 1="+imagesIdUrl);
+							int resCode = getHttpResponseCode(pathTmp+keyFile+"_a.jpg");
+							if(resCode==200) {
+							    //(docId,mm,yyyy,imgId)
+								%>
+									<a href="<%=imagesIdUrl%>" target="_blank"><img src="<%=imagesIdUrl%>" width="25" height="20" border="0"></a> &nbsp; &nbsp; 							
+								<%								
+							}else{
+								out.println("ไม่มีรูปภาพ");
+								%>
+								  <div id="a_<%=line%>"></div>
+								<%
+							}
+							 %>
+							</nobr></td>
+							<td class="item" height="22" width="20%"><nobr>รูปภาพก่อนซ่อม2 : 
+							<%
+							imagesIdUrl = pathUrlX+keyFile+"_b.jpg";
+							System.out.println("imagesIdUrl 2="+imagesIdUrl);
+							resCode = getHttpResponseCode(pathTmp+keyFile+"_b.jpg");
+							if(resCode==200) {
+								%>
+									<a href="<%=imagesIdUrl%>" target="_blank"><img src="<%=imagesIdUrl%>" width="25" height="20" border="0"></a> &nbsp; &nbsp; 							
+								<%								
+							}else{
+								out.println("ไม่มีรูปภาพ");
+								%>
+								<div id="b_<%=line%>"></div>
+								<%
+							}
+							 %>							
+							</nobr></td>
+						  </tr>					
+						<%
+						//System.out.println("###################################################");				 
+	    }
+	    %>
+						</table>
+					</td>
+				</tr>
+			</table>
+			<table border="0" width="100%" cellspacing="0" cellpadding="0">
+			  <tr>
+			    <td width="5" valign="bottom"><img border="0" src="images/Corn03.gif" width="5" height="5"></td>
+			    <td class="frmBottom">&nbsp;</td>
+			    <td width="5" valign="bottom" align="right"><img border="0" src="images/Corn04.gif" width="5" height="5"></td>
+			  </tr>
+			</table>
+<%-- ===================================  Attach File ================================================ --%>
+
+<br style="font-size:10pt">
+
+        <table border="0" width="100%" cellspacing="0" cellpadding="0" height="30">
+          <tr>
+            <td class="act_tab1"></td>
+            <td width="80" class="act_tab2">
+			<nobr>
+           <img border="0" src="images/act_print001.gif" onclick="printOpenJob();"                                   
+    			onmouseout=nereidFade(this,70,50,5)    
+                  	onmouseover=nereidFade(this,100,50,5)     
+                  	style="FILTER: alpha(opacity=70);cursor:hand;" width="70" height="27"> &nbsp; 
+               				
+               				
+           <!--  2023.02.09
+           <img border="0" src="images/act_printPict.gif" onclick="prinImage();"                                   
+    			onmouseout=nereidFade(this,70,50,5)    
+                  	onmouseover=nereidFade(this,100,50,5)     
+                  	style="FILTER: alpha(opacity=70);cursor:hand;" width="70" height="27"> &nbsp; 
+				-->
+			<%
+			   //---========= If have permission , show Cancel Button ===============----//
+			   boolean isCancel = false;
+			 /*
+		      M=Manager
+		      Z=Zone
+		      P=VP
+		      A=Admin    
+		      */
+		      //System.out.println("UserWho :"+user.getUserWho());
+		      //System.out.println("edit :"+edit);
+		      //System.out.println("foundClose = "+foundClose);
+		      if(user.getUserWho().equals("M") ||
+		      user.getUserWho().equals("Z")||
+		      user.getUserWho().equals("P")||
+		      user.getUserWho().equals("A")){
+		      	isCancel = true; //TODO  cencelJob Enable
+		      }
+						   			   
+			 //  old 2021.06.07  if (edit.equalsIgnoreCase("NO") && SERV_CommonData.checkPermissionOnPage(Constants.PERMISSION_ZONE,user.getUserWho()) && !foundClose) {
+			if (edit.equalsIgnoreCase("NO") && isCancel && !foundClose) {
+					 %>
+					&nbsp; &nbsp; &nbsp; &nbsp; 
+				   <img border="0" src="images/act_cancel.gif" onclick="cancelDoc();"                                  
+						onmouseout=nereidFade(this,70,50,5)    
+							onmouseover=nereidFade(this,100,50,5)     
+							style="FILTER: alpha(opacity=70);cursor:hand" width="70" height="27">
+					 <%
+			   }
+ 			%>    				
+			</nobr>
+            </td>   
+        	
+            <td class="act_tab3"></td>   
+            <td class="act_tab4">
+          <%
+              if (popup.equalsIgnoreCase("Y")) {
+                  %>
+                   <a href="javascript:top.window.close()"><img border="0" src="images/bu_close.gif" align="top" width="50" height="15"></a> 
+                  <%
+              } else {
+                  %>
+		      <a href="<%=Constants.APP_PATH%>/SERV_Reprint_Pay_List.jsp" target="_self"><img border="0" src="images/bu_back.gif" align="absmiddle" width="50" height="15"></a>&nbsp;
+		      <a href="<%=Constants.APP_HOME%>" target="_top"><img border="0" src="images/bu_home.gif" align="absmiddle" width="50" height="15"></a></td>  
+                  <%
+              }
+           %>      	    
+          </tr>  
+        </table>  
+
+          </td>
+        </tr>
+      </table>
+
+<br style="font-size:30pt">
+
+<TABLE border=0 cellspacing=0 cellpadding=0 width="100%">
+  <tr><td width="100%" class="copyright" align="center">
+  Best viewed with 800x600 screen resolution on&nbsp;an Internet Explorer version 5 และ 5.5  
+  <br>ติดต่อสอบถามได้ที่ : <a href="mailto:Administrator@lh.co.th">Administrator@lh.co.th</a>&nbsp;
+  หรือ โทร. 0-2230-8279 (คุณประพัฒน์
+  ฝ่ายบริการ)&nbsp; 0-2230-8491-5 (ฝ่าย IT)  
+  <br><img src="images/copyright.gif" width="475" height="26"></td></tr>
+</TABLE> 
+
+
+<!-- Click Cancel 
+i_can_type
+i_can_desc-->
+<%-- ========================= Click Cancel =========================================---%>   
+<div id="canBox" style="display:block ; visibility:hidden ; z-index:1 ; position:relative ; left:50% ; top:-720px ; margin-left:-250px ; margin-top:0px ; 
+background-color:#dcf0ff ; border:5px solid rgb(200,200,200)  ; padding:20px ; 
+text-align:center ;
+width:500px">
+
+            <table border="0" width="100%" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="item_tab1"><img border="0" src="images/i_i.gif" align="absmiddle" width="20" height="20"></td>
+                <td class="item_tab2" width="200">ยกเลิกการแจ้งซ่อม</td>
+                <td class="item_tab3"></td>
+                <td>&nbsp;</td>                
+              </tr>
+            </table>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="5" valign="top"><img border="0" src="images/Corn01.gif" width="5" height="5"></td>
+    <td class="frmTop">&nbsp;</td>
+    <td width="5" valign="top" align="right"><img border="0" src="images/Corn02.gif" width="5" height="5"></td>
+  </tr>
+</table>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="100%" class="frmLR" align="center">
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="item ; dotline01" height="22">สาเหตุการยกเลิก :</td>
+    <td height="22" class="dotline01">
+    	<%=GenCauseHtmlDDL(conn,"iCanTypeDDL",""," class='box2' style='width:100%' ")%>
+
+    </td>
+    </tr>
+  <tr>
+    <td class="item ; dotline01" height="22" width="13%" valign="top">รายละเอียด :</td>
+    <td height="22" width="39%" class="dotline01" valign="top">
+    <textarea name="iCanDesc" id="i_canDesc" rows="5" class="box" style="width:100%"></textarea>
+    </td>
+    </tr>
+</table>
+</td>
+  </tr>
+</table>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="5" valign="bottom"><img border="0" src="images/Corn03.gif" width="5" height="5"></td>
+    <td class="frmBottom">&nbsp;</td>
+    <td width="5" valign="bottom" align="right"><img border="0" src="images/Corn04.gif" width="5" height="5"></td>
+  </tr>
+</table>
+<%--  onClick="MM_showHideLayers('alert2','','hide')"    --%>
+<br style="font-size:10pt">
+        <table border="0" width="100%" cellspacing="0" cellpadding="0" height="30">
+          <tr>
+            <td class="act_tab1"></td>
+            <td width="80" class="act_tab2">&nbsp;
+   	        <img src="images/act_ok.gif" width="70" height="27" border="0"     
+                  		style="FILTER: alpha(opacity=70);cursor:hand" onClick="doCancelBox(true);"    
+                  		onMouseOver=nereidFade(this,100,50,5)                                  
+    					onMouseOut=nereidFade(this,70,50,5)></td>   
+            <td class="act_tab3">&nbsp;</td>   
+            <td class="act_tab4"><img src="images/bu_close.gif" width="50" height="15" border="0" align="absmiddle" onClick="doCancelBox(false);" style="cursor:hand"></td>
+            
+          </tr>  
+        </table>
+</div>
+<%-- ========================= Click Cancel End =========================================---%>   
+<script type="text/javascript">
+//call api readfile 
+
+//var maxSize = <%=line%>;
+var yyyy = "<%=yyyy%>";
+var mm = "<%=month%>";
+var docId = "<%=iDocNo%>";
+var host180 = "http://132.146.1.180:8080";
+
+
+window.addEventListener('load', function() {
+    // This function will be executed after all resources have loaded
+    // You can put your code here that needs to run after everything is ready
+	   $.ajax({
+	    		type: "POST",		
+	    		url: "http://132.146.1.180:8080/AppServ/api/v1/readfile-attach/"+yyyy+"/"+mm+"/"+docId,
+	    		dataType: "json",
+	    		success: function(data){
+	    				if(data==null || data==""){
+	    					return;
+	    				}			    				
+	    				var resData = data;
+						console.log(resData);
+						//console.log(Object.keys(resData).length);
+                        var maxSize =  resData["MAX_SIZE"];
+	    			    console.log("maxSize="+maxSize);
+	    			    for(i=1;i<=maxSize;i++){	    			        
+	    			       var urlImgA = host180+"/AppServ/uploads/"+yyyy+"/"+mm+"/"+docId+"/"+resData[i+"_a"];
+	    			       var urlImgB = host180+"/AppServ/uploads/"+yyyy+"/"+mm+"/"+docId+"/"+resData[i+"_a"];
+	    			       var ahrefTagA = "<a href='"+urlImgA+"' target='_blank'><img src='"+urlImgA+"' width='25' height='20' border='0'></a>";
+	    			       var ahrefTagB = "<a href='"+urlImgB+"' target='_blank'><img src='"+urlImgB+"' width='25' height='20' border='0'></a>";
+						    $('#a_'+i).html(ahrefTagA);
+						    $('#b_'+i).html(ahrefTagB);
+					        //--------------------
+	    			    }
+    					return;
+	    		  }
+	    });
+       console.log('Page and all external resources have loaded.');
+});
+
+</script>	
+</FORM>	
+	
+</BODY>
+  
+</HTML>
+<%            System.out.println("-------- SERV_OpenJob_Pay_Disp.jsp --------");
+	} catch (Exception e) {
+		System.out.println("ERROR SERV_OpenJob_Pay_Disp.jsp : " + e.getMessage());
+		throw new ServletException(e.getMessage());
+	} finally {
+		// Clean up.
+		try {
+			if (rs != null) rs.close();
+			if (stmt != null) stmt.close();
+			if (conn != null) conn.close();
+		}
+		catch( SQLException ignore ){}
+	}
+%>

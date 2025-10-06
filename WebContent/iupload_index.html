@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> Upload File </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+ </HEAD>
+
+ <BODY leftmargin="0" topmargin="0">
+  <iframe frameborder="0" width="100%" height="100%" src="" id="display"></iframe>
+  <SCRIPT LANGUAGE="JavaScript">
+  <!--
+	  var show = document.getElementById("display");
+	  if (show!=null) {
+	     var params = "";
+		  var args = window.dialogArguments;
+		  if (args!=null && args.length==3) {
+		      params = "?session_id="+args[0]+"&itmNo="+args[1]+"&key_file="+args[2];
+		  } else {
+		      params = "?session_id="+window.dialogArguments;
+		  }
+	      show.src="iupload_main.jsp"+params;
+	  }
+  //-->
+  </SCRIPT>
+ </BODY>
+</HTML>

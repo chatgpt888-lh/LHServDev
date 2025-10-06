@@ -1,0 +1,331 @@
+A					{ cursor : hand 	}
+A:link			{ color: "9933FF" ; TEXT-DECORATION: none ; 						 }
+A:visited		{ color: "9933FF" ; TEXT-DECORATION: none ; 						 }
+A:hover		{ color: "FF66FF" ; TEXT-DECORATION: overline underline ;  }
+
+P					{ 	font-size:10.0pt ; font-family : Microsoft Sans Serif ; color : rgb(0,120,255) ; 		}
+TD				{ 	font-size:10.0pt ; font-family : Microsoft Sans Serif ; color : rgb(0,120,255) ; 		}
+HR				{ 	color : rgb(200,220,255) ; height: 1px ; }
+
+.bigh			{	font-size: 12.0pt ; font-family: Microsoft Sans Serif ; color: "rgb(0,80,220)" ; TEXT-DECORATION: none ;
+						letter-spacing:1px ;	}
+.bigh1			{	font-size: 12.0pt ; font-family: Microsoft Sans Serif ; color: "rgb(0,150,0)" ; TEXT-DECORATION: none ;
+						letter-spacing:0px ; text-align: right ;	}
+
+
+.specH1		{	height: 18px	}
+.specH2		{	height: 22px	}
+
+
+
+
+<!-- For Nomal Table -->
+
+.small						{ 	font-size: 8.0pt		}
+
+.nameh 					{ 	font-size: 10.0pt ; color: rgb(150,75,255)		}
+
+.nameh A					{ 	font-size: 10.0pt ; color: rgb(0,150,0) ; cursor : hand						}
+.nameh A:link			{ 	color: rgb(0,150,0) ; TEXT-DECORATION: underline 					}
+.nameh A:visited		{ 	color: rgb(0,100,0) ; TEXT-DECORATION: underline					}
+.nameh A:hover		{ 	color: rgb(0,150,0) ; TEXT-DECORATION: overline underline	}
+
+
+.col_name						{ 	font-size: 8.0pt ; color: rgb(0,50,200) ; text-align: center ;  
+											background-image: url(images/col_bg1.gif) ; background-repeat : repeat-x ;
+											border-right:1px solid rgb(135,185,247) ; border-bottom:1px solid rgb(135,185,247) ; 	}			 		
+.col_name1						{ 	font-size: 10.0pt ; color: rgb(0,50,200) ; background-color: rgb(212,233,255) ; 
+												text-align: center ; padding-top:2px ; 	}
+.col_name1 A:link			{ 	color: rgb(0,50,200) ; text-decoration: none ; width: 100% ;  	}
+.col_name1 A:visited		{ 	color: rgb(0,50,200) ; text-decoration: none ; width: 100% ;  	}
+.col_name1 A:hover		{ 	color: rgb(255,100,0) ; background-color: rgb(255,255,180) ; text-decoration: none ; width: 100% ;  	}
+
+.col_name2						{ 	font-size: 10.0pt ; color: rgb(0,50,200) ; background-color: rgb(230,242,255) ; 
+												text-align: center ; padding-top:2px ; 	}
+.col_name2 A:link			{ 	color: rgb(0,50,200) ; text-decoration: none ; width: 100% ;  	}
+.col_name2 A:visited		{ 	color: rgb(0,50,200) ; text-decoration: none ; width: 100% ;  	}
+.col_name2 A:hover		{ 	color: rgb(255,100,0) ; background-color: rgb(255,255,180) ; text-decoration: none ; width: 100% ;  	}
+
+
+
+.col_name1h		{ 	font-size: 10.0pt ; color: rgb(150,50,255) ; background-color: rgb(220,245,230) ; text-align: center ; padding-top:2px ; 	}
+.col_name2h		{ 	font-size: 10.0pt ; color: rgb(150,50,255) ; background-color: rgb(235,250,240) ; text-align: center ; padding-top:2px ; 	}
+			 	
+.col_name1r			{ 	font-size: 10.0pt ; color: rgb(0,50,200) ; background-color: rgb(212,233,255) ; text-align: right ; padding-right: 0px ; 	}
+.col_name2r			{ 	font-size: 10.0pt ; color: rgb(0,50,200) ; background-color: rgb(230,242,255) ; text-align: right ; padding-right: 0px ;	}		
+
+.col_name1L		{ 	font-size: 10.0pt ; color: rgb(0,50,200) ; background-color: rgb(212,233,255) ; text-align: left ; padding-left: 0px ; 	}
+.col_name2L		{ 	font-size: 10.0pt ; color: rgb(0,50,200) ; background-color: rgb(230,242,255) ; text-align: left ; padding-left: 0px ;	}
+
+.col_name1c			{ 	font-size: 10.0pt ; color: rgb(0,50,200) ; background-color: rgb(212,233,255) ; text-align: center ;  	}
+.col_name2c			{ 	font-size: 10.0pt ; color: rgb(0,50,200) ; background-color: rgb(230,242,255) ; text-align: center ; 	}
+
+
+.TBLine						{	background-color: rgb(180,200,255)	}
+.TDLine						{	border: 1px solid rgb(180,200,255)		}
+
+.noL						{	border-left: 0px solid rgb(180,200,255)			}
+.noT						{	border-top: 0px solid rgb(180,200,255)			}
+.noR						{	border-right: 0px solid rgb(180,200,255)		}
+.noB						{	border-bottom: 0px solid rgb(180,200,255)	}
+
+
+.red						{	color: rgb(255,0,0) ;			}
+.magenta			{	color: rgb(255,0,255)		}
+
+
+.item								{	color: rgb(255,100,0) ;	}
+.item	A:link					{	color: rgb(255,100,0) ; text-decoration: none ;	}
+.item	A:visited				{	color: rgb(255,100,0) ; text-decoration: none ;	}
+.item	A:hover				{	color: rgb(255,100,0) ; text-decoration: none ; background-color: rgb(255,255,180) ;	}
+
+
+.sub_item			{ 	color: rgb(0,0,200) ;		}
+.strong				{ 	color: rgb(0,50,200) ;	}
+.bold					{ 	font-weight: bold ; color: rgb(0,50,200) ;		}
+.light1txt				{	color: rgb(0,100,0) ;		}
+.light2txt				{	color: rgb(150,100,0) ;		}
+
+
+.col_bg1		{	background-color: rgb(220,240,255) ;	}
+.col_bg2		{	background-color: rgb(240,248,255) ;	}	
+
+
+.top				{	vertical-align: top ; padding-top:2px		}
+
+.white			{	background-color: rgb(255,255,255) ;	}			 	
+.gray			{	background-color: rgb(246,246,246) ;	}
+.highlight	{	background-color: rgb(255,245,235) ;	}
+.light			{	background-color: rgb(255,250,245) ;	}
+.light1			{	background-color: rgb(230,250,230) ;	}
+.light2			{	background-color: rgb(250,250,210) ;	}
+	
+
+.col_left			{ 	text-align: left ;											}
+.col_center	{ 	text-align: center ;									}
+.col_right		{ 	text-align: right ; padding-right: 0px	;	}
+
+.col_justi		{	text-align: justify ; text-justify: distribute	}
+
+.Lmar1		{	padding-left: 3px			}
+.Lmar2		{	padding-left: 18px			}
+
+.pict_edge	{	background-color: rgb(255,255,255) ; border: 1px solid rgb(220,240,255) ; 	}
+
+<!-- End of Nomal Table -->
+
+
+				  
+
+td.act_tab1		{ background:url(images/act_tab1.gif) ; background-repeat:no-repeat ; width:5px ; height:30px ; }					  
+td.act_tab2		{ background:url(images/act_tab2.gif) ; background-repeat:repeat-x ; height:30px ; vertical-align: top ; }		
+td.act_tab3		{ background:url(images/act_tab3.gif) ; background-repeat:no-repeat ; width:57px ; height:30px ; }	
+td.act_tab4		{ background:url(images/act_tab4.gif) ; background-repeat:repeat-x ; height:30px ; text-align: right ; }		
+
+td.item_tab1		{ background:url(images/item_tab1.gif) ; background-repeat:no-repeat ; width:30px ; height:20px ; text-align: center ; }
+					  
+td.item_tab2						{ 	background:url(images/item_tab2.gif) ; background-repeat:repeat-x ; height:20px ; color: rgb(0,0,120) ; font-size: 10pt ;  }
+td.item_tab2 A:link			{	color: rgb(0,0,120) ;  		}
+td.item_tab2 A:visited		{	color: rgb(0,0,120) ;   		}
+td.item_tab2	A:hover		{	color: rgb(255,100,0) ; text-decoration: none ; background-color: rgb(255,255,180) ;  	}
+		
+td.item_tab3		{ background:url(images/item_tab3.gif) ; background-repeat:no-repeat ; width:25px ; height:20px ; 			}	
+
+td.item_tab4						{ background:url(images/item_tab4.gif) ; background-repeat:repeat-x ; height:20px ; }
+td.item_tab4 A:link			{	color: rgb(0,100,255) ; width:100% ; 				}
+td.item_tab4 A:visited		{	color: rgb(0,100,255) ; width:100% ;  				}
+td.item_tab4 A:hover		{	color: rgb(255,100,0) ; text-decoration: none ; background-color: rgb(255,255,180) ; width:100% ; 		}
+
+td.item_tab4c	{ background:url(images/item_tab4.gif) ; background-repeat:repeat-x ; height:20px ; text-align: center ;		}					  
+
+td.item_tab4r	{ background:url(images/item_tab4.gif) ; background-repeat:repeat-x ; height:20px ; text-align: right ; 		}
+
+td.item_tab4i						{	background:url(images/item_tab4.gif) ; background-repeat:repeat-x ; width:250px ; height:20px ; 
+												color: rgb(255,100,0) ; text-align: right ; 	}					  
+td.item_tab4i A:link			{	color: rgb(0,100,255) ; width:100% ; 		}
+td.item_tab4i A:visited		{	color: rgb(0,100,255) ; width:100% ;  		}
+td.item_tab4i	 A:hover		{	color: rgb(255,100,0) ; text-decoration: none ; background-color: rgb(255,255,180) ; width:100% ; 		}
+
+
+td.item_tab5						{ 	background:url(images/item_tab5.gif) ; background-repeat:no-repeat ; width:25px ; height:20px ; }
+
+td.item_tab5	A:link			{ 	background:url(images/item_tab5.gif) ; background-repeat:no-repeat ; height:20px ; 
+												color:rgb(255,180,100);TEXT-DECORATION: none ; }
+td.item_tab5	A:visited		{	background:url(images/item_tab5.gif) ; background-repeat:no-repeat ; height:20px ; 
+					  							color:rgb(255,180,100);TEXT-DECORATION: none ; }					  
+td.item_tab5	A:hover		{	background:url(images/item_tab5.gif) ; background-repeat:no-repeat ; height:20px ; 
+					  							color:rgb(70,150,255);TEXT-DECORATION: none ; font-weight:bold ; letter-spacing:1px ; }
+					  
+td.item_tab5i						{	background:url(images/item_tab5.gif) ; background-repeat:no-repeat ; width:250px ; height:20px ; 
+					  							color: rgb(255,100,0) ; text-align: right ; 	}					  
+td.item_tab5i A:link			{	color: rgb(0,100,255) ; width:100% ; 		}
+td.item_tab5i A:visited		{	color: rgb(0,100,255) ; width:100% ;  		}
+td.item_tab5i	 A:hover		{	color: rgb(255,100,0) ; text-decoration: none ; background-color: rgb(255,255,180) ; width:100% ; 		}					  												
+
+td.item_tab6i						{	width:250px ; height:20px ; color: rgb(255,100,0) ; text-align: right ; 	}					  
+td.item_tab6i A:link			{	color: rgb(0,100,255) ; width:100% ; 		}
+td.item_tab6i A:visited		{	color: rgb(0,100,255) ; width:100% ;  		}
+td.item_tab6i	 A:hover		{	color: rgb(255,100,0) ; text-decoration: none ; background-color: rgb(255,255,180) ; width:100% ; 		}
+
+					 
+<!-- Login and Warning -->
+
+.SysTitle		{	font-size: 12.0pt ; font-family: Microsoft Sans Serif  ; color: "rgb(0,100,255)" ; font-weight: normal ; 
+						TEXT-DECORATION: none ; letter-spacing:2px ;	}     	  
+
+.keylogin	{ 	background : url(images/key_login_bg.jpg) ; background-repeat : no-repeat ; background-position : center middle ;		}
+#login			{	position: relative ; left: 115px ; top: -43px ; width: 201px ; height: 41px ; filter: alpha(opacity=100) ;	}     	
+
+.edge1		{	background: url(images/table_bg1.gif) ; background-repeat : repeat-x ; background-position: left bottom ;	}
+.edge2		{	background: url(images/table_bg2.gif) ; background-repeat : repeat-x ; background-position: left top ;			}
+.edge3		{	background: url(images/table_bg3.gif) ; background-repeat : repeat-y ; background-position: right top ;			}
+.edge4		{	background: url(images/table_bg4.gif) ; background-repeat : repeat-y ; background-position: left top ;			}      
+
+<!-- End of Login and Warning -->				  
+					  
+
+
+.visitor			{	font-family: "Microsoft Sans Serif" ; font-size: 10pt ; text-align: center ; padding: 3px ; 	}
+.copyright	{ 	font-family: "Microsoft Sans Serif" ; font-size: 10pt ; color: rgb(100,100,100); }
+
+
+.box			{ font-family: "Microsoft Sans Serif" ; font-size: 8pt; color: #0066FF; 
+              	  	  padding-top: 1px; padding-right: 2px; padding-bottom: 1px; padding-left: 2px; 
+              	  	  background-color: rgb(255,255,255); border: 1px rgb(200,230,255) solid ; scrollbar-color: white }
+
+.boxC		{ font-family: "Microsoft Sans Serif" ; font-size: 8pt; color: #0066FF; text-align:center ;
+              	  	  padding-top: 1px; padding-right: 2px; padding-bottom: 1px; padding-left: 2px; 
+              	  	  background-color: rgb(255,255,255); border: 1px rgb(200,230,255) solid ; scrollbar-color: white }
+              	  	  
+.boxR		{ font-family: "Microsoft Sans Serif" ; font-size: 8pt; color: #0066FF; text-align:right ;
+              	  	  padding-top: 1px; padding-right: 2px; padding-bottom: 1px; padding-left: 2px; 
+              	  	  background-color: rgb(255,255,255); border: 1px rgb(200,230,255) solid ; scrollbar-color: white }
+              	  	  
+              	  	  
+.trans		{ FILTER: Alpha(opacity=45) }			                	  	  
+
+
+BODY		{		background : url() ; background-repeat : repeat-y ; 
+					  	scrollbar-face-color					:		rgb(220,240,255)		; 
+			  			scrollbar-shadow-color			: 		rgb(220,240,255)		; 
+			  			scrollbar-highlight-color			:		rgb(220,240,255)		; 
+			  			scrollbar-3dlight-color 			: 		rgb(255,255,255)		; 
+			  			scrollbar-darkshadow-color	: 		rgb(120,180,255)		; 
+			  			scrollbar-track-color 				: 		rgb(255,255,255)		; 
+			  			scrollbar-arrow-color 				: 		rgb(120,180,255)		;		}
+			  
+.body1	{		background : url(images/body_bg1.gif) ; background-repeat : repeat-y ; background-position: 0px 55px ;
+						overflow: hidden ;
+					  	scrollbar-face-color					:		rgb(220,240,255)		; 
+			  			scrollbar-shadow-color			: 		rgb(220,240,255)		; 
+			  			scrollbar-highlight-color			:		rgb(220,240,255)		; 
+			  			scrollbar-3dlight-color 			: 		rgb(255,255,255)		; 
+			  			scrollbar-darkshadow-color	: 		rgb(120,180,255)		; 
+			  			scrollbar-track-color 				: 		rgb(255,255,255)		; 
+			  			scrollbar-arrow-color 				: 		rgb(120,180,255)		;		}	  
+			
+.body2	{		background : url(images/body_bg2.gif) ; background-repeat : repeat-y ; background-position: 0px 15px ;
+						overflow: hidden ;
+					  	scrollbar-face-color					:		rgb(220,240,255)		; 
+			  			scrollbar-shadow-color			: 		rgb(220,240,255)		; 
+			  			scrollbar-highlight-color			:		rgb(220,240,255)		; 
+			  			scrollbar-3dlight-color 			: 		rgb(255,255,255)		; 
+			  			scrollbar-darkshadow-color	: 		rgb(120,180,255)		; 
+			  			scrollbar-track-color 				: 		rgb(255,255,255)		; 
+			  			scrollbar-arrow-color 				: 		rgb(120,180,255)		;		}	 
+
+.body3	{		background : url(images/body_bg1.gif) ; background-repeat : repeat-y ; background-position: 0px 55px ;
+					  	scrollbar-face-color					:		rgb(220,240,255)		; 
+			  			scrollbar-shadow-color			: 		rgb(220,240,255)		; 
+			  			scrollbar-highlight-color			:		rgb(220,240,255)		; 
+			  			scrollbar-3dlight-color 			: 		rgb(255,255,255)		; 
+			  			scrollbar-darkshadow-color	: 		rgb(120,180,255)		; 
+			  			scrollbar-track-color 				: 		rgb(255,255,255)		; 
+			  			scrollbar-arrow-color 				: 		rgb(120,180,255)		;		}			 			
+			
+.body21	{		background : url(images/body_bg2.gif) ; background-repeat : repeat-y ; background-position: -20px 15px ;
+					  	scrollbar-face-color					:		rgb(220,240,255)		; 
+			  			scrollbar-shadow-color			: 		rgb(220,240,255)		; 
+			  			scrollbar-highlight-color			:		rgb(220,240,255)		; 
+			  			scrollbar-3dlight-color 			: 		rgb(255,255,255)		; 
+			  			scrollbar-darkshadow-color	: 		rgb(120,180,255)		; 
+			  			scrollbar-track-color 				: 		rgb(255,255,255)		; 
+			  			scrollbar-arrow-color 				: 		rgb(120,180,255)		;		}	 
+			  
+<!-- For 1st Page Menu -->
+
+.FrmMTxt						{	background-color: rgb(220,240,255) ; padding: 3px ; 
+											border-top: 0px solid rgb(152,192,247) ; border-right: 1px solid rgb(152,192,247) ;
+											border-bottom: 1px solid rgb(152,192,247) ; border-left: 0px solid rgb(152,192,247) ; 	}
+										
+											
+											
+.TxtLnk01						{	color: rgb(150,150,150) ; 	}											
+
+.MenuTxt01					{	font-size: 10pt ; color: rgb(0,100,200) ; background-color: rgb(240,250,255) ; height: 22px ;
+											text-decoration: none ; padding-left: 3px ;   	}
+.MenuTxt01	A:link		{	font-size: 10pt ; color: rgb(0,100,200) ; background-color: rgb(240,250,255) ; width: 100% ;   
+											text-decoration: none ;   	}
+.MenuTxt01	A:visited	{	font-size: 10pt ; color: rgb(0,100,200) ; background-color: rgb(240,250,255) ;  width: 100% ;  
+											text-decoration: none ;   	}
+.MenuTxt01	A:hover	{	font-size: 10pt ; color: rgb(255,100,0) ; background-color: rgb(255,255,175) ;  width: 100% ;  
+											text-decoration: none ;   	}
+											
+.MenuTxt02					{	font-size: 10pt ; color: rgb(0,100,200) ; background-color: rgb(255,255,255) ; height: 22px ;
+											text-decoration: none ; padding-left: 3px ;   	}
+.MenuTxt02	A:link		{	font-size: 10pt ; color: rgb(0,100,200) ; background-color: rgb(255,255,255) ; width: 100% ;   
+											text-decoration: none ;   	}
+.MenuTxt02	A:visited	{	font-size: 10pt ; color: rgb(0,100,200) ; background-color: rgb(255,255,255) ;  width: 100% ;  
+											text-decoration: none ;   	}
+.MenuTxt02	A:hover	{	font-size: 10pt ; color: rgb(255,100,0) ; background-color: rgb(255,255,175) ;  width: 100% ;  
+											text-decoration: none ;   	}											
+											
+
+.MenuTxt03					{	font-size: 10pt ; text-decoration: none ; color: rgb(200,0,255) ; text-align: center ;
+											background: url(images/tabAct_bg.gif) ; background-repeat: repeat-x ; 										 	}
+.MenuTxt03	A:link		{	font-size: 10pt ; text-decoration: none ; color: rgb(150,0,255) ; width: 100% ; padding: 5px ; 
+											border-left: 1px solid rgb(255,255,255) ; border-top: 1px solid rgb(255,255,255) ; 
+											border-right: 2px solid rgb(230,230,230) ; border-bottom: 2px solid rgb(230,230,230) ;   			}
+.MenuTxt03	A:visited	{	font-size: 10pt ; text-decoration: none ; color: rgb(200,0,255) ; width: 100% ; padding: 5px ; 		}
+.MenuTxt03	A:hover	{	font-size: 10pt ; text-decoration: none ; color: rgb(255,100,0) ; background-color: rgb(255,255,175) ;  width: 100% ; padding: 5px ; 
+											border-left: 1px solid rgb(230,230,230) ; border-top: 1px solid rgb(230,230,230) ; 
+											border-right: 1px solid rgb(230,230,230) ; border-bottom: 1px solid rgb(230,230,230) ;  			}
+
+											
+.MenuTxt04					{	font-size: 10pt ; color: rgb(0,100,200) ; background-color: none ; height: 22px ;
+											text-decoration: none ; padding-left: 3px ;   	}
+.MenuTxt04	A:link		{	font-size: 10pt ; color: rgb(0,100,200) ; background-color: none ;    
+											text-decoration: none ;   	}
+.MenuTxt04	A:visited	{	font-size: 10pt ; color: rgb(0,100,200) ; background-color: none ;    
+											text-decoration: none ;   	}
+.MenuTxt04	A:hover	{	font-size: 10pt ; color: rgb(255,100,0) ; background-color: rgb(255,255,180) ;  width: 100% ;  
+											text-decoration: none ;   	}
+
+<!-- for nextPage ->											
+.MenuTxt05					{	font-size: 8pt ; color: rgb(0,100,200) ; background-color: none ; height: 18px ;
+											text-decoration: none ; padding-left: 0px ;   	}
+.MenuTxt05	A:link		{	font-size: 8pt ; color: rgb(0,100,200) ; background-color: none ;    
+											text-decoration: none ;   	}
+.MenuTxt05	A:visited	{	font-size: 8pt ; color: rgb(0,100,200) ; background-color: none ;    
+											text-decoration: none ;   	}
+.MenuTxt05	A:hover	{	font-size: 8pt ; color: rgb(255,100,0) ; background-color: rgb(255,255,180) ;  
+											text-decoration: none ;   	}		
+											
+<!-- for nextPage ->
+
+
+td.dotline						{	border-bottom:1px dotted rgb(220,220,220)	; border-right:1px solid rgb(135,185,247) ; padding:3px ;  }
+td.dotline01					{	border-bottom:1px dotted rgb(220,220,220)	; padding:3px ;   }
+td.dotline02					{	border-bottom:1px dotted rgb(220,220,220)	; border-right:1px solid rgb(200,220,255) ; padding:3px ;   }
+td.dotline03					{	border-bottom:1px dotted rgb(245,245,245)	; border-right:0px solid rgb(135,185,247) ; padding:3px ;   }
+td.side01						{	border-right:1px solid rgb(135,185,247) ; padding:3px ;			}
+
+td.solidline						{	border-bottom:1px solid rgb(220,220,220)	; border-right:1px solid rgb(135,185,247) ; padding:3px ;   }
+td.solidline01				{	border-bottom:1px solid rgb(220,220,220)	; padding:3px ;   }
+td.solidline02				{	border-bottom:1px solid rgb(135,185,247)	; padding:3px ;   }
+td.solidline03				{	border-bottom:1px solid rgb(135,185,247)	; padding:3px ; border-right:1px solid rgb(135,185,247) ;  }
+td.double01					{	border-bottom: 3px double rge(135,185,247) ; border-right:1px solid rgb(135,185,247) ; padding:3px ; 	}
+
+td.textgray						{	color:gray	}
+
+<!-- End of 1st Page Menu -->		

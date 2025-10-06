@@ -1,0 +1,569 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Home</TITLE>
+
+<meta http-equiv="Content-Type" content="text/html; charset=TIS-620">
+
+<LINK rel="StyleSheet" href="SERV_Style.css" type="text/css">
+
+<script language="javascript" src="script_fx.js"></script>
+
+<style type="text/css"> 
+
+.hidden-class { display:none;  } 
+
+.show-class { display:compact;    } 
+
+</style>
+
+
+
+
+<script language="javascript">
+
+<!-- 
+
+function initPage(){ 
+
+if(document.frmSERV.hide_detail.value == 'N') { 
+
+showDetail(); 
+
+} 
+
+if(document.frmSERV.hide_detail.value == 'Y'){ 
+
+hideDetail(); 
+
+} 
+
+}
+
+function gotoOpenJob(i_docno){
+
+var form = document.frmSERV;
+
+form.i_docno.value = i_docno;
+
+form.edit.value = 'no'; 
+
+
+
+form.action = '/LHServ/SERV_OpenJob_Follow.jsp'; 
+
+
+
+form.submit();
+
+}
+
+function sortBy(theCol){
+
+var form = document.frmSERV;
+
+form.sort_col.value = theCol;
+
+form.submit();
+
+}
+
+function showDetail(){ 
+
+var elements = getElementsByClass('hidden-class'); 
+
+for (i = 0 ; i < elements.length ; i++ ) { 
+
+elements[i].className = 'show-class'; 
+
+} 
+
+document.frmSERV.hide_detail.value = 'N'; 
+
+} 
+
+function hideDetail(){ 
+
+var elements = getElementsByClass('show-class'); 
+
+for (i = 0 ; i < elements.length ; i++ ) { 
+
+elements[i].className = 'hidden-class'; 
+
+} 
+
+document.frmSERV.hide_detail.value = 'Y'; 
+
+} 
+
+function getElementsByClass( searchClass, domNode, tagName) { 
+
+if (domNode == null) domNode = document; 
+
+if (tagName == null) tagName = '*'; 
+
+var el = new Array(); 
+
+var tags = domNode.getElementsByTagName(tagName); 
+
+var tcl = " "+searchClass+" "; 
+
+for(i=0,j=0; i<tags.length; i++) { 
+
+var test = " " + tags[i].className + " "; 
+
+if (test.indexOf(tcl) != -1) 
+
+el[j++] = tags[i]; 
+
+} 
+
+return el; 
+
+} 
+
+//-->
+
+</script>
+
+
+
+
+
+
+
+<base target="_self">
+
+
+
+
+
+
+
+</HEAD>
+
+
+
+
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0" onLoad="initPage()">
+
+
+
+
+<FORM method="POST" action="#" name="frmSERV" >
+
+<input type="hidden" name="i_docno" value="" />
+
+<input type="hidden" name="edit" value="" />
+
+<input type="hidden" name="sort_col" value="default" />
+
+<input type="hidden" name="i_company" value="LH" />
+
+<input type="hidden" name="i_project" value="080" />
+
+<input type="hidden" name="d_keyin_beg" value="" />
+
+<input type="hidden" name="d_keyin_end" value="" />
+
+<input type="hidden" name="itmtype" value="4.1" /> 
+
+<input type="hidden" name="hide_detail" value="Y" />
+
+
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="100%" align="center" class="BD">
+
+
+
+
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="100%" class="bigh"><img border="0" src="images/i_home.gif" align="absmiddle" width="20" height="20">&nbsp;
+
+ค่าแรงช่าง และค่าแรงคนงาน</td>
+
+
+</tr>
+
+</table>
+
+
+
+
+
+
+
+<br style="font-size:10pt">
+
+
+
+
+            <table border="0" width="100%" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="item_tab1"><img border="0" src="images/i_i.gif" align="absmiddle" width="20" height="20"></td>
+                <td class="item_tab2" width="150">รายละเอียดผู้ขออนุมัติ</td>
+                <td class="item_tab3"></td>
+                <td>&nbsp;</td>                
+              </tr>
+            </table>
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="5" valign="top"><img border="0" src="images/Corn01.gif" width="5" height="5"></td>
+    <td class="frmTop">&nbsp;</td>
+    <td width="5" valign="top" align="right"><img border="0" src="images/Corn02.gif" width="5" height="5"></td>
+  </tr>
+</table>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="100%" class="frmLR" align="center">
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="10%" height="22" class="item ; dotline01">รหัสผู้รับเหมา
+      :</td>
+    <td width="30%" height="22" class="dotline01">001876</td>
+    <td width="10%" height="22" class="item ; dotline01">ชื่อผู้รับเหมา
+      :</td>
+    <td width="50%" height="22" class="dotline01"> พระราม 5</td>
+    </tr>
+</table>
+
+</td>
+  </tr>
+</table>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="5" valign="bottom"><img border="0" src="images/Corn03.gif" width="5" height="5"></td>
+    <td class="frmBottom">&nbsp;</td>
+    <td width="5" valign="bottom" align="right"><img border="0" src="images/Corn04.gif" width="5" height="5"></td>
+  </tr>
+</table>
+
+
+
+
+<br style="font-size:10pt">
+
+
+
+            <table border="0" width="100%" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="item_tab1"><img border="0" src="images/i_i.gif" align="absmiddle" width="20" height="20"></td>
+                <td class="item_tab2" width="150">เอกสารขออนุมัติ</td>
+                <td class="item_tab3"></td>
+                <td>&nbsp;</td>                
+              </tr>
+            </table>
+
+
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="5" valign="top" bgcolor="#D7E6FF"><img border="0" src="images/Corn01.gif" width="5" height="5"></td>
+
+<td valign="bottom" class="frmTop" bgcolor="#D7E6FF">&nbsp;</td>
+
+<td width="5" valign="top" align="right" bgcolor="#D7E6FF"><img border="0" src="images/Corn02.gif" width="5" height="5"></td>
+
+</tr>
+
+</table>
+
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="100%" class="frmL" align="center">
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+
+<tr>
+<td width="12%" class="col_name"><a href="#">โครงการ</a></td>
+<td width="15%" class="col_name"><a href="#">เลขที่เอกสาร</a></td>
+<td width="31%" class="col_name"><a href="#">ชื่อ-สกุล</a></td>
+<td width="12%" class="col_name"><a href="#">จำนวนวัน</a></td>
+<td width="15%" class="col_name"><a href="#">สถานะ</a></td>
+<td width="15%" class="col_name"><a href="#">ผู้อนุมัติ</a></td>
+</tr>
+
+<tr>
+<td align="center" class="dotline ; item" >LA-011</td>
+<td class="dotline" align="center">FC_LA0110001</td>
+<td class="dotline">นางวรรณ</td>
+<td class="dotline" align="center">4</td>
+<td class="dotline" align="center">รออนุมัติ</td>
+<td class="dotline" align="center">ณัฐพงษ์</td>
+</tr>
+
+<tr>
+<td align="center" class="dotline ; item" >&nbsp;</td>
+<td class="dotline" align="center">&nbsp;</td>
+<td class="dotline" align="center">&nbsp;</td>
+<td class="dotline" align="center">&nbsp;</td>
+<td class="dotline" align="center">&nbsp;</td>
+<td class="dotline" align="center">&nbsp;</td>
+</tr>
+<tr>
+  <td align="center" class="dotline ; item" >&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  </tr>
+<tr>
+  <td align="center" class="dotline ; item" >&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  </tr>
+<tr>
+  <td align="center" class="dotline ; item" >&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  </tr>
+</table> 
+
+
+
+</td>
+
+</tr>
+
+</table>
+
+
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="5" valign="bottom"><img border="0" src="images/Corn03.gif" width="5" height="5"></td>
+
+<td class="frmBottom">&nbsp;</td>
+
+<td width="5" valign="bottom" align="right"><img border="0" src="images/Corn04.gif" width="5" height="5"></td>
+
+</tr>
+
+</table>
+
+
+
+<br style="font-size:10pt">
+
+
+
+            <table border="0" width="100%" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="item_tab1"><img border="0" src="images/i_i.gif" align="absmiddle" width="20" height="20"></td>
+                <td class="item_tab2" width="150">เอกสารรอพิจารณา</td>
+                <td class="item_tab3"></td>
+                <td>&nbsp;</td>                
+              </tr>
+            </table>
+
+
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="5" valign="top" bgcolor="#D7E6FF"><img border="0" src="images/Corn01.gif" width="5" height="5"></td>
+
+<td valign="bottom" class="frmTop" bgcolor="#D7E6FF">&nbsp;</td>
+
+<td width="5" valign="top" align="right" bgcolor="#D7E6FF"><img border="0" src="images/Corn02.gif" width="5" height="5"></td>
+
+</tr>
+
+</table>
+
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="100%" class="frmL" align="center">
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+
+<tr>
+<td width="12%" class="col_name"><a href="#">โครงการ</a></td>
+<td width="15%" class="col_name"><a href="#">เลขที่เอกสาร</a></td>
+<td width="31%" class="col_name"><a href="#">ชื่อ-สกุล</a></td>
+<td width="12%" class="col_name"><a href="#">จำนวนวัน</a></td>
+<td width="15%" class="col_name"><a href="#">สถานะ</a></td>
+<td width="15%" class="col_name"><a href="#">ผู้อนุมัติ</a></td>
+</tr>
+
+<tr>
+<td align="center" class="dotline ; item" >LA-011</td>
+<td class="dotline" align="center">FC_LA0110001</td>
+<td class="dotline">นางวรรณ</td>
+<td class="dotline" align="center">4</td>
+<td class="dotline" align="center">รออนุมัติ</td>
+<td class="dotline" align="center">ณัฐพงษ์</td>
+</tr>
+
+<tr>
+<td align="center" class="dotline ; item" >&nbsp;</td>
+<td class="dotline" align="center">&nbsp;</td>
+<td class="dotline" align="center">&nbsp;</td>
+<td class="dotline" align="center">&nbsp;</td>
+<td class="dotline" align="center">&nbsp;</td>
+<td class="dotline" align="center">&nbsp;</td>
+</tr>
+<tr>
+  <td align="center" class="dotline ; item" >&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  </tr>
+<tr>
+  <td align="center" class="dotline ; item" >&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  </tr>
+<tr>
+  <td align="center" class="dotline ; item" >&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  <td class="dotline" align="center">&nbsp;</td>
+  </tr>
+</table> 
+
+
+
+</td>
+
+</tr>
+
+</table>
+
+
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="5" valign="bottom"><img border="0" src="images/Corn03.gif" width="5" height="5"></td>
+
+<td class="frmBottom">&nbsp;</td>
+
+<td width="5" valign="bottom" align="right"><img border="0" src="images/Corn04.gif" width="5" height="5"></td>
+
+</tr>
+
+</table>
+
+
+
+<br style="font-size:5pt">
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0" height="30">
+
+<tr>
+
+<td class="act_tab1"></td>
+
+<td width="75" class="act_tab2">&nbsp;</td> 
+
+<td class="act_tab3"></td> 
+
+<td class="act_tab4"><a href="/LHServ/SERV_ReportService.jsp" target="_self"><img border="0" src="images/bu_back.gif" align="absmiddle" width="50" height="15"></a>&nbsp;
+
+<a href="/LHServ/SERV_Index.jsp" target="_top"><img border="0" src="images/bu_home.gif" align="absmiddle" width="50" height="15"></a></td> 
+
+</tr> 
+
+</table> 
+
+</td>
+
+</tr>
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+<br style="font-size:30pt">
+
+
+
+
+<TABLE border=0 cellspacing=0 cellpadding=0 width="100%">
+
+<tr><td width="100%" class="copyright" align="center">
+
+Best viewed with 800x600 screen resolution on&nbsp;an Internet Explorer version 5 และ 5.5 
+
+<br>ติดต่อสอบถามได้ที่ : <a href="mailto:Administrator@lh.co.th">Administrator@lh.co.th</a>&nbsp;
+
+หรือ โทร. 0-2230-8279 (คุณประพัฒน์
+
+ฝ่ายบริการ)&nbsp; 0-2230-8491-5 (ฝ่าย IT) 
+
+<br><img src="images/copyright.gif" width="475" height="26"></td></tr>
+
+</TABLE> 
+
+
+
+</FORM>
+
+
+
+
+</BODY>
+
+
+
+
+</HTML>
+

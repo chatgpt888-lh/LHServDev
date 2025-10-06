@@ -1,0 +1,576 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<HTML>
+<HEAD>
+<TITLE>Checkup Lock</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=TIS-620">
+<LINK rel="StyleSheet" href="SERV_Style.css" type="text/css">
+<script language="javascript" src="script_fx.js"></script>
+<script language="javascript">
+<!--
+  function Cancel(frm) {
+     frm.action="/LHServ/CancelChkLockServlet";
+     frm.submit();
+  }
+
+	function pleasewait() {
+		if (document.getElementById) { // DOM3 = IE5, NS6
+			document.getElementById ('hidepage').style.visibility = 'hidden';
+		} else {
+			if (document.layers) { // Netscape 4
+				document.hidepage.visibility = 'hidden';
+			}  else { // IE 4 document.all.hidepage.style.visibility = 'hidden';
+			}
+		}
+	}
+
+	function progress() {
+		if (document.getElementById) { // DOM3 = IE5, NS6
+			document.getElementById ('hidepage').style.visibility = '';
+		} else {
+			if (document.layers) { // Netscape 4
+				document.hidepage.visibility = '';
+			}  else { // IE 4 document.all.hidepage.style.visibility = 'hidden';
+			}
+		}
+	}
+	
+//-->
+</script>
+<base target="_self">
+</HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0" >
+<FORM NAME="frmChckLock" METHOD=POST ACTION="/LHServ/InitChkLckServlet">
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+	<tr>
+		<td width="100%" class="BD">
+		<table border="0" width="100%" cellspacing="0" cellpadding="0">
+			<tr>
+				
+            <td width="50%" class="bigh"><img border="0"
+					src="images/i_home.gif" align="absmiddle" width="20" height="20">&nbsp; 
+              รายงานสรุปการทำ Check up</td>
+				<td width="50%" align="right"></td>
+			</tr>
+		</table>
+		<br style="font-size:10pt">
+
+		<table border="0" width="100%" cellspacing="0" cellpadding="0">
+			<tr>
+				<td class="item_tab1"><img border="0" src="images/i_i.gif"
+					align="absmiddle" width="20" height="20"></td>
+				
+            <td class="item_tab2" width="200">ระบุรายละเอียด</td>
+				<td class="item_tab3"></td>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+		<table border="0" width="100%" cellspacing="0" cellpadding="0">
+			<tr>
+				<td width="5" valign="top"><img border="0"
+					src="images/Corn01.gif" width="5" height="5"></td>
+				<td class="frmTop">&nbsp;</td>
+				<td width="5" valign="top" align="right"><img border="0"
+					src="images/Corn02.gif" width="5" height="5"></td>
+			</tr>
+		</table>
+		<table border="0" width="100%" cellspacing="0" cellpadding="0">
+			<tr>
+				<td width="100%" class="frmLR" align="center">
+				
+              <table border="0" width="100%" cellspacing="0" cellpadding="0">
+                <tr> 
+                  <td class="item ; dotline01" height="22" width="7%">โครงการ 
+                    :</td>
+                  <td height="22" width="47%" class="dotline01">
+                    <select
+							name='Project' class='box' style='width:250px' onChange="progress(); frmChckLock.submit();">
+                      <option value=''>------ กรุณาเลือก ------</option>
+                      <OPTION value="AP008" >AP008 ชัยพฤกษ์-บางนา</OPTION>
+                      <OPTION value="AR002" >AR002 พฤกษ์ลดา ปิ่นเกล้า-สาย 5</OPTION>
+                      <OPTION value="AR031" >AR031 ถ.พุทธมณฑล กม.22(2)</OPTION>
+                      <OPTION value="LA001" >LA001 มัณฑนา-รังสิต 2</OPTION>
+                      <OPTION value="LA002" >LA002 มัณฑนา-เพชรเกษม บางแค</OPTION>
+                      <OPTION value="LA003" >LA003 พฤกษ์ลดา-ติวานนท์ ราชพฤกษ์</OPTION>
+                      <OPTION value="LA004" >LA004 เดอะแบงค็อค สาทร-ตากสิน</OPTION>
+                      <OPTION value="LA005" >LA005 Baan Mai-พระราม 2</OPTION>
+                      <OPTION value="LA006" >LA006 พฤกษ์ลดา ประชาอุทิศ</OPTION>
+                      <OPTION value="LA008" >LA008 Baan Mai พระรามเก้า-ศรีนครินทร์</OPTION>
+                      <OPTION value="LA009" >LA009 รังสิต-คลองสาม</OPTION>
+                      <OPTION value="LA099" >LA099 ส่วนกลาง</OPTION>
+                      <OPTION value="LA909" >LA909 บ้านรอการขาย</OPTION>
+                      <OPTION value="LE101" >LE101 แลนด์แอนด์เฮ้าส์พารค์ขอนแก่น</OPTION>
+                      <OPTION value="LH003" >LH003 ชลลดา-บางบัวทอง</OPTION>
+                      <OPTION value="LH007" >LH007 สีวลี-รังสิต</OPTION>
+                      <OPTION value="LH010" >LH010 เลค วิว พาร์ค 1</OPTION>
+                      <OPTION value="LH011" selected>LH011 นันทวัน-ศรีนครินทร์</OPTION>
+                      <OPTION value="LH014" >LH014 มัณฑนา-ศรีนครินทร์</OPTION>
+                      <OPTION value="LH017" >LH017 ธาริณี-ปิ่นเกล้า</OPTION>
+                      <OPTION value="LH018" >LH018 ชัยพฤกษ์-ติวานนท์ วงแหวน</OPTION>
+                      <OPTION value="LH019" >LH019 ลดาวัลย์-รังสิต</OPTION>
+                      <OPTION value="LH020" >LH020 นันทวัน-ปิ่นเกล้า(1)</OPTION>
+                      <OPTION value="LH024" >LH024 The Key-ประชาชื่น</OPTION>
+                      <OPTION value="LH025" >LH025 พาร์คแกลเลอรี่-พระราม2</OPTION>
+                      <OPTION value="LH026" >LH026 ปาริชาต-ติวานนท์ วงแหวน</OPTION>
+                      <OPTION value="LH028" >LH028 ชัยพฤกษ์-บางขุนเทียน</OPTION>
+                      <OPTION value="LH029" >LH029 ชัยพฤกษ์-ตลิ่งชัน</OPTION>
+                      <OPTION value="LH034" >LH034 บุศรินทร์-บางบัวทอง</OPTION>
+                      <OPTION value="LH035" >LH035 มัณฑนา-รามอินทรา</OPTION>
+                      <OPTION value="LH039" >LH039 มัณฑนา-วงแหวน รามอินทรา</OPTION>
+                      <OPTION value="LH040" >LH040 นันทวัน-วงแหวน รัตนาธิเบศร์</OPTION>
+                      <OPTION value="LH042" >LH042 ชัยพฤกษ์-บางบัวทอง</OPTION>
+                      <OPTION value="LH049" >LH049 บุศรินทร์-วงแหวน รัตนาธิเบศร์</OPTION>
+                      <OPTION value="LH050" >LH050 บ้านกล้วย 2</OPTION>
+                      <OPTION value="LH051" >LH051 ชลลดา-วงแหวน รัตนาธิเบศร์</OPTION>
+                      <OPTION value="LH052" >LH052 บุศรินทร์-เทพารักษ์</OPTION>
+                      <OPTION value="LH053" >LH053 บุศรินทร์-ธนบุรีรมย์</OPTION>
+                      <OPTION value="LH054" >LH054 ชัยพฤกษ์-รามคำแหง สุวินทวงศ์</OPTION>
+                      <OPTION value="LH055" >LH055 ชัยพฤกษ์-สุวินทวงศ์</OPTION>
+                      <OPTION value="LH056" >LH056 มัณฑนา-วงแหวน ปิ่นเกล้า</OPTION>
+                      <OPTION value="LH059" >LH059 ชัยพฤกษ์-เทพารักษ์</OPTION>
+                      <OPTION value="LH061" >LH061 ลดาวัลย์-ประชาชื่น</OPTION>
+                      <OPTION value="LH063" >LH063 ชัยพฤกษ์-รังสิต</OPTION>
+                      <OPTION value="LH064" >LH064 ปาริชาต-สุวินทวงศ์</OPTION>
+                      <OPTION value="LH065" >LH065 มัณฑนา-ธนบุรีรมย์</OPTION>
+                      <OPTION value="LH066" >LH066 พฤกษ์ลดา-วงแหวน รัตนาธิเบศร์</OPTION>
+                      <OPTION value="LH067" >LH067 พฤกษ์ลดา-รังสิต คลองสี่</OPTION>
+                      <OPTION value="LH068" >LH068 ลดาวัลย์-เลคโคโลเนียล</OPTION>
+                      <OPTION value="LH069" >LH069 พฤกษ์วารี-เชียงใหม่</OPTION>
+                      <OPTION value="LH071" >LH071 ปาริชาต-ปิ่นเกล้า</OPTION>
+                      <OPTION value="LH074" >LH074 ชัยพฤกษ์-เชียงใหม่</OPTION>
+                      <OPTION value="LH075" >LH075 นันทวัน-เชียงใหม่</OPTION>
+                      <OPTION value="LH078" >LH078 มัณฑนา-อ่อนนุช วงแหวน</OPTION>
+                      <OPTION value="LH080" >LH080 ชัยพฤกษ์-รัตนาธิเบศร์ วงแหวน</OPTION>
+                      <OPTION value="LH081" >LH081 นันทวัน-ปิ่นเกล้า(2)</OPTION>
+                      <OPTION value="LH082" >LH082 นันทวัน-สุวรรณภูมิ</OPTION>
+                      <OPTION value="LH084" >LH084 มัณฑนา-ศรีนครินทร์ 2</OPTION>
+                      <OPTION value="LH085" >LH085 นันทวัน-วัชรพล</OPTION>
+                      <OPTION value="LH086" >LH086 ลดาวัลย์-ปิ่นเกล้า เพชรเกษม</OPTION>
+                      <OPTION value="LH091" >LH091 ลดาวัลย์-ประชาชื่น</OPTION>
+                      <OPTION value="LH092" >LH092 มัณฑนา-สวนหลวง ร.9</OPTION>
+                      <OPTION value="LH093" >LH093 มัณฑนา-พระรามเก้า</OPTION>
+                      <OPTION value="LH094" >LH094 นันทวัน-สุขุมวิท</OPTION>
+                      <OPTION value="LH095" >LH095 นันทวัน-ประชาชื่น</OPTION>
+                      <OPTION value="LH096" >LH096 มัณฑนา-รังสิต</OPTION>
+                      <OPTION value="LH099" >LH099 **ส่วนกลาง**</OPTION>
+                      <OPTION value="LH100" >LH100 มัณฑนา-วัชรพล รามอินทรา</OPTION>
+                      <OPTION value="LH102" >LH102 พฤกษ์ลดา 2-LHP เชียงใหม่</OPTION>
+                      <OPTION value="LH103" >LH103 พฤกษ์ลดา-LHPเชียงใหม่</OPTION>
+                      <OPTION value="LH107" >LH107 ชลลดา-เชียงใหม่</OPTION>
+                      <OPTION value="LH109" >LH109 มัณฑนา-วัชรพล รามอินทรา 2</OPTION>
+                      <OPTION value="LH110" >LH110 ลดาวัลย์-สุขุมวิท</OPTION>
+                      <OPTION value="LH111" >LH111 นันทวัน-พระราม 2</OPTION>
+                      <OPTION value="LH112" >LH112 นันทวัน-ปิ่นเกล้า พระราม 5</OPTION>
+                      <OPTION value="LH113" >LH113 มัณฑนา-รัตนาธิเบศร์</OPTION>
+                      <OPTION value="LH114" >LH114 ลดาวัลย์-พุทธมณฑลสาย 2</OPTION>
+                      <OPTION value="LH115" >LH115 มัณฑนา-ปิ่นเกล้า พุทธมณฑล</OPTION>
+                      <OPTION value="LH116" >LH116 นันทวัน-ปิ่นเกล้า สาทร</OPTION>
+                      <OPTION value="LH117" >LH117 มัณฑนา-พระรามเก้า 2</OPTION>
+                      <OPTION value="LH118" >LH118 ลดาวัลย์-รามอินทรา</OPTION>
+                      <OPTION value="LH121" >LH121 ลดาวัลย์-สาทร ราชพฤกษ์</OPTION>
+                      <OPTION value="LH123" >LH123 มัณฑนา-พระราม 2</OPTION>
+                      <OPTION value="LH125" >LH125 บนดอย-เชียงใหม่</OPTION>
+                      <OPTION value="LH127" >LH127 มัณฑนา-เพชรเกษม 81</OPTION>
+                      <OPTION value="LH128" >LH128 ลดาวัลย์-ปิ่นเกล้า สาทร</OPTION>
+                      <OPTION value="LH132" >LH132 สีวลี-สุวรรณภูมิ</OPTION>
+                      <OPTION value="LH133" >LH133 นันทวัน-พระรามเก้า อ่อนนุช</OPTION>
+                      <OPTION value="LH134" >LH134 มัณฑนา-ปิ่นเกล้า พระราม 5</OPTION>
+                      <OPTION value="LH135" >LH135 ชัยพฤกษ์-บางนา 2</OPTION>
+                      <OPTION value="LH136" >LH136 ชลลดา-ขอนแก่น</OPTION>
+                      <OPTION value="LH137" >LH137 L&H Airport</OPTION>
+                      <OPTION value="LH138" >LH138 ชลลดา-สุวรรณภูมิ</OPTION>
+                      <OPTION value="LH139" >LH139 นันทวัน-สาทร ราชพฤกษ์</OPTION>
+                      <OPTION value="LH140" >LH140 สีวลี-คลองชลฯ เชียงใหม่</OPTION>
+                      <OPTION value="LH141" >LH141 เดอะรูม-สุขุมวิท 79</OPTION>
+                      <OPTION value="LH142" >LH142 พฤกษ์ลดา(2)-รังสิต คลองสี่</OPTION>
+                      <OPTION value="LH143" >LH143 พฤกษ์ลดา-พระราม2(2)</OPTION>
+                      <OPTION value="LH144" >LH144 The Terrace-พระราม 2</OPTION>
+                      <OPTION value="LH145" >LH145 มัณฑนา-บางนา</OPTION>
+                      <OPTION value="LH147" >LH147 นันทวัน-ขอนแก่น</OPTION>
+                      <OPTION value="LH148" >LH148 The Terrace-ลาดพร้าว 71</OPTION>
+                      <OPTION value="LH149" >LH149 ชัยพฤกษ์-บางใหญ่</OPTION>
+                      <OPTION value="LH150" >LH150 ชัยพฤกษ์-แจ้งวัฒนะ ราชพฤกษ์</OPTION>
+                      <OPTION value="LH151" >LH151 ลดาวัลย์-เกษตร นวมินทร์</OPTION>
+                      <OPTION value="LH152" >LH152 ชัยพฤกษ์-ปิ่นเกล้า สาทร</OPTION>
+                      <OPTION value="LH153" >LH153 เดอะรูม-รัชดา ลาดพร้าว</OPTION>
+                      <OPTION value="LH154" >LH154 มัณฑนา-แจ้งวัฒนะ ราชพฤกษ์</OPTION>
+                      <OPTION value="LH155" >LH155 สีวลี-ราชพฤกษ์ เชียงใหม่</OPTION>
+                      <OPTION value="LH156" >LH156 The Terrace-งามวงศ์วาน ติวานนท์</OPTION>
+                      <OPTION value="LH159" >LH159 The Key-พหลโยธิน</OPTION>
+                      <OPTION value="LH161" >LH161 พฤกษ์ลดา-บางนา</OPTION>
+                      <OPTION value="LH162" >LH162 สีวลี-บางนา</OPTION>
+                      <OPTION value="LH163" >LH163 เดอะรูม-สุขุมวิท 64</OPTION>
+                      <OPTION value="LH165" >LH165 ชัยพฤกษ์-บางใหญ่</OPTION>
+                      <OPTION value="LH166" >LH166 สีวลี-ขอนแก่น</OPTION>
+                      <OPTION value="LH168" >LH168 Baan Mai-เทพารักษ์</OPTION>
+                      <OPTION value="LH169" >LH169 The Landmark-รัชดา ลาดพร้าว</OPTION>
+                      <OPTION value="LH170" >LH170 นันทวัน-แจ้งวัฒนะ ราชพฤกษ์</OPTION>
+                      <OPTION value="LH171" >LH171 มัณฑนา-วงแหวน เทพารักษ์</OPTION>
+                      <OPTION value="LH172" >LH172 ชัยพฤกษ์-บางใหญ่</OPTION>
+                      <OPTION value="LH173" >LH173 ชัยพฤกษ์-บางใหญ่</OPTION>
+                      <OPTION value="LH174" >LH174 Baan Mai-พระราม 9 วงแหวน</OPTION>
+                      <OPTION value="LH176" >LH176 ลดาวัลย์-รัตนาธิเบศร์</OPTION>
+                      <OPTION value="LH177" >LH177 มัณฑนา-บางใหญ่</OPTION>
+                      <OPTION value="LH178" >LH178 Baan Mai-บางนา</OPTION>
+                      <OPTION value="LH179" >LH179 มัณฑนา-อ่อนนุช วงแหวน 2</OPTION>
+                      <OPTION value="LH180" >LH180 Baan Mai-พระราม 2(2)</OPTION>
+                      <OPTION value="LH181" >LH181 ชัยพฤกษ์-รามอินทรา วงแหวน</OPTION>
+                      <OPTION value="LH183" >LH183 นันทวัน-อุทยาน อักษะ</OPTION>
+                      <OPTION value="LH184" >LH184 เดอะรูม-สุขุมวิท 62</OPTION>
+                      <OPTION value="LH185" >LH185 ชัยพฤกษ์-วัชรพล</OPTION>
+                      <OPTION value="LH186" >LH186 Baan Mai-พระราม 2 พุทธบูชา</OPTION>
+                      <OPTION value="LH188" >LH188 ชัยพฤกษ์-บางนา 4</OPTION>
+                      <OPTION value="LH189" >LH189 Baan Mai-รามอินทรา คู้บอน</OPTION>
+                      <OPTION value="LH190" >LH190 The Terrace-เพชรเกษม 63</OPTION>
+                      <OPTION value="LH191" >LH191 มัณฑนา-รามอินทรา วงแหวน</OPTION>
+                      <OPTION value="LH194" >LH194 พฤกษ์ลดา-บางใหญ่</OPTION>
+                      <OPTION value="LH195" >LH195 นันทวัน-วัชรพล 2</OPTION>
+                      <OPTION value="LH196" >LH196 The Room-สาทร ตากสิน</OPTION>
+                      <OPTION value="LH197" >LH197 มัณฑนา-พระราม 9 ศรีนครินทร์</OPTION>
+                      <OPTION value="LH199" >LH199 INIZIO-รังสิต คลอง 3</OPTION>
+                      <OPTION value="LH200" >LH200 สีวลี-เชิงดอย เชียงใหม่</OPTION>
+                      <OPTION value="LH201" >LH201 ISLAND RESIDENCE-B</OPTION>
+                      <OPTION value="LH202" >LH202 HILLSIDE RESIDENCE-C</OPTION>
+                      <OPTION value="LH203" >LH203 HILLSIDE RESIDENCE-D</OPTION>
+                      <OPTION value="LH204" >LH204 CANAL RESIDENCE-E</OPTION>
+                      <OPTION value="LH205" >LH205 ลดาวัลย์-ราชพฤกษ์</OPTION>
+                      <OPTION value="LH206" >LH206 ซอยช้าง(แยก176)</OPTION>
+                      <OPTION value="LH207" >LH207 หัวหิน-ซอย 1</OPTION>
+                      <OPTION value="LH208" >LH208 ชัยพฤกษ์-รามอินทรา วงแหวน 2</OPTION>
+                      <OPTION value="LH209" >LH209 The Terrace-รามอินทรา</OPTION>
+                      <OPTION value="LH210" >LH210 เดอะรูม-สุขุมวิท 21</OPTION>
+                      <OPTION value="LH211" >LH211 พฤกษ์ลดา-ประชาอุทิศ 2</OPTION>
+                      <OPTION value="LH212" >LH212 สีวลี-รามคำแหง</OPTION>
+                      <OPTION value="LH213" >LH213 สุขุมวิท 40-ซ.สมานฉันท์</OPTION>
+                      <OPTION value="LH215" >LH215 The Key-แจ้งวัฒนะ</OPTION>
+                      <OPTION value="LH218" >LH218 Baan Mai-ประชาอุทิศ</OPTION>
+                      <OPTION value="LH220" >LH220 INIZIO-ถ.สำเร็จพัฒนา</OPTION>
+                      <OPTION value="LHG01" >LHG01 ส่วนกลาง-กลุ่ม 1</OPTION>
+                      <OPTION value="LHG02" >LHG02 ส่วนกลาง-กลุ่ม 2</OPTION>
+                      <OPTION value="LHG03" >LHG03 ส่วนกลาง-กลุ่ม 3</OPTION>
+                      <OPTION value="LHG04" >LHG04 ส่วนกลาง-กลุ่ม 4</OPTION>
+                      <OPTION value="LHG05" >LHG05 ส่วนกลาง-กลุ่ม 5</OPTION>
+                      <OPTION value="LHG06" >LHG06 ส่วนกลาง-กลุ่ม 6</OPTION>
+                      <OPTION value="LHG07" >LHG07 ส่วนกลาง-กลุ่ม 7</OPTION>
+                      <OPTION value="LHG08" >LHG08 ส่วนกลาง-กลุ่ม 8</OPTION>
+                      <OPTION value="LHG09" >LHG09 ส่วนกลาง-กลุ่ม 9</OPTION>
+                      <OPTION value="LHG10" >LHG10 ส่วนกลาง-กลุ่ม 10</OPTION>
+                      <OPTION value="LHG11" >LHG11 ส่วนกลาง-กลุ่ม 11</OPTION>
+                      <OPTION value="LHG12" >LHG12 ส่วนกลาง-กลุ่ม 12</OPTION>
+                      <OPTION value="LK201" >LK201 แลนด์แอนด์เฮ้าส์ พาร์ค โคราช</OPTION>
+                      <OPTION value="LM001" >LM001 บ้านนันทวัน</OPTION>
+                      <OPTION value="LM004" >LM004 บ้านนันทนา</OPTION>
+                      <OPTION value="LT001" >LT001 พฤกษ์ลดา-เพชรเกษม พุทธมณฑลสาย4</OPTION>
+                      <OPTION value="LT003" >LT003 ชัยพฤกษ์-ติวานนท์ วงแหวน 2</OPTION>
+                      <OPTION value="LT004" >LT004 นันทวัน-สวนหลวง ร.๙</OPTION>
+                      <OPTION value="LT007" >LT007 นันทวัน รามคำแหง</OPTION>
+                      <OPTION value="LT008" >LT008 เดอะแบงค็อค สุขุมวิท 43</OPTION>
+                      <OPTION value="LT909" >LT909 บ้านรอการขาย</OPTION>
+                      <OPTION value="NE401" >NE401 ชัยพฤกษ์ รังสิต-คลองสี่</OPTION>
+                      <OPTION value="PF007" >PF007 สีวลี-ปิ่นเกล้า สาทร</OPTION>
+                      <OPTION value="PF008" >PF008 พฤกษ์ลดา-พระราม 2</OPTION>
+                      <OPTION value="PF009" >PF009 ชัยพฤกษ์-เพชรเกษม 81</OPTION>
+                      <OPTION value="SI008" >SI008 ลดาวัลย์ ณ เจ้าพระยา</OPTION>
+                      <OPTION value="SI009" >SI009 อิงลดา รังสิต คลอง4</OPTION>
+                      <OPTION value="SI010" >SI010 PARK HOME OFFICE</OPTION>
+                    </select>
+                  </td>
+                  <td height="22" class="item ; dotline01" width="9%">Checkup 
+                    เดือน/ปี :</td>
+                  <td height="22" width="37%" class="dotline01"> 
+                    <select name='chkMonth' class='box' style="width:75px" onChange="progress(); frmChckLock.submit();">
+                      <OPTION value="01" >มกราคม</OPTION>
+                      <OPTION value="02" >กุมภาพันธ์</OPTION>
+                      <OPTION value="03" >มีนาคม</OPTION>
+                      <OPTION value="04" >เมษายน</OPTION>
+                      <OPTION value="05" >พฤษภาคม</OPTION>
+                      <OPTION value="06" >มิถุนายน</OPTION>
+                      <OPTION value="07" >กรกฎาคม</OPTION>
+                      <OPTION value="08" selected>สิงหาคม</OPTION>
+                      <OPTION value="09" >กันยายน</OPTION>
+                      <OPTION value="10" >ตุลาคม</OPTION>
+                      <OPTION value="11" >พฤศจิกายน</OPTION>
+                      <OPTION value="12" >ธันวาคม</OPTION>
+                    </select>
+                    <select name='chkYear' class='box' style="width:55px">
+                      <OPTION value="2005" >2548</OPTION>
+                      <OPTION value="2006" >2549</OPTION>
+                      <OPTION value="2007" >2550</OPTION>
+                      <OPTION value="2008" >2551</OPTION>
+                      <OPTION value="2009" >2552</OPTION>
+                      <OPTION value="2010" selected>2553</OPTION>
+                      <OPTION value="2011" >2554</OPTION>
+                      <OPTION value="2012" >2555</OPTION>
+                      <OPTION value="2013" >2556</OPTION>
+                      <OPTION value="2014" >2557</OPTION>
+                      <OPTION value="2015" >2558</OPTION>
+                    </select>
+                    &nbsp;&nbsp;&nbsp;<a href="javascript:progress(); frmChckLock.submit();"><img border="0" src="images/bu_go.gif"
+							align="absmiddle" width="40" height="22"></a></td>
+                </tr>
+              </table>
+				</td>
+			</tr>
+		</table>
+		<table border="0" width="100%" cellspacing="0" cellpadding="0">
+			<tr>
+				<td width="5" valign="bottom"><img border="0"
+					src="images/Corn03.gif" width="5" height="5"></td>
+				<td class="frmBottom">&nbsp;</td>
+				<td width="5" valign="bottom" align="right"><img border="0"
+					src="images/Corn04.gif" width="5" height="5"></td>
+			</tr>
+		</table>
+		<br style="font-size:10pt">
+		<table border="0" width="100%" cellspacing="0" cellpadding="0">
+			<tr>
+				<td class="item_tab1"><img border="0" src="images/i_i.gif"
+					align="absmiddle" width="20" height="20"></td>
+
+				
+            <td class="item_tab2" width="160">รายการแปลงที่นัดแล้ว</td>
+				<td class="item_tab3"></td>
+
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+		<table border="0" width="100%" cellspacing="0" cellpadding="0">
+			<tr>
+				<td width="5" valign="top" bgcolor="#D7E6FF"><img border="0"
+					src="images/Corn01.gif" width="5" height="5"></td>
+				<td class="frmTop" bgcolor="#D7E6FF">&nbsp;</td>
+				<td width="5" valign="top" align="right" bgcolor="#D7E6FF"><img
+					border="0" src="images/Corn02.gif" width="5" height="5"></td>
+			</tr>
+		</table>
+		<table border="0" width="100%" cellspacing="0" cellpadding="0">
+			<tr>
+				<td width="100%" class="frmL">
+
+				
+              <table border="0" width="100%" cellspacing="0" cellpadding="0">
+                <tr> 
+                  <td width="4%" class="col_name">ลำดับที่</td>
+                  <td width="6%" class="col_nameO"><a href="SERV_ChkLckLst.jsp?Project=LH011&chkMonth=08&chkYear=2010&order=i_lock, i_chkseq, i_status">แปลงขาย</a> 
+                  </td>
+                  <td width="5%" class="col_nameO"><a href="SERV_ChkLckLst.jsp?Project=LH011&chkMonth=08&chkYear=2010&order=i_chkseq, i_lock">ครั้งที่</a> 
+                    &nbsp;<img src="images/i_down.gif" width="9" height="9"> </td>
+                  <td width="11%" class="col_name">วัน/เวลานัด Check up</td>
+                  <td width="8%" class="col_name">เลขที่ใบแจ้งนัด</td>
+                  <td width="9%" class="col_nameO"><a href="SERV_ChkLckLst.jsp?Project=LH011&chkMonth=08&chkYear=2010&order=i_status, i_chkseq, i_lock">สถานะ</a> 
+                  </td>
+                  <td width="5%" class="col_name">บ้านเลขที่</td>
+                  <td width="17%" class="col_name">ชื่อลูกค้า</td>
+                  <td width="10%" class="col_name">เบอร์โทรศัพท์</td>
+                  <td width="8%" class="col_nameO"><a href="SERV_ChkLckLst.jsp?Project=LH011&chkMonth=08&chkYear=2010&order=d_close_law">วันที่โอน</A> 
+                  </td>
+                  <td width="14%" class="col_name">หมายเหตุ</td>
+                </tr>
+                <tr> 
+                  <td width="4%" align="center" class="dotline">1</td>
+                  <td width="6%" class="dotline" align="center"> 04H18 </td>
+                  <td width="5%" class="dotline" align="center">1</td>
+                  <td width="11%" align="center" class="dotline">16/13.30 - 15.00 
+                    น.</td>
+                  <td width="8%" align="center" class="dotline">LH-011-5300358</td>
+                  <td width="9%" align="center" class="dotline">บันทึกนัดแล้ว 
+                  </td>
+                  <td width="5%" class="dotline" align="center">234/36&nbsp;</td>
+                  <td width="17%" align="left" class="dotline">นางสุรางค์ เชอร์วูด 
+                    &nbsp;</td>
+                  <td width="10%" align="left" class="dotline">0875906114 , 0875906114 
+                    &nbsp;</td>
+                  <td width="8%" align="center" class="dotline">12/04/2553</td>
+                  <td width="14%" align="left" class="dotline">&nbsp; </td>
+                </tr>
+                <tr> 
+                  <td width="4%" align="center" class="dotline">2</td>
+                  <td width="6%" class="dotline" align="center"> 04I13 </td>
+                  <td width="5%" class="dotline" align="center">1</td>
+                  <td width="11%" align="center" class="dotline">09/15.00 - 16.30 
+                    น.</td>
+                  <td width="8%" align="center" class="dotline">LH-011-5300353</td>
+                  <td width="9%" align="center" class="dotline">บันทึกนัดแล้ว 
+                  </td>
+                  <td width="5%" class="dotline" align="center">234/51&nbsp;</td>
+                  <td width="17%" align="left" class="dotline">น.ส.กฤษณา ทองเพิ่ม 
+                    &nbsp;</td>
+                  <td width="10%" align="left" class="dotline">&nbsp; </td>
+                  <td width="8%" align="center" class="dotline">30/04/2553</td>
+                  <td width="14%" align="left" class="dotline">&nbsp; </td>
+                </tr>
+                <tr> 
+                  <td width="4%" align="center" class="dotline">3</td>
+                  <td width="6%" class="dotline" align="center"> 04J20 </td>
+                  <td width="5%" class="dotline" align="center">1</td>
+                  <td width="11%" align="center" class="dotline">09/09.30 - 11.00 
+                    น.</td>
+                  <td width="8%" align="center" class="dotline">LH-011-5300352</td>
+                  <td width="9%" align="center" class="dotline">บันทึกนัดแล้ว 
+                  </td>
+                  <td width="5%" class="dotline" align="center">234/79&nbsp;</td>
+                  <td width="17%" align="left" class="dotline">นางสาวสมใจ พวงทอง 
+                    &nbsp;</td>
+                  <td width="10%" align="left" class="dotline">087-9014013 &nbsp;</td>
+                  <td width="8%" align="center" class="dotline">30/04/2553</td>
+                  <td width="14%" align="left" class="dotline">&nbsp; </td>
+                </tr>
+                <tr> 
+                  <td width="4%" align="center" class="dotline">4</td>
+                  <td width="6%" class="dotline" align="center"> 05A02 </td>
+                  <td width="5%" class="dotline" align="center">1</td>
+                  <td width="11%" align="center" class="dotline">09/11.00 - 12.30 
+                    น.</td>
+                  <td width="8%" align="center" class="dotline">LH-011-5300354</td>
+                  <td width="9%" align="center" class="dotline">บันทึกนัดแล้ว 
+                  </td>
+                  <td width="5%" class="dotline" align="center">239/23&nbsp;</td>
+                  <td width="17%" align="left" class="dotline">นายปิยะ ธรรมโกวิท 
+                    &nbsp;</td>
+                  <td width="10%" align="left" class="dotline">0896092299 &nbsp;</td>
+                  <td width="8%" align="center" class="dotline">16/03/2553</td>
+                  <td width="14%" align="left" class="dotline">&nbsp; </td>
+                </tr>
+                <tr> 
+                  <td width="4%" align="center" class="dotline">5</td>
+                  <td width="6%" class="dotline" align="center"> 04H19 </td>
+                  <td width="5%" class="dotline" align="center">2</td>
+                  <td width="11%" align="center" class="dotline">10/09.30 - 11.00 
+                    น.</td>
+                  <td width="8%" align="center" class="dotline">LH-011-5300348</td>
+                  <td width="9%" align="center" class="dotline">บันทึกนัดแล้ว 
+                  </td>
+                  <td width="5%" class="dotline" align="center">234/37&nbsp;</td>
+                  <td width="17%" align="left" class="dotline">นางสาวมนชยา คุปตะวินทุ 
+                    &nbsp;</td>
+                  <td width="10%" align="left" class="dotline">&nbsp; </td>
+                  <td width="8%" align="center" class="dotline">18/09/2552</td>
+                  <td width="14%" align="left" class="dotline">&nbsp; </td>
+                </tr>
+                <tr> 
+                  <td width="4%" align="center" class="dotline">6</td>
+                  <td width="6%" class="dotline" align="center"> 04I08 </td>
+                  <td width="5%" class="dotline" align="center">2</td>
+                  <td width="11%" align="center" class="dotline">09/13.30 - 15.00 
+                    น.</td>
+                  <td width="8%" align="center" class="dotline">LH-011-5300355</td>
+                  <td width="9%" align="center" class="dotline">บันทึกนัดแล้ว 
+                  </td>
+                  <td width="5%" class="dotline" align="center">234/46&nbsp;</td>
+                  <td width="17%" align="left" class="dotline">นางณัชชารีย์ ธรรมวราเศรษฐ์ 
+                    &nbsp;</td>
+                  <td width="10%" align="left" class="dotline">&nbsp; </td>
+                  <td width="8%" align="center" class="dotline">18/09/2552</td>
+                  <td width="14%" align="left" class="dotline">&nbsp; </td>
+                </tr>
+                <tr> 
+                  <td width="4%" align="center" class="dotline">7</td>
+                  <td width="6%" class="dotline" align="center"> 04K29 </td>
+                  <td width="5%" class="dotline" align="center">2</td>
+                  <td width="11%" align="center" class="dotline">18/09.30 - 11.00 
+                    น.</td>
+                  <td width="8%" align="center" class="dotline">LH-011-5300357</td>
+                  <td width="9%" align="center" class="dotline">บันทึกนัดแล้ว 
+                  </td>
+                  <td width="5%" class="dotline" align="center">234/120&nbsp;</td>
+                  <td width="17%" align="left" class="dotline">นางสาวณัฐชยา อาจสุรินทร์ 
+                    &nbsp;</td>
+                  <td width="10%" align="left" class="dotline">&nbsp; </td>
+                  <td width="8%" align="center" class="dotline">14/09/2552</td>
+                  <td width="14%" align="left" class="dotline">&nbsp; </td>
+                </tr>
+                <tr> 
+                  <td width="4%" align="center" class="dotline">8</td>
+                  <td width="6%" class="dotline" align="center"> 04W16 </td>
+                  <td width="5%" class="dotline" align="center">2</td>
+                  <td width="11%" align="center" class="dotline">10/13.30 - 15.00 
+                    น.</td>
+                  <td width="8%" align="center" class="dotline">LH-011-5300349</td>
+                  <td width="9%" align="center" class="dotline">บันทึกนัดแล้ว 
+                  </td>
+                  <td width="5%" class="dotline" align="center">234/466&nbsp;</td>
+                  <td width="17%" align="left" class="dotline">นายสุชาติ อรุณศิริโชค 
+                    &nbsp;</td>
+                  <td width="10%" align="left" class="dotline">&nbsp; </td>
+                  <td width="8%" align="center" class="dotline">30/09/2552</td>
+                  <td width="14%" align="left" class="dotline">&nbsp; </td>
+                </tr>
+                <tr> 
+                  <td width="4%" align="center" class="dotline">9</td>
+                  <td width="6%" class="dotline" align="center"> 04Y08 </td>
+                  <td width="5%" class="dotline" align="center">2</td>
+                  <td width="11%" align="center" class="dotline">16/09.30 - 11.00 
+                    น.</td>
+                  <td width="8%" align="center" class="dotline">LH-011-5300356</td>
+                  <td width="9%" align="center" class="dotline">บันทึกนัดแล้ว 
+                  </td>
+                  <td width="5%" class="dotline" align="center">234/500&nbsp;</td>
+                  <td width="17%" align="left" class="dotline">นายสยามรัฐ ชัยตฤณธวัช 
+                    &nbsp;</td>
+                  <td width="10%" align="left" class="dotline">&nbsp; </td>
+                  <td width="8%" align="center" class="dotline">30/09/2552</td>
+                  <td width="14%" align="left" class="dotline">&nbsp; </td>
+                </tr>
+              </table>
+				</td>
+			</tr>
+		</table>
+		<table border="0" width="100%" cellspacing="0" cellpadding="0">
+			<tr>
+				<td width="5" valign="bottom"><img border="0"
+					src="images/Corn03.gif" width="5" height="5"></td>
+				<td class="frmBottom">&nbsp;</td>
+				<td width="5" valign="bottom" align="right"><img border="0"
+					src="images/Corn04.gif" width="5" height="5"></td>
+			</tr>
+		</table>
+ <br style="font-size:10pt">
+		<table border="0" width="100%" cellspacing="0" cellpadding="0"
+			height="30">
+			<tr>
+				<td class="act_tab1"></td>
+				
+            <td width="75" class="act_tab2">&nbsp; </td>
+				<td class="act_tab3"></td>
+				<td class="act_tab4">
+<a href=""
+					target="_top"><img border="0" src="images/bu_back.gif"
+					align="absmiddle" width="50" height="15"></a>
+&nbsp; <a href="SERV_Home.jsp"
+					target="_top"><img border="0" src="images/bu_home.gif"
+					align="absmiddle" width="50" height="15"></a></td>
+			</tr>
+		</table>
+		</td>
+	</tr>
+</table>
+<br style="font-size:20pt">
+<TABLE border=0 cellspacing=0 cellpadding=0 width="100%">
+	<tr>
+		<td width="100%" class="copyright" align="center">Best viewed
+		with 800x600 screen resolution on&nbsp;an Internet Explorer version 5
+		และ 5.5 <br>
+		ติดต่อสอบถามได้ที่ : <a href="mailto:Administrator@lh.co.th">Administrator@lh.co.th</a>&nbsp;
+		หรือ โทร. 0-2230-8279 (คุณประพัฒน์ ฝ่ายบริการ)&nbsp; 0-2230-8491-5
+		(ฝ่าย IT) <br>
+		<img src="images/copyright.gif" width="475" height="26"></td>
+	</tr>
+</TABLE>
+</FORM>
+</BODY>
+</HTML>

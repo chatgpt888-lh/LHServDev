@@ -17,9 +17,7 @@ public class TestQuery extends Common{
 	 * @param args
 	 */
 	static{
-		//132.146.1.130
-		//Common.setConfig("132.146.1.130", "6848", "lan", "informix", "informix", "ol_informix1170");
-		Common.setConfig("132.146.1.2", "1530", "lan", "bck", "bck", "onnetimp");
+
 	}
 	
 	public static void main(String[] args) {

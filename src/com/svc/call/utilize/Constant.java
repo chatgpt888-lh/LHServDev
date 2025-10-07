@@ -34,18 +34,18 @@ public class Constant {
 	public final static String CODE_07 = "07";
 		
 	//Email-configuration
-	 public final static String HOST_MAIL_SERVER="132.146.1.12";
-	 public final static String HOST_MAIL_ADDRESS = "lh.co.th";
+	 public final static String HOST_MAIL_SERVER="xx";
+	 public final static String HOST_MAIL_ADDRESS = "xx";
 	 public final static String HOST_MAIL_APP_NAME ="application";
 	 //public final static String URL_SE_HOME = "SellHomeController.do?cmd=formLoad";
-	 //public final static String DEFAULT_EMAIL = "thanun@lh.co.th";
-	 public final static String CC_MAIL = "wichai@lh.co.th,pradoem@lh.co.th";
+	 //public final static String DEFAULT_EMAIL = "xx";
+	 public final static String CC_MAIL = "xxx";
 	 	 
 	 //**For Google configuration 
 	 public final static String PROXY_SET_NAME = "proxySet";
 	 public final static String PROXY_SET = "true";
 	 public final static String PROXY_HOST_NAME = "proxyHost";
-	 public final static String PROXY_HOST = "132.146.1.15";
+	 public final static String PROXY_HOST = "xxx";
 	 public final static String PROXY_PORT_NAME = "proxyPort";
 	 public final static String PROXY_PORT = "8080";
 	 public final static String G_SERVICE = "exampleCo-exampleApp-1.0";

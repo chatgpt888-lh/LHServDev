@@ -16,10 +16,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 public class LHSendMail{
-	//sendMail("132.146.1.82", "lh.co.th", "application", "arthit@lh.co.th", "", "∑¥ Õ∫", "∑¥ Õ∫");
-	//public static void sendMail( String host, String domain, String sender, String recipientsTO, String recipientsCC, String subject, String content) {
-	static String pathImages = "http://132.146.1.126";//"http://132.146.4.24:9080";
-	public static void sendMail( String domain, String sender, String recipientsTO, String recipientsCC, String subject, String content) {
+		public static void sendMail( String domain, String sender, String recipientsTO, String recipientsCC, String subject, String content) {
 		try {
 	    	Context ctx = new InitialContext();
 			javax.mail.Session mailSession = (javax.mail.Session) ctx.lookup("mail/lhmail");

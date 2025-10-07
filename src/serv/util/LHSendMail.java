@@ -43,14 +43,7 @@ public class LHSendMail{
 			transport.connect(host, "application", "password");
 			*/
 	    	
-	    	/* For 132.146.1.92 BATCH
-			Properties props = System.getProperties();
-	        props.put("mail.transport.protocol", "smtp");
-	        props.put("mail.smtp.host", host);
-			props.put("mail.smtp.port", "25");
-	        Session mailSession = Session.getDefaultInstance(props, null);
-	        Transport transport = mailSession.getTransport();
-			*/
+	    
 	    	
 	        MimeMessage message = new MimeMessage(mailSession);
 	        message.setSubject(subject, "UTF-8");
